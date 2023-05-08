@@ -29,5 +29,9 @@
     "prettier-plugin-tailwindcss": "^0.2.5",
     "sass": "^1.58.3",
     "vitest": "^0.29.2"
+  },
+  "dependencies": {
+    "body-scroll-lock-upgrade": "^1.0.3",
+    "snarkdown": "^2.0.0"
   }
 }
