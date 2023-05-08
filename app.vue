@@ -1,23 +1,22 @@
 <template>
-  <pre>
-    {{ companyInformation }}
-  </pre>
-  <NuxtLayout>
-    <NuxtPage />
-  </NuxtLayout>
-  <ModalRoot />
+  <div>
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
+    <ModalRoot />
+  </div>
 </template>
 <script setup lang="ts">
-import ModalRoot from '~/components/ui/modals/ModalRoot.vue'
 import { useFont } from '#fonty'
+import ModalRoot from '~/components/ui/modals/ModalRoot.vue'
 import type { CompanyInformationResponse } from '~/models/api'
-import { CompanyInformationInput } from '~/models/single-types'
+// import { CompanyInformationInput } from '~/models/single-types'
 
 const config = useRuntimeConfig()
 const { data, error } = await useAsyncData(
   `company-information`,
   () =>
-    $fetch<CompanyInformationResponse>('/api/company-information', {
+    $fetch<CompanyInformationResponse>('/api/company-information?populate=deep', {
       method: 'GET',
       baseURL: config.baseURL,
     }),
@@ -35,12 +34,10 @@ if (error.value || !data.value) {
   })
 }
 
-const companyInformation = useState<CompanyInformationInput>(
-  'companyInformation',
-  () => data.value as CompanyInformationInput
-)
-
-console.log(companyInformation.value)
+// const companyInformation = useState<CompanyInformationInput>(
+//   'companyInformation',
+//   () => data.value as CompanyInformationInput
+// )
 
 useFont([
   {
