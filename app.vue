@@ -10,7 +10,7 @@
 import { useFont } from '#fonty'
 import ModalRoot from '~/components/ui/modals/ModalRoot.vue'
 import type { CompanyInformationResponse } from '~/models/api'
-// import { CompanyInformationInput } from '~/models/single-types'
+import { CompanyInformationInput } from '~/models/single-types'
 
 const config = useRuntimeConfig()
 const { data, error } = await useAsyncData(
@@ -34,10 +34,10 @@ if (error.value || !data.value) {
   })
 }
 
-// const companyInformation = useState<CompanyInformationInput>(
-//   'companyInformation',
-//   () => data.value as CompanyInformationInput
-// )
+useState<CompanyInformationInput>(
+  'companyInformation',
+  () => data.value as CompanyInformationInput
+)
 
 useFont([
   {
