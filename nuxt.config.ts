@@ -1,4 +1,4 @@
-const isDev = process.env.NODE_ENV === 'development'
+// const isDev = process.env.NODE_ENV === 'development'
 export default defineNuxtConfig({
   components: false,
   runtimeConfig: {
@@ -19,6 +19,7 @@ export default defineNuxtConfig({
   modules: [
     'nuxt-fonty',
     '@nuxtjs/tailwindcss',
+    '@nuxtjs/svg-sprite',
     // 'nuxt-delay-hydration',
     // ...(isDev ? ['@nuxtjs/html-validator'] : []),
   ],
