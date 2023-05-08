@@ -6,6 +6,15 @@ export default defineNuxtConfig({
       baseURL: process.env.BASE_URL,
     },
   },
+  nitro: {
+    devProxy: {
+      '/uploads': {
+        target: 'http://127.0.0.1:1337/uploads',
+        changeOrigin: true,
+        prependPath: true,
+      },
+    },
+  },
   app: {
     head: {
       htmlAttrs: {
