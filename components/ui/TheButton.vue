@@ -52,14 +52,26 @@ const props = defineProps({
     default: 'button',
     validator: (value) => ['a', 'nuxt-link', 'button'].includes(value),
   },
-  loading: Boolean,
-  href: String,
-  to: [String, Object],
+  loading: {
+    type: Boolean,
+    default: false,
+  },
+  href: {
+    type: String,
+    default: undefined,
+  },
+  to: {
+    type: [String, Object],
+    default: undefined,
+  },
   type: {
     type: String,
     default: 'button',
   },
-  disabled: Boolean,
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
   variant: {
     type: String,
     default: 'primary',
@@ -70,22 +82,31 @@ const props = defineProps({
     type: String,
     default: '',
     validator: (value) =>
-      ['neutral', 'turquoise', 'orange', 'purple', 'red', ''].includes(value),
+      ['neutral', 'turquoise', 'orange', 'purple', 'red', 'black', ''].includes(value),
   },
   colorText: {
     type: String,
     default: '',
     validator: (value) =>
-      ['neutral', 'turquoise', 'orange', 'purple', 'red', ''].includes(value),
+      ['neutral', 'turquoise', 'orange', 'purple', 'red', 'gray', ''].includes(value),
   },
   size: {
     type: String,
     default: 'medium',
     validator: (value) => ['small', 'medium', 'large'].includes(value),
   },
-  iconLeft: String,
-  iconRight: String,
-  iconOnly: String,
+  iconLeft: {
+    type: String,
+    default: '',
+  },
+  iconRight: {
+    type: String,
+    default: '',
+  },
+  iconOnly: {
+    type: String,
+    default: '',
+  },
 })
 const emits = defineEmits(['click'])
 
