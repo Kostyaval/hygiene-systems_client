@@ -2,6 +2,9 @@ import { Config } from 'tailwindcss'
 import plugin from 'tailwindcss/plugin'
 
 export default <Partial<Config>>{
+  future: {
+    hoverOnlyWhenSupported: true,
+  },
   theme: {
     container: {
       center: true,
@@ -63,6 +66,8 @@ export default <Partial<Config>>{
       'red-700': '#a82a52',
       'red-800': '#7d2341',
       'red-900': '#511b31',
+      transparent: 'transparent',
+      current: 'currentColor',
     },
     fontSize: {
       tag: [
@@ -147,8 +152,25 @@ export default <Partial<Config>>{
     fontFamily: {
       sans: ['Gotham', 'ui-sans-serif'],
     },
+    extend: {
+      padding: {
+        'safe-bottom': 'env(safe-area-inset-bottom)',
+      },
+    },
   },
-  safelist: ['text-neutral-700'],
+  safelist: [
+    'text-neutral-700',
+    'bg-neutral-200',
+    'bg-neutral-500',
+    'bg-turquoise-200',
+    'bg-turquoise-500',
+    'bg-orange-200',
+    'bg-orange-500',
+    'bg-purple-200',
+    'bg-purple-500',
+    'bg-red-200',
+    'bg-red-500',
+  ],
   plugins: [
     plugin(function ({ addUtilities }) {
       addUtilities({
