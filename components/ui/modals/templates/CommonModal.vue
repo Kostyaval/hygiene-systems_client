@@ -8,18 +8,41 @@
     appear
   >
     <div
-      id="modal-scroll-container"
-      class="absolute top-0 right-0 bottom-0 h-full w-full max-w-4xl overflow-y-auto bg-neutral-100 xl:top-auto xl:max-h-[80%] xl:max-w-full"
+      class="absolute bottom-0 right-0 top-0 flex h-full w-full max-w-4xl flex-col bg-neutral-200 xl:top-auto xl:max-h-[80%] xl:max-w-full xl:rounded-tl-2xl xl:rounded-tr-2xl"
       aria-modal="true"
     >
-      <div class="m-auto">
-        <slot></slot>
+      <header v-if="!!$slots.header">
+        <slot name="header"></slot>
+      </header>
+      <div ref="containerRef" class="overflow-y-auto">
+        <div class="safe-bottom">
+          <slot></slot>
+        </div>
       </div>
+      <slot name="footer"></slot>
     </div>
   </transition>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { onMounted, onUnmounted } from 'vue'
+const { $bodyScrollLock } = useNuxtApp()
+import { $modal } from '~/components/ui/modals'
+
+const containerRef = ref(null)
+
+onMounted(() => {
+  if (containerRef.value) {
+    $bodyScrollLock.disableBodyScroll(containerRef.value)
+  }
+})
+
+onUnmounted(() => {
+  if ($modal.modals.value.length === 0) {
+    $bodyScrollLock.clearAllBodyScrollLocks()
+  }
+})
+</script>
 
 <style lang="sass">
 .common-modal-enter-active, .common-modal-leave-active

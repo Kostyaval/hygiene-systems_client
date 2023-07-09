@@ -1,11 +1,25 @@
 <template>
   <picture>
-    <source :srcset="avifSrcset" type="image/avif" />
-    <source :srcset="webpSrcset" type="image/webp" />
+    <source
+      :srcset="lazyFallback ? '' : avifSrcset"
+      v-lazy-srcset:[avifSrcset]
+      :width="width"
+      type="image/avif"
+    />
+    <source
+      :srcset="lazyFallback ? '' : webpSrcset"
+      v-lazy-srcset:[webpSrcset]
+      :height="height"
+      type="image/webp"
+    />
     <img
+      :width="width"
+      :height="height"
       :class="imageClass"
-      :src="fallbackSrc"
-      :srcset="fallbackSrcset"
+      :src="lazyFallback ? '' : fallbackSrc"
+      v-lazy-src:[fallbackSrc]
+      v-lazy-srcset:[fallbackSrcset]
+      :srcset="lazyFallback ? '' : fallbackSrcset"
       :alt="alt"
       :loading="lazy ? 'lazy' : 'eager'"
     />
@@ -13,18 +27,27 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from 'vue'
+import { defineProps, DirectiveBinding } from 'vue'
 
-const props = defineProps<{
-  src: string
-  alt?: string
-  modifiers?: Record<string, any>
-  imageClass?: string
-  lazy?: {
-    default: false
-    type: Boolean
-  }
-}>()
+const props = defineProps({
+  src: {
+    type: String,
+    required: true,
+  },
+  alt: String,
+  modifiers: Object,
+  imageClass: String,
+  lazy: {
+    type: Boolean,
+    default: false,
+  },
+  lazyFallback: {
+    type: Boolean,
+    default: false,
+  },
+  width: String,
+  height: String,
+})
 
 const constructImageUrl = (src: string, modifiers: Record<string, any>): string => {
   const queryParams = new URLSearchParams()
@@ -66,4 +89,33 @@ const avifSrcset = createSrcset(props.src, props.modifiers || {}, 'avif')
 const webpSrcset = createSrcset(props.src, props.modifiers || {}, 'webp')
 const fallbackSrc = constructImageUrl(props.src, props.modifiers || {})
 const fallbackSrcset = createSrcset(props.src, props.modifiers || {})
+
+const vLazySrc = {
+  mounted(el: HTMLImageElement, binding: any) {
+    if (!props.lazyFallback) {
+      return
+    }
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        el.src = binding.arg
+        observer.unobserve(el)
+      }
+    })
+    observer.observe(el)
+  },
+}
+const vLazySrcset = {
+  mounted(el: HTMLImageElement, binding: any) {
+    if (!props.lazyFallback) {
+      return
+    }
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        el.srcset = binding.arg
+        observer.unobserve(el)
+      }
+    })
+    observer.observe(el)
+  },
+}
 </script>

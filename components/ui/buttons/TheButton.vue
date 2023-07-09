@@ -8,57 +8,33 @@
     :class="buttonClasses"
     @click="onClick"
   >
-    <div v-if="loading" class="absolute-center absolute m-0">
-      <svg
-        aria-hidden="true"
-        role="status"
-        class="inline h-5 w-5 animate-spin text-white"
-        viewBox="0 0 100 101"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
-          :class="loaderClass.track"
-        />
-        <path
-          d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
-          :class="loaderClass.circle"
-        />
-      </svg>
+    <div v-if="loading" class="absolute m-0 absolute-center">
+      <TheLoader :variant="variant" />
     </div>
     <div class="flex items-center space-x-2" :class="loading ? 'opacity-0' : ''">
-      <template v-if="iconOnly">
-        <SvgIcon
-          :name="iconOnly"
-          class="icon text-[24px]"
-          :class="`text-${colorText}`"
-        />
-      </template>
-      <template v-else>
-        <SvgIcon v-if="iconLeft" :name="iconLeft" class="mr-2 h-6 w-6" />
-        <slot></slot>
-        <SvgIcon v-if="iconRight" :name="iconRight" class="mr-2 h-6 w-6" />
-      </template>
+      <SvgIcon v-if="iconLeft" :name="iconLeft" class="mr-2 h-6 w-6" />
+      <slot></slot>
+      <SvgIcon v-if="iconRight" :name="iconRight" class="mr-2 h-6 w-6" />
     </div>
   </component>
 </template>
 
 <script setup>
 import NuxtLink from '#app/components/nuxt-link'
+import TheLoader from '~/components/ui/TheLoader.vue'
 const props = defineProps({
   tag: {
     type: String,
     default: 'button',
     validator: (value) => ['a', 'nuxt-link', 'button'].includes(value),
   },
-  loading: {
+  externalLink: {
     type: Boolean,
     default: false,
   },
-  href: {
-    type: String,
-    default: undefined,
+  loading: {
+    type: Boolean,
+    default: false,
   },
   to: {
     type: [String, Object],
@@ -75,14 +51,15 @@ const props = defineProps({
   variant: {
     type: String,
     default: 'primary',
-    validator: (value) =>
-      ['primary', 'secondary', 'tertiary', 'social'].includes(value),
+    validator: (value) => ['primary', 'secondary', 'tertiary'].includes(value),
   },
   colorBackground: {
     type: String,
     default: '',
     validator: (value) =>
-      ['neutral', 'turquoise', 'orange', 'purple', 'red', 'black', ''].includes(value),
+      ['neutral', 'gray', 'turquoise', 'orange', 'purple', 'red', 'black', ''].includes(
+        value
+      ),
   },
   colorText: {
     type: String,
@@ -103,15 +80,20 @@ const props = defineProps({
     type: String,
     default: '',
   },
-  iconOnly: {
-    type: String,
-    default: '',
-  },
 })
 const emits = defineEmits(['click'])
 
-const rootTag = props.tag === 'nuxt-link' ? NuxtLink : props.tag
+let rootTag = props.tag === 'nuxt-link' ? NuxtLink : props.tag
+let to = props.to
+let href = ''
+if (props.externalLink) {
+  rootTag = 'a'
+  href = to
+}
 
+if (!props.to) {
+  rootTag = 'button'
+}
 const onClick = (event) => {
   if (!props.disabled) {
     emits('click', event)
@@ -132,10 +114,10 @@ const buttonClasses = computed(() => {
     small: `px-4 py-2 text-button-s ${props.iconLeft && 'pl-2'} ${
       props.iconRight && 'pr-2'
     }`,
-    medium: `px-6 py-2 text-button-m ${props.iconLeft && 'pl-3'} ${
+    medium: `min-w-[150px] px-6 py-2 text-button-m ${props.iconLeft && 'pl-3'} ${
       props.iconRight && 'pr-3'
     }`,
-    large: `px-6 py-3 text-button-m ${props.iconLeft && 'pl-3'} ${
+    large: `min-w-[150px] px-6 py-3 text-button-m ${props.iconLeft && 'pl-3'} ${
       props.iconRight && 'pr-3'
     }`,
   }
@@ -144,6 +126,7 @@ const buttonClasses = computed(() => {
     white: 'bg-neutral-100 hover:bg-neutral-400 active:bg-neutral-300 ',
     black: 'bg-neutral-700 hover:bg-neutral-500 active:bg-neutral-400 ',
     neutral: 'bg-neutral-500 hover:bg-neutral-400 active:bg-neutral-300 ',
+    gray: 'bg-neutral-300 hover:bg-neutral-200 active:bg-neutral-300 ',
     turquoise: 'bg-turquoise-500 hover:bg-turquoise-400 active:bg-turquoise-300',
     orange: 'bg-orange-500 hover:bg-orange-400 active:bg-orange-300 ',
     purple: 'bg-purple-500 hover:bg-purple-400 active:bg-purple-300 ',
@@ -151,11 +134,12 @@ const buttonClasses = computed(() => {
   }
 
   const colorBackgroundSecondary = {
-    neutral: 'bg-neutral-100 hover:bg-neutral-100 active:bg-neutral-200 ',
-    turquoise: 'bg-neutral-100 hover:bg-turquoise-100 active:bg-turquoise-200 ',
-    orange: 'bg-neutral-100 hover:bg-orange-100 active:bg-orange-200 ',
-    purple: 'bg-neutral-100 hover:bg-purple-100 active:bg-purple-200 ',
-    red: 'bg-neutral-100 hover:bg-red-100 active:bg-red-200 ',
+    white: 'hover:bg-neutral-400 active:bg-neutral-500 ',
+    neutral: 'hover:bg-neutral-100 active:bg-neutral-200 ',
+    turquoise: 'hover:bg-turquoise-100 active:bg-turquoise-200 ',
+    orange: 'hover:bg-orange-100 active:bg-orange-200 ',
+    purple: 'hover:bg-purple-100 active:bg-purple-200 ',
+    red: 'hover:bg-red-100 active:bg-red-200 ',
   }
 
   const colorTextVariants = {
@@ -178,7 +162,6 @@ const buttonClasses = computed(() => {
   }
 
   const variantClasses = {
-    social: `${colorBackgroundPrimary[colorBackground]} ${colorTextVariants[colorText]}`,
     primary: `${colorBackgroundPrimary[colorBackground]} ${colorTextVariants[colorText]}`,
     secondary: `${colorBackgroundSecondary[colorBackground]} ${colorTextVariants[colorText]} border border-current`,
     tertiary: colorTextTertiaryVariants[colorText],
@@ -190,31 +173,12 @@ const buttonClasses = computed(() => {
   }
 
   return [
-    'inline-flex items-center justify-center transition-colors  relative whitespace-nowrap',
-    props.variant === 'social' ? 'rounded-md' : 'rounded-full',
+    'inline-flex items-center justify-center transition-colors  relative whitespace-nowrap rounded-full',
     props.disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer',
     props.disabled
       ? variantDisabledClasses[props.variant]
       : variantClasses[props.variant],
-    props.variant !== 'social' ? sizeClasses[props.size] : 'w-8 h-8',
+    sizeClasses[props.size],
   ]
-})
-
-const loaderClass = computed(() => {
-  const trackClasses = {
-    primary: 'fill-neutral-100',
-    secondary: 'fill-turquoise-500',
-    tertiary: 'fill-turquoise-500',
-  }
-  const circleClasses = {
-    primary: 'fill-turquoise-500',
-    secondary: 'fill-neutral-100',
-    tertiary: 'fill-neutral-100',
-  }
-
-  return {
-    track: trackClasses[props.variant],
-    circle: circleClasses[props.variant],
-  }
 })
 </script>

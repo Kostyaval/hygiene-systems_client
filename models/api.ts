@@ -1,11 +1,12 @@
 import type {
   ResponseCollectionMeta,
   SinglePage,
-  CompanyInformationInput,
+  CompanyInformation,
   Maybe,
   Error,
+  ProductsPage,
 } from '~/models/strapi-types/auto-generated'
-import { BlockHeroBanner } from '~/models/page-block-components'
+import { BlockHeroBanner, BlockProductCard } from '~/models/page-block-components'
 
 type DynamicZone = BlockHeroBanner | Error
 
@@ -19,6 +20,21 @@ export interface SinglePageResponse {
 }
 
 export interface CompanyInformationResponse {
-  data: CompanyInformationInput
+  data: CompanyInformation
+  meta: ResponseCollectionMeta
+}
+
+export interface ProductsPageResponse {
+  data: ModifyBlock<ProductsPage>[]
+  meta: ResponseCollectionMeta
+}
+
+export interface ProductCardsResponse {
+  data: {
+    title: string
+    id: number
+    pageUrl: string
+    productCard: BlockProductCard
+  }[]
   meta: ResponseCollectionMeta
 }

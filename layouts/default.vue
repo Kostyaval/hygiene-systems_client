@@ -1,9 +1,8 @@
 <template>
   <div>
     <TheHeader />
-    <div class="h-96"></div>
     <slot />
-    <TheFooter />
+    <!--    <TheFooter />-->
   </div>
 </template>
 

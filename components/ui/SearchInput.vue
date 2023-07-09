@@ -9,7 +9,7 @@
       ref="searchInputRef"
       v-model="searchTerm"
       type="text"
-      class="search-input-field text-body-2 w-full py-2 pl-1 pr-1 outline-none"
+      class="search-input-field w-full py-2 pl-1 pr-1 text-body-2 outline-none"
       placeholder="Your request"
       @focus="onFocus"
       @blur="onBlur"
@@ -34,7 +34,7 @@
         v-for="(item, index) in autocompleteList"
         :key="index"
         :to="item.href"
-        class="text-body-2 hover:text-turquoise-500 m-auto block w-[calc(100%-1rem)] cursor-pointer px-3 py-4"
+        class="m-auto block w-[calc(100%-1rem)] cursor-pointer px-3 py-4 text-body-2 hover:text-turquoise-500"
         :class="{
           'border-t border-neutral-300': index !== 0,
           'text-turquoise-500': index === activeItemIndex,
@@ -76,11 +76,13 @@ const onFocus = () => {
   emit('focus', true)
 }
 const onBlur = () => {
-  isFocused.value = false
-  showExtras.value = false
-  activeItemIndex.value = -1
-  searchTerm.value = ''
-  emit('focus', false)
+  setTimeout(() => {
+    activeItemIndex.value = -1
+    searchTerm.value = ''
+    emit('focus', false)
+    isFocused.value = false
+    showExtras.value = false
+  }, 100)
 }
 
 const onInput = () => {

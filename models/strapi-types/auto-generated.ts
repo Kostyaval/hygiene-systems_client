@@ -1,3 +1,10 @@
+export type ImageFile = {
+  url: string
+  width: number
+  height: number
+  alternativeText: string
+}
+
 export type Maybe<T> = T | null
 export type InputMaybe<T> = Maybe<T>
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] }
@@ -21,6 +28,7 @@ export type Scalars = {
   /** The `Upload` scalar type represents a file upload. */
   Upload: any
   ContentReadyBlockBlockDynamicZoneInput: any
+  ProductsPageBlocksDynamicZoneInput: any
   SinglePageBlocksDynamicZoneInput: any
 }
 
@@ -211,10 +219,108 @@ export type JsonFilterInput = {
   between?: InputMaybe<Array<InputMaybe<Scalars['JSON']>>>
 }
 
+export type ComponentBlockBenefits = {
+  __typename?: 'ComponentBlockBenefits'
+  id: Scalars['ID']
+  title?: Maybe<Scalars['String']>
+  description?: Maybe<Scalars['String']>
+  perks?: Maybe<Array<Maybe<ComponentSubBlockBenefitsPerks>>>
+  buttons?: Maybe<Array<Maybe<ComponentSharedButton>>>
+}
+
+export type ComponentBlockBenefitsPerksArgs = {
+  filters?: InputMaybe<ComponentSubBlockBenefitsPerksFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
+}
+
+export type ComponentBlockBenefitsButtonsArgs = {
+  filters?: InputMaybe<ComponentSharedButtonFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
+}
+
+export type ComponentBlockComparisonTable = {
+  __typename?: 'ComponentBlockComparisonTable'
+  id: Scalars['ID']
+  comparisonTitle?: Maybe<Scalars['String']>
+  comparisonHeadings?: Maybe<Array<Maybe<ComponentSubBlockTitleGroupe>>>
+  row?: Maybe<Array<Maybe<ComponentSubBlockSomparisonRow>>>
+}
+
+export type ComponentBlockComparisonTableComparisonHeadingsArgs = {
+  filters?: InputMaybe<ComponentSubBlockTitleGroupeFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
+}
+
+export type ComponentBlockComparisonTableRowArgs = {
+  filters?: InputMaybe<ComponentSubBlockSomparisonRowFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
+}
+
+export type ComponentBlockConsumableCardFiltersInput = {
+  title?: InputMaybe<StringFilterInput>
+  description?: InputMaybe<StringFilterInput>
+  detailsTitle?: InputMaybe<StringFilterInput>
+  detailsSubtitle?: InputMaybe<StringFilterInput>
+  tags?: InputMaybe<StringFilterInput>
+  colors?: InputMaybe<ComponentSubBlockColorsFiltersInput>
+  detailsDescription?: InputMaybe<StringFilterInput>
+  and?: InputMaybe<Array<InputMaybe<ComponentBlockConsumableCardFiltersInput>>>
+  or?: InputMaybe<Array<InputMaybe<ComponentBlockConsumableCardFiltersInput>>>
+  not?: InputMaybe<ComponentBlockConsumableCardFiltersInput>
+}
+
+export type ComponentBlockConsumableCardInput = {
+  id?: InputMaybe<Scalars['ID']>
+  title?: InputMaybe<Scalars['String']>
+  description?: InputMaybe<Scalars['String']>
+  detailsTitle?: InputMaybe<Scalars['String']>
+  detailsSubtitle?: InputMaybe<Scalars['String']>
+  tags?: InputMaybe<Scalars['String']>
+  colors?: InputMaybe<Array<InputMaybe<ComponentSubBlockColorsInput>>>
+  detailsDescription?: InputMaybe<Scalars['String']>
+  image: Maybe<ImageFile>
+}
+
+export type ComponentBlockConsumableCard = {
+  __typename?: 'ComponentBlockConsumableCard'
+  id: Scalars['ID']
+  title: Scalars['String']
+  description?: Maybe<Scalars['String']>
+  detailsTitle: Scalars['String']
+  detailsSubtitle?: Maybe<Scalars['String']>
+  tags?: Maybe<Scalars['String']>
+  colors?: Maybe<Array<Maybe<ComponentSubBlockColors>>>
+  detailsDescription?: Maybe<Scalars['String']>
+  image: Maybe<ImageFile>
+}
+
+export type ComponentBlockConsumableCardColorsArgs = {
+  filters?: InputMaybe<ComponentSubBlockColorsFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
+}
+
 export type ComponentBlockContentReadyBlock = {
   __typename?: 'ComponentBlockContentReadyBlock'
   id: Scalars['ID']
   block?: Maybe<ContentReadyBlockEntityResponse>
+}
+
+export type ComponentBlockFaq = {
+  __typename?: 'ComponentBlockFaq'
+  id: Scalars['ID']
+  title?: Maybe<Scalars['String']>
+  entries?: Maybe<Array<Maybe<ComponentSubBlockFaqEntry>>>
+}
+
+export type ComponentBlockFaqEntriesArgs = {
+  filters?: InputMaybe<ComponentSubBlockFaqEntryFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
 }
 
 export enum Enum_Componentblockherobanner_Bottomcomponent {
@@ -226,18 +332,109 @@ export type ComponentBlockHeroBanner = {
   __typename?: 'ComponentBlockHeroBanner'
   id: Scalars['ID']
   title?: Maybe<Scalars['String']>
-  backgroundImage?: Maybe<UploadFileEntityResponse>
-  image?: Maybe<UploadFileEntityResponse>
-  backgroundColor?: Maybe<Scalars['String']>
+  image: Maybe<ImageFile>
   bottomComponent?: Maybe<Enum_Componentblockherobanner_Bottomcomponent>
   buttons?: Maybe<Array<Maybe<ComponentSharedButton>>>
+  subtitle?: Maybe<Scalars['String']>
   description?: Maybe<Scalars['String']>
+  sustainableActive?: Maybe<Scalars['Boolean']>
+  sustainableTags?: Maybe<Scalars['String']>
+  textColorTheme?: Maybe<Scalars['Boolean']>
+  backgroundColor?: Maybe<ComponentSharedColor>
+  backgroundImage: Maybe<ImageFile>
+  tooltip?: Maybe<ComponentSharedTooltipHint>
 }
 
 export type ComponentBlockHeroBannerButtonsArgs = {
   filters?: InputMaybe<ComponentSharedButtonFiltersInput>
   pagination?: InputMaybe<PaginationArg>
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
+}
+
+export type ComponentBlockInfoSections = {
+  __typename?: 'ComponentBlockInfoSections'
+  id: Scalars['ID']
+  sections?: Maybe<Array<Maybe<ComponentSubBlockInfoSection>>>
+}
+
+export type ComponentBlockInfoSectionsSectionsArgs = {
+  filters?: InputMaybe<ComponentSubBlockInfoSectionFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
+}
+
+export enum Enum_Componentblockinfotextimage_Imageposition {
+  Left = 'left',
+  Right = 'right',
+  RightOverflow = 'right_overflow',
+}
+
+export type ComponentBlockInfoTextImage = {
+  __typename?: 'ComponentBlockInfoTextImage'
+  id: Scalars['ID']
+  title?: Maybe<Scalars['String']>
+  subtitle?: Maybe<Scalars['String']>
+  description?: Maybe<Scalars['String']>
+  bottomText?: Maybe<Scalars['String']>
+  backgroundImage: Maybe<ImageFile>
+  image: Maybe<ImageFile>
+  imagePosition?: Maybe<Enum_Componentblockinfotextimage_Imageposition>
+  color?: Maybe<ComponentSharedColor>
+  buttons?: Maybe<Array<Maybe<ComponentSharedButton>>>
+  whiteTextTheme?: Maybe<Scalars['Boolean']>
+  hoopPlaceholder?: Maybe<Scalars['Boolean']>
+}
+
+export type ComponentBlockInfoTextImageButtonsArgs = {
+  filters?: InputMaybe<ComponentSharedButtonFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
+}
+
+export type ComponentBlockPartnersLogos = {
+  __typename?: 'ComponentBlockPartnersLogos'
+  id: Scalars['ID']
+  title: Scalars['String']
+  partners?: Maybe<Array<Maybe<ComponentSubBlockPartnerLogoLink>>>
+}
+
+export type ComponentBlockPartnersLogosPartnersArgs = {
+  filters?: InputMaybe<ComponentSubBlockPartnerLogoLinkFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
+}
+
+export type ComponentBlockProductCardFiltersInput = {
+  title?: InputMaybe<StringFilterInput>
+  description?: InputMaybe<StringFilterInput>
+  tags?: InputMaybe<StringFilterInput>
+  and?: InputMaybe<Array<InputMaybe<ComponentBlockProductCardFiltersInput>>>
+  or?: InputMaybe<Array<InputMaybe<ComponentBlockProductCardFiltersInput>>>
+  not?: InputMaybe<ComponentBlockProductCardFiltersInput>
+}
+
+export type ComponentBlockProductCardInput = {
+  id?: InputMaybe<Scalars['ID']>
+  title?: InputMaybe<Scalars['String']>
+  description?: InputMaybe<Scalars['String']>
+  tags?: InputMaybe<Scalars['String']>
+  image: Maybe<ImageFile>
+}
+
+export type ComponentBlockProductCard = {
+  __typename?: 'ComponentBlockProductCard'
+  id: Scalars['ID']
+  title: Scalars['String']
+  description: Scalars['String']
+  tags: Scalars['String']
+  image: Maybe<ImageFile>
+}
+
+export type ComponentBlockProductCardsSlider = {
+  __typename?: 'ComponentBlockProductCardsSlider'
+  id: Scalars['ID']
+  title: Scalars['String']
+  button: ComponentSharedButton
 }
 
 export enum Enum_Componentblockslider_Componentview {
@@ -260,6 +457,19 @@ export type ComponentBlockSliderSlidesArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
 }
 
+export type ComponentBlockSubProductSlider = {
+  __typename?: 'ComponentBlockSubProductSlider'
+  id: Scalars['ID']
+  cards?: Maybe<SubProductCategoryRelationResponseCollection>
+  title?: Maybe<Scalars['String']>
+}
+
+export type ComponentBlockSubProductSliderCardsArgs = {
+  filters?: InputMaybe<SubProductCategoryFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
+}
+
 export enum Enum_Componentsharedbutton_Icon {
   Hygiene = 'hygiene',
   Youtube = 'youtube',
@@ -270,6 +480,11 @@ export enum Enum_Componentsharedbutton_Icon {
   Tiktok = 'tiktok',
   Telegram = 'telegram',
   Whatsapp = 'whatsapp',
+  Play = 'play',
+}
+
+export enum Enum_Componentsharedbutton_Action {
+  OpenContactModal = 'open_contact_modal',
 }
 
 export type ComponentSharedButtonFiltersInput = {
@@ -277,6 +492,8 @@ export type ComponentSharedButtonFiltersInput = {
   href?: InputMaybe<StringFilterInput>
   externalLink?: InputMaybe<BooleanFilterInput>
   icon?: InputMaybe<StringFilterInput>
+  openYoutubeVideo?: InputMaybe<StringFilterInput>
+  action?: InputMaybe<StringFilterInput>
   and?: InputMaybe<Array<InputMaybe<ComponentSharedButtonFiltersInput>>>
   or?: InputMaybe<Array<InputMaybe<ComponentSharedButtonFiltersInput>>>
   not?: InputMaybe<ComponentSharedButtonFiltersInput>
@@ -288,6 +505,8 @@ export type ComponentSharedButtonInput = {
   href?: InputMaybe<Scalars['String']>
   externalLink?: InputMaybe<Scalars['Boolean']>
   icon?: InputMaybe<Enum_Componentsharedbutton_Icon>
+  openYoutubeVideo?: InputMaybe<Scalars['String']>
+  action?: InputMaybe<Enum_Componentsharedbutton_Action>
 }
 
 export type ComponentSharedButton = {
@@ -297,6 +516,28 @@ export type ComponentSharedButton = {
   href?: Maybe<Scalars['String']>
   externalLink?: Maybe<Scalars['Boolean']>
   icon?: Maybe<Enum_Componentsharedbutton_Icon>
+  openYoutubeVideo?: Maybe<Scalars['String']>
+  action?: Maybe<Enum_Componentsharedbutton_Action>
+}
+
+export enum Enum_Componentsharedcolor_Color {
+  NeutralLight = 'neutral_light',
+  Neutral = 'neutral',
+  TurquoiseLight = 'turquoise_light',
+  Turquoise = 'turquoise',
+  OrangeLight = 'orange_light',
+  Orange = 'orange',
+  PurpleLight = 'purple_light',
+  Purple = 'purple',
+  RedLight = 'red_light',
+  Red = 'red',
+  Transparent = 'transparent',
+}
+
+export type ComponentSharedColor = {
+  __typename?: 'ComponentSharedColor'
+  id: Scalars['ID']
+  color?: Maybe<Enum_Componentsharedcolor_Color>
 }
 
 export enum Enum_Componentsharedmetasocial_Socialnetwork {
@@ -318,7 +559,7 @@ export type ComponentSharedMetaSocialInput = {
   socialNetwork?: InputMaybe<Enum_Componentsharedmetasocial_Socialnetwork>
   title?: InputMaybe<Scalars['String']>
   description?: InputMaybe<Scalars['String']>
-  image?: InputMaybe<Scalars['ID']>
+  image: Maybe<ImageFile>
 }
 
 export type ComponentSharedMetaSocial = {
@@ -327,7 +568,7 @@ export type ComponentSharedMetaSocial = {
   socialNetwork: Enum_Componentsharedmetasocial_Socialnetwork
   title: Scalars['String']
   description: Scalars['String']
-  image?: Maybe<UploadFileEntityResponse>
+  image: Maybe<ImageFile>
 }
 
 export type ComponentSharedNavigation = {
@@ -355,7 +596,7 @@ export type ComponentSharedSeoInput = {
   id?: InputMaybe<Scalars['ID']>
   metaTitle?: InputMaybe<Scalars['String']>
   metaDescription?: InputMaybe<Scalars['String']>
-  metaImage?: InputMaybe<Scalars['ID']>
+  metaImage: Maybe<ImageFile>
   metaSocial?: InputMaybe<Array<InputMaybe<ComponentSharedMetaSocialInput>>>
   keywords?: InputMaybe<Scalars['String']>
   metaRobots?: InputMaybe<Scalars['String']>
@@ -369,7 +610,7 @@ export type ComponentSharedSeo = {
   id: Scalars['ID']
   metaTitle: Scalars['String']
   metaDescription: Scalars['String']
-  metaImage: UploadFileEntityResponse
+  metaImage: Maybe<ImageFile>
   metaSocial?: Maybe<Array<Maybe<ComponentSharedMetaSocial>>>
   keywords?: Maybe<Scalars['String']>
   metaRobots?: Maybe<Scalars['String']>
@@ -382,6 +623,107 @@ export type ComponentSharedSeoMetaSocialArgs = {
   filters?: InputMaybe<ComponentSharedMetaSocialFiltersInput>
   pagination?: InputMaybe<PaginationArg>
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
+}
+
+export type ComponentSharedTooltipHint = {
+  __typename?: 'ComponentSharedTooltipHint'
+  id: Scalars['ID']
+  title: Scalars['String']
+  description: Scalars['String']
+}
+
+export type ComponentSubBlockBenefitsPerksFiltersInput = {
+  title?: InputMaybe<StringFilterInput>
+  and?: InputMaybe<Array<InputMaybe<ComponentSubBlockBenefitsPerksFiltersInput>>>
+  or?: InputMaybe<Array<InputMaybe<ComponentSubBlockBenefitsPerksFiltersInput>>>
+  not?: InputMaybe<ComponentSubBlockBenefitsPerksFiltersInput>
+}
+
+export type ComponentSubBlockBenefitsPerks = {
+  __typename?: 'ComponentSubBlockBenefitsPerks'
+  id: Scalars['ID']
+  image: Maybe<ImageFile>
+  title?: Maybe<Scalars['String']>
+}
+
+export type ComponentSubBlockColorsFiltersInput = {
+  color?: InputMaybe<StringFilterInput>
+  and?: InputMaybe<Array<InputMaybe<ComponentSubBlockColorsFiltersInput>>>
+  or?: InputMaybe<Array<InputMaybe<ComponentSubBlockColorsFiltersInput>>>
+  not?: InputMaybe<ComponentSubBlockColorsFiltersInput>
+}
+
+export type ComponentSubBlockColorsInput = {
+  id?: InputMaybe<Scalars['ID']>
+  color?: InputMaybe<Scalars['String']>
+}
+
+export type ComponentSubBlockColors = {
+  __typename?: 'ComponentSubBlockColors'
+  id: Scalars['ID']
+  color?: Maybe<Scalars['String']>
+}
+
+export type ComponentSubBlockFaqEntryFiltersInput = {
+  question?: InputMaybe<StringFilterInput>
+  answer?: InputMaybe<StringFilterInput>
+  and?: InputMaybe<Array<InputMaybe<ComponentSubBlockFaqEntryFiltersInput>>>
+  or?: InputMaybe<Array<InputMaybe<ComponentSubBlockFaqEntryFiltersInput>>>
+  not?: InputMaybe<ComponentSubBlockFaqEntryFiltersInput>
+}
+
+export type ComponentSubBlockFaqEntry = {
+  __typename?: 'ComponentSubBlockFaqEntry'
+  id: Scalars['ID']
+  question?: Maybe<Scalars['String']>
+  answer?: Maybe<Scalars['String']>
+}
+
+export enum Enum_Componentsubblockinfosection_Imagesize {
+  Small = 'small',
+  Large = 'large',
+}
+
+export enum Enum_Componentsubblockinfosection_Backgroundcolor {
+  White = 'white',
+  LightGray = 'light_gray',
+  Gray = 'gray',
+  DarkGray = 'dark_gray',
+  Turquoise = 'turquoise',
+}
+
+export type ComponentSubBlockInfoSectionFiltersInput = {
+  imageSize?: InputMaybe<StringFilterInput>
+  backgroundColor?: InputMaybe<StringFilterInput>
+  title?: InputMaybe<StringFilterInput>
+  description?: InputMaybe<StringFilterInput>
+  and?: InputMaybe<Array<InputMaybe<ComponentSubBlockInfoSectionFiltersInput>>>
+  or?: InputMaybe<Array<InputMaybe<ComponentSubBlockInfoSectionFiltersInput>>>
+  not?: InputMaybe<ComponentSubBlockInfoSectionFiltersInput>
+}
+
+export type ComponentSubBlockInfoSection = {
+  __typename?: 'ComponentSubBlockInfoSection'
+  id: Scalars['ID']
+  image: Maybe<ImageFile>
+  imageSize: Enum_Componentsubblockinfosection_Imagesize
+  backgroundColor?: Maybe<Enum_Componentsubblockinfosection_Backgroundcolor>
+  title?: Maybe<Scalars['String']>
+  description?: Maybe<Scalars['String']>
+}
+
+export type ComponentSubBlockPartnerLogoLinkFiltersInput = {
+  url?: InputMaybe<StringFilterInput>
+  and?: InputMaybe<Array<InputMaybe<ComponentSubBlockPartnerLogoLinkFiltersInput>>>
+  or?: InputMaybe<Array<InputMaybe<ComponentSubBlockPartnerLogoLinkFiltersInput>>>
+  not?: InputMaybe<ComponentSubBlockPartnerLogoLinkFiltersInput>
+}
+
+export type ComponentSubBlockPartnerLogoLink = {
+  __typename?: 'ComponentSubBlockPartnerLogoLink'
+  id: Scalars['ID']
+  url?: Maybe<Scalars['String']>
+  image: Maybe<ImageFile>
 }
 
 export enum Enum_Componentsubblocksliderslide_Imageposition {
@@ -408,8 +750,55 @@ export type ComponentSubBlockSliderSlide = {
   subtitle?: Maybe<Scalars['String']>
   description?: Maybe<Scalars['String']>
   cta?: Maybe<ComponentSharedButton>
-  image?: Maybe<UploadFileEntityResponse>
+  image: Maybe<ImageFile>
   imagePosition?: Maybe<Enum_Componentsubblocksliderslide_Imageposition>
+}
+
+export type ComponentSubBlockSomparisonRowFiltersInput = {
+  title?: InputMaybe<StringFilterInput>
+  toggles?: InputMaybe<ComponentSubBlockToggleGroupFiltersInput>
+  and?: InputMaybe<Array<InputMaybe<ComponentSubBlockSomparisonRowFiltersInput>>>
+  or?: InputMaybe<Array<InputMaybe<ComponentSubBlockSomparisonRowFiltersInput>>>
+  not?: InputMaybe<ComponentSubBlockSomparisonRowFiltersInput>
+}
+
+export type ComponentSubBlockSomparisonRow = {
+  __typename?: 'ComponentSubBlockSomparisonRow'
+  id: Scalars['ID']
+  title?: Maybe<Scalars['String']>
+  toggles?: Maybe<Array<Maybe<ComponentSubBlockToggleGroup>>>
+}
+
+export type ComponentSubBlockSomparisonRowTogglesArgs = {
+  filters?: InputMaybe<ComponentSubBlockToggleGroupFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
+}
+
+export type ComponentSubBlockTitleGroupeFiltersInput = {
+  title?: InputMaybe<StringFilterInput>
+  and?: InputMaybe<Array<InputMaybe<ComponentSubBlockTitleGroupeFiltersInput>>>
+  or?: InputMaybe<Array<InputMaybe<ComponentSubBlockTitleGroupeFiltersInput>>>
+  not?: InputMaybe<ComponentSubBlockTitleGroupeFiltersInput>
+}
+
+export type ComponentSubBlockTitleGroupe = {
+  __typename?: 'ComponentSubBlockTitleGroupe'
+  id: Scalars['ID']
+  title?: Maybe<Scalars['String']>
+}
+
+export type ComponentSubBlockToggleGroupFiltersInput = {
+  status?: InputMaybe<BooleanFilterInput>
+  and?: InputMaybe<Array<InputMaybe<ComponentSubBlockToggleGroupFiltersInput>>>
+  or?: InputMaybe<Array<InputMaybe<ComponentSubBlockToggleGroupFiltersInput>>>
+  not?: InputMaybe<ComponentSubBlockToggleGroupFiltersInput>
+}
+
+export type ComponentSubBlockToggleGroup = {
+  __typename?: 'ComponentSubBlockToggleGroup'
+  id: Scalars['ID']
+  status?: Maybe<Scalars['Boolean']>
 }
 
 export type UploadFileFiltersInput = {
@@ -762,24 +1151,30 @@ export type UsersPermissionsUserRelationResponseCollection = {
 }
 
 export type CompanyInformationInput = {
-  companyName: InputMaybe<Scalars['String']>
-  logo?: InputMaybe<Scalars['ID']>
+  companyName?: InputMaybe<Scalars['String']>
+  logo: Maybe<ImageFile>
   mobileNumber?: InputMaybe<Scalars['String']>
   email?: InputMaybe<Scalars['String']>
-  Address?: InputMaybe<Scalars['String']>
+  address?: InputMaybe<Scalars['String']>
   socialLinks?: InputMaybe<Array<InputMaybe<ComponentSharedButtonInput>>>
-  backgroundImage?: InputMaybe<Scalars['ID']>
+  backgroundImage: Maybe<ImageFile>
+  headerPromoTags?: InputMaybe<Scalars['String']>
+  logoMobile: Maybe<ImageFile>
+  logoWhite: Maybe<ImageFile>
 }
 
 export type CompanyInformation = {
   __typename?: 'CompanyInformation'
   companyName?: Maybe<Scalars['String']>
-  logo?: Maybe<UploadFileEntityResponse>
+  logo: Maybe<ImageFile>
   mobileNumber?: Maybe<Scalars['String']>
   email?: Maybe<Scalars['String']>
-  Address?: Maybe<Scalars['String']>
+  address?: Maybe<Scalars['String']>
   socialLinks?: Maybe<Array<Maybe<ComponentSharedButton>>>
-  backgroundImage?: Maybe<UploadFileEntityResponse>
+  backgroundImage: Maybe<ImageFile>
+  headerPromoTags?: Maybe<Scalars['String']>
+  logoMobile: Maybe<ImageFile>
+  logoWhite: Maybe<ImageFile>
   createdAt?: Maybe<Scalars['DateTime']>
   updatedAt?: Maybe<Scalars['DateTime']>
 }
@@ -804,6 +1199,12 @@ export type CompanyInformationEntityResponse = {
 export type ContentReadyBlockBlockDynamicZone =
   | ComponentBlockHeroBanner
   | ComponentBlockSlider
+  | ComponentBlockBenefits
+  | ComponentBlockInfoTextImage
+  | ComponentBlockFaq
+  | ComponentBlockPartnersLogos
+  | ComponentBlockComparisonTable
+  | ComponentBlockInfoSections
   | Error
 
 export type ContentReadyBlockFiltersInput = {
@@ -852,10 +1253,78 @@ export type ContentReadyBlockEntityResponseCollection = {
   meta: ResponseCollectionMeta
 }
 
+export type ProductsPageBlocksDynamicZone =
+  | ComponentBlockBenefits
+  | ComponentBlockContentReadyBlock
+  | ComponentBlockHeroBanner
+  | ComponentBlockInfoTextImage
+  | ComponentBlockSlider
+  | ComponentBlockPartnersLogos
+  | ComponentBlockProductCardsSlider
+  | ComponentBlockFaq
+  | ComponentBlockComparisonTable
+  | ComponentBlockSubProductSlider
+  | Error
+
+export type ProductsPageFiltersInput = {
+  id?: InputMaybe<IdFilterInput>
+  pageUrl?: InputMaybe<StringFilterInput>
+  navigationTitle?: InputMaybe<StringFilterInput>
+  Rank?: InputMaybe<IntFilterInput>
+  productCard?: InputMaybe<ComponentBlockProductCardFiltersInput>
+  seo?: InputMaybe<ComponentSharedSeoFiltersInput>
+  createdAt?: InputMaybe<DateTimeFilterInput>
+  updatedAt?: InputMaybe<DateTimeFilterInput>
+  and?: InputMaybe<Array<InputMaybe<ProductsPageFiltersInput>>>
+  or?: InputMaybe<Array<InputMaybe<ProductsPageFiltersInput>>>
+  not?: InputMaybe<ProductsPageFiltersInput>
+}
+
+export type ProductsPageInput = {
+  Blocks?: InputMaybe<Array<Scalars['ProductsPageBlocksDynamicZoneInput']>>
+  pageUrl?: InputMaybe<Scalars['String']>
+  navigationTitle?: InputMaybe<Scalars['String']>
+  Rank?: InputMaybe<Scalars['Int']>
+  productCard?: InputMaybe<ComponentBlockProductCardInput>
+  seo?: InputMaybe<ComponentSharedSeoInput>
+}
+
+export type ProductsPage = {
+  __typename?: 'ProductsPage'
+  Blocks?: Maybe<Array<Maybe<ProductsPageBlocksDynamicZone>>>
+  pageUrl?: Maybe<Scalars['String']>
+  navigationTitle?: Maybe<Scalars['String']>
+  Rank?: Maybe<Scalars['Int']>
+  productCard?: Maybe<ComponentBlockProductCard>
+  seo?: Maybe<ComponentSharedSeo>
+  createdAt?: Maybe<Scalars['DateTime']>
+  updatedAt?: Maybe<Scalars['DateTime']>
+}
+
+export type ProductsPageEntity = {
+  __typename?: 'ProductsPageEntity'
+  id?: Maybe<Scalars['ID']>
+  attributes?: Maybe<ProductsPage>
+}
+
+export type ProductsPageEntityResponse = {
+  __typename?: 'ProductsPageEntityResponse'
+  data?: Maybe<ProductsPageEntity>
+}
+
+export type ProductsPageEntityResponseCollection = {
+  __typename?: 'ProductsPageEntityResponseCollection'
+  data: Array<ProductsPageEntity>
+  meta: ResponseCollectionMeta
+}
+
 export type SinglePageBlocksDynamicZone =
   | ComponentBlockHeroBanner
   | ComponentBlockSlider
   | ComponentBlockContentReadyBlock
+  | ComponentBlockInfoTextImage
+  | ComponentBlockProductCardsSlider
+  | ComponentBlockPartnersLogos
   | Error
 
 export type SinglePageFiltersInput = {
@@ -907,15 +1376,93 @@ export type SinglePageEntityResponseCollection = {
   meta: ResponseCollectionMeta
 }
 
+export type SubProductCategoryFiltersInput = {
+  id?: InputMaybe<IdFilterInput>
+  templateName?: InputMaybe<StringFilterInput>
+  pageUrl?: InputMaybe<StringFilterInput>
+  entries?: InputMaybe<ComponentBlockConsumableCardFiltersInput>
+  Rank?: InputMaybe<IntFilterInput>
+  createdAt?: InputMaybe<DateTimeFilterInput>
+  updatedAt?: InputMaybe<DateTimeFilterInput>
+  and?: InputMaybe<Array<InputMaybe<SubProductCategoryFiltersInput>>>
+  or?: InputMaybe<Array<InputMaybe<SubProductCategoryFiltersInput>>>
+  not?: InputMaybe<SubProductCategoryFiltersInput>
+}
+
+export type SubProductCategoryInput = {
+  templateName?: InputMaybe<Scalars['String']>
+  pageUrl?: InputMaybe<Scalars['String']>
+  entries?: InputMaybe<Array<InputMaybe<ComponentBlockConsumableCardInput>>>
+  Rank?: InputMaybe<Scalars['Int']>
+}
+
+export type SubProductCategory = {
+  __typename?: 'SubProductCategory'
+  templateName?: Maybe<Scalars['String']>
+  pageUrl?: Maybe<Scalars['String']>
+  entries?: Maybe<Array<Maybe<ComponentBlockConsumableCard>>>
+  Rank?: Maybe<Scalars['Int']>
+  createdAt?: Maybe<Scalars['DateTime']>
+  updatedAt?: Maybe<Scalars['DateTime']>
+}
+
+export type SubProductCategoryEntriesArgs = {
+  filters?: InputMaybe<ComponentBlockConsumableCardFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
+}
+
+export type SubProductCategoryEntity = {
+  __typename?: 'SubProductCategoryEntity'
+  id?: Maybe<Scalars['ID']>
+  attributes?: Maybe<SubProductCategory>
+}
+
+export type SubProductCategoryEntityResponse = {
+  __typename?: 'SubProductCategoryEntityResponse'
+  data?: Maybe<SubProductCategoryEntity>
+}
+
+export type SubProductCategoryEntityResponseCollection = {
+  __typename?: 'SubProductCategoryEntityResponseCollection'
+  data: Array<SubProductCategoryEntity>
+  meta: ResponseCollectionMeta
+}
+
+export type SubProductCategoryRelationResponseCollection = {
+  __typename?: 'SubProductCategoryRelationResponseCollection'
+  data: Array<SubProductCategoryEntity>
+}
+
 export type GenericMorph =
+  | ComponentBlockBenefits
+  | ComponentBlockComparisonTable
+  | ComponentBlockConsumableCard
   | ComponentBlockContentReadyBlock
+  | ComponentBlockFaq
   | ComponentBlockHeroBanner
+  | ComponentBlockInfoSections
+  | ComponentBlockInfoTextImage
+  | ComponentBlockPartnersLogos
+  | ComponentBlockProductCard
+  | ComponentBlockProductCardsSlider
   | ComponentBlockSlider
+  | ComponentBlockSubProductSlider
   | ComponentSharedButton
+  | ComponentSharedColor
   | ComponentSharedMetaSocial
   | ComponentSharedNavigation
   | ComponentSharedSeo
+  | ComponentSharedTooltipHint
+  | ComponentSubBlockBenefitsPerks
+  | ComponentSubBlockColors
+  | ComponentSubBlockFaqEntry
+  | ComponentSubBlockInfoSection
+  | ComponentSubBlockPartnerLogoLink
   | ComponentSubBlockSliderSlide
+  | ComponentSubBlockSomparisonRow
+  | ComponentSubBlockTitleGroupe
+  | ComponentSubBlockToggleGroup
   | UploadFile
   | UploadFolder
   | I18NLocale
@@ -924,7 +1471,9 @@ export type GenericMorph =
   | UsersPermissionsUser
   | CompanyInformation
   | ContentReadyBlock
+  | ProductsPage
   | SinglePage
+  | SubProductCategory
 
 export type FileInfoInput = {
   name?: InputMaybe<Scalars['String']>
@@ -1010,8 +1559,12 @@ export type Query = {
   companyInformation?: Maybe<CompanyInformationEntityResponse>
   contentReadyBlock?: Maybe<ContentReadyBlockEntityResponse>
   contentReadyBlocks?: Maybe<ContentReadyBlockEntityResponseCollection>
+  productsPage?: Maybe<ProductsPageEntityResponse>
+  productsPages?: Maybe<ProductsPageEntityResponseCollection>
   singlePage?: Maybe<SinglePageEntityResponse>
   singlePages?: Maybe<SinglePageEntityResponseCollection>
+  subProductCategory?: Maybe<SubProductCategoryEntityResponse>
+  subProductCategories?: Maybe<SubProductCategoryEntityResponseCollection>
   me?: Maybe<UsersPermissionsMe>
 }
 
@@ -1075,12 +1628,32 @@ export type QueryContentReadyBlocksArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
 }
 
+export type QueryProductsPageArgs = {
+  id?: InputMaybe<Scalars['ID']>
+}
+
+export type QueryProductsPagesArgs = {
+  filters?: InputMaybe<ProductsPageFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
+}
+
 export type QuerySinglePageArgs = {
   id?: InputMaybe<Scalars['ID']>
 }
 
 export type QuerySinglePagesArgs = {
   filters?: InputMaybe<SinglePageFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
+}
+
+export type QuerySubProductCategoryArgs = {
+  id?: InputMaybe<Scalars['ID']>
+}
+
+export type QuerySubProductCategoriesArgs = {
+  filters?: InputMaybe<SubProductCategoryFiltersInput>
   pagination?: InputMaybe<PaginationArg>
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
 }
@@ -1098,9 +1671,15 @@ export type Mutation = {
   createContentReadyBlock?: Maybe<ContentReadyBlockEntityResponse>
   updateContentReadyBlock?: Maybe<ContentReadyBlockEntityResponse>
   deleteContentReadyBlock?: Maybe<ContentReadyBlockEntityResponse>
+  createProductsPage?: Maybe<ProductsPageEntityResponse>
+  updateProductsPage?: Maybe<ProductsPageEntityResponse>
+  deleteProductsPage?: Maybe<ProductsPageEntityResponse>
   createSinglePage?: Maybe<SinglePageEntityResponse>
   updateSinglePage?: Maybe<SinglePageEntityResponse>
   deleteSinglePage?: Maybe<SinglePageEntityResponse>
+  createSubProductCategory?: Maybe<SubProductCategoryEntityResponse>
+  updateSubProductCategory?: Maybe<SubProductCategoryEntityResponse>
+  deleteSubProductCategory?: Maybe<SubProductCategoryEntityResponse>
   upload: UploadFileEntityResponse
   multipleUpload: Array<Maybe<UploadFileEntityResponse>>
   updateFileInfo: UploadFileEntityResponse
@@ -1173,6 +1752,19 @@ export type MutationDeleteContentReadyBlockArgs = {
   id: Scalars['ID']
 }
 
+export type MutationCreateProductsPageArgs = {
+  data: ProductsPageInput
+}
+
+export type MutationUpdateProductsPageArgs = {
+  id: Scalars['ID']
+  data: ProductsPageInput
+}
+
+export type MutationDeleteProductsPageArgs = {
+  id: Scalars['ID']
+}
+
 export type MutationCreateSinglePageArgs = {
   data: SinglePageInput
 }
@@ -1183,6 +1775,19 @@ export type MutationUpdateSinglePageArgs = {
 }
 
 export type MutationDeleteSinglePageArgs = {
+  id: Scalars['ID']
+}
+
+export type MutationCreateSubProductCategoryArgs = {
+  data: SubProductCategoryInput
+}
+
+export type MutationUpdateSubProductCategoryArgs = {
+  id: Scalars['ID']
+  data: SubProductCategoryInput
+}
+
+export type MutationDeleteSubProductCategoryArgs = {
   id: Scalars['ID']
 }
 

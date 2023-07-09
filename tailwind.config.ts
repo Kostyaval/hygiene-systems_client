@@ -78,6 +78,13 @@ export default <Partial<Config>>{
           fontWeight: '700',
         },
       ],
+      'input-hint': [
+        '0.75rem',
+        {
+          lineHeight: '133%',
+          fontWeight: '400',
+        },
+      ],
       'button-s': [
         '0.75rem',
         {
@@ -127,6 +134,13 @@ export default <Partial<Config>>{
           fontWeight: '700',
         },
       ],
+      'headline-4': [
+        '1.5rem',
+        {
+          lineHeight: '167%',
+          fontWeight: '800',
+        },
+      ],
       'headline-3': [
         '2rem',
         {
@@ -160,6 +174,8 @@ export default <Partial<Config>>{
   },
   safelist: [
     'text-neutral-700',
+    'text-neutral-200',
+    'text-neutral-100',
     'bg-neutral-200',
     'bg-neutral-500',
     'bg-turquoise-200',
@@ -170,6 +186,17 @@ export default <Partial<Config>>{
     'bg-purple-500',
     'bg-red-200',
     'bg-red-500',
+    'text-neutral-200',
+    'text-neutral-500',
+    'text-turquoise-200',
+    'text-turquoise-500',
+    'text-orange-200',
+    'text-orange-500',
+    'text-purple-200',
+    'text-purple-500',
+    'text-red-200',
+    'text-red-500',
+    'transparent',
   ],
   plugins: [
     plugin(function ({ addUtilities }) {

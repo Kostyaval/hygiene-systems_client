@@ -36,22 +36,21 @@ class ModalManager {
       }
 
       this._modals.value.push(modal)
-      console.log(this._modals)
     })
   }
+
   markModalAsRemoved(modal: ModalOptions) {
     // Find the index of the modal to remove
     const index = this._modals.value.findIndex((m) => m.id === modal.id)
-    console.log(index)
 
     if (index !== -1) {
       // Mark the modal as being removed
       this._modals.value[index].removing = true
+      setTimeout(() => this.removeModal(modal.id), 500)
     }
-    console.log(modal)
   }
+
   removeModal(modalId: number) {
-    console.log(modalId)
     // Find the index of the modal to remove
     this._modals.value = this._modals.value.filter((m) => m.id !== modalId)
   }

@@ -9,35 +9,65 @@
 <script setup lang="ts">
 import { useFont } from '#fonty'
 import ModalRoot from '~/components/ui/modals/ModalRoot.vue'
-import type { CompanyInformationResponse } from '~/models/api'
-import { CompanyInformationInput } from '~/models/single-types'
-
+import type { CompanyInformationResponse, ProductCardsResponse } from '~/models/api'
+import { CompanyInformationState, ProductCardsState } from '~/models/single-types'
 const config = useRuntimeConfig()
-const { data, error } = await useAsyncData(
-  `company-information`,
-  () =>
-    $fetch<CompanyInformationResponse>('/api/company-information?populate=deep', {
-      method: 'GET',
-      baseURL: config.baseURL,
-    }),
+
+const companyInformationPromise = useFetch<CompanyInformationResponse>(
+  '/api/company-information?populate=deep',
   {
-    transform(response) {
-      return response.data || null
+    method: 'GET',
+    baseURL: config.public.baseURL,
+    transform: (response): CompanyInformationState => {
+      return response?.data || null
     },
   }
 )
 
-if (error.value || !data.value) {
+const productCardsPromise = useFetch<ProductCardsResponse>(
+  '/api/products-pages?populate[productCard][populate]=*&fields[0]=productCard&fields[1]=pageUrl&fields[2]=navigationTitle',
+  {
+    method: 'GET',
+    baseURL: config.public.baseURL,
+    transform: (response): ProductCardsState => {
+      return response?.data || null
+    },
+  }
+)
+
+const [
+  { data: companyInformationData, error: companyInformationError },
+  { data: productCardsData, error: productCardsError },
+] = await Promise.all([companyInformationPromise, productCardsPromise])
+
+if (
+  companyInformationError.value ||
+  !companyInformationData.value ||
+  productCardsError.value ||
+  !productCardsData.value
+) {
   throw createError({
     fatal: true,
     statusCode: 404,
   })
 }
 
-useState<CompanyInformationInput>(
-  'companyInformation',
-  () => data.value as CompanyInformationInput
+const productCards = useState<ProductCardsState>(
+  'productCards',
+  () => productCardsData.value as ProductCardsState
 )
+
+const companyInformation = useState<CompanyInformationState>(
+  'companyInformation',
+  () => companyInformationData.value as CompanyInformationState
+)
+
+onMounted(() => {
+  if (!companyInformation.value.headerPromoTags) {
+    const root = document.documentElement
+    root.style.setProperty('--header-height', '72px')
+  }
+})
 
 useFont([
   {

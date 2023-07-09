@@ -1,5 +1,6 @@
-// const isDev = process.env.NODE_ENV === 'development'
+import { defineNuxtConfig } from 'nuxt/config'
 export default defineNuxtConfig({
+  // @ts-ignore
   components: false,
   runtimeConfig: {
     public: {
@@ -9,7 +10,7 @@ export default defineNuxtConfig({
   nitro: {
     devProxy: {
       '/uploads': {
-        target: 'http://127.0.0.1:1337/uploads',
+        target: 'http://170.64.184.49:1337/uploads',
         changeOrigin: true,
         prependPath: true,
       },
@@ -29,9 +30,11 @@ export default defineNuxtConfig({
     'nuxt-fonty',
     '@nuxtjs/tailwindcss',
     '@nuxtjs/svg-sprite',
+    'nuxt-swiper',
     // 'nuxt-delay-hydration',
     // ...(isDev ? ['@nuxtjs/html-validator'] : []),
   ],
+  // @ts-ignore
   fonty: {
     autoImport: true,
   },
