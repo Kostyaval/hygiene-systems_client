@@ -36,6 +36,7 @@
   },
   "dependencies": {
     "body-scroll-lock-upgrade": "^1.0.3",
+    "h3": "github:Kostyaval/h3-fork",
     "nuxt-swiper": "^1.1.0",
     "snarkdown": "^2.0.0",
     "swiper": "^9.4.1"
