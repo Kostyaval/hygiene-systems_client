@@ -3,3 +3,4 @@
   to = "https://hygienesystems.broxbe.top/uploads/:splat"
   status = 200
   force = true
+  query = {width=":width", w=":w", height=":height", h=":h", resize=":resize", s=":s", fit=":fit", position=":position", pos=":pos", trim=":trim", format=":format", f=":f", quality=":quality", q=":q", rotate=":rotate", r=":r", enlarge=":enlarge", flip=":flip", flop=":flop", sharpen=":sharpen", median=":median", gamma=":gamma", negate=":negate", normalize=":normalize", threshold=":threshold", grayscale=":grayscale", animated=":animated"}
