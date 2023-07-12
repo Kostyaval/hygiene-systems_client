@@ -1,0 +1,5 @@
+[[redirects]]
+  from = "/uploads/*"
+  to = "https://hygienesystems.broxbe.top/uploads/:splat"
+  status = 200
+  force = true
