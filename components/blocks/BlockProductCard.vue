@@ -3,12 +3,16 @@
     :to="`/products/${pageUrl}`"
     class="group block max-w-[336px] rounded-lg bg-neutral-200 p-2"
   >
-    <div v-if="productCard.image" class="rounded-md bg-neutral-100 py-4 text-center">
+    <div
+      v-if="productCard.image"
+      class="relative overflow-hidden rounded-md bg-neutral-100 pb-[72.5%] text-center"
+    >
       <StrapiImage
-        image-class="mx-auto group-hover:scale-105 transition-transform"
+        image-class="mx-auto group-hover:scale-105 transition-transform absolute absolute-cover object-cover"
         :src="productCard.image.url"
         :modifiers="{ width: 212 }"
-        :lazy="true"
+        :lazy-fallback="true"
+        :parent-section="parentSection"
       >
       </StrapiImage>
     </div>
@@ -34,10 +38,12 @@
 
 <script setup lang="ts">
 import { BlockProductCard } from '~/models/page-block-components'
-import { ProductCardsState } from '~/models/single-types'
 import StrapiImage from '~/components/ui/StrapiImage.vue'
 
-const props = withDefaults(defineProps<BlockProductCard>(), {})
+const props = withDefaults(
+  defineProps<BlockProductCard & { parentSection: HTMLElement | null }>(),
+  {}
+)
 </script>
 
 <style scoped></style>

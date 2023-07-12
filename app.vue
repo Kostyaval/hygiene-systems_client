@@ -10,7 +10,12 @@
 import { useFont } from '#fonty'
 import ModalRoot from '~/components/ui/modals/ModalRoot.vue'
 import type { CompanyInformationResponse, ProductCardsResponse } from '~/models/api'
-import { CompanyInformationState, ProductCardsState } from '~/models/single-types'
+import {
+  CompanyInformationState,
+  NavigationItem,
+  ProductCardsState,
+} from '~/models/single-types'
+import { SinglePagesResponse } from '~/models/api'
 const config = useRuntimeConfig()
 
 const companyInformationPromise = useFetch<CompanyInformationResponse>(
@@ -35,16 +40,31 @@ const productCardsPromise = useFetch<ProductCardsResponse>(
   }
 )
 
+const headerNavigationPromise = useFetch<SinglePagesResponse>('/api/single-pages', {
+  method: 'GET',
+  baseURL: config.public.baseURL,
+  transform: (response): NavigationItem[] => {
+    return response?.data || null
+  },
+})
+
 const [
   { data: companyInformationData, error: companyInformationError },
   { data: productCardsData, error: productCardsError },
-] = await Promise.all([companyInformationPromise, productCardsPromise])
+  { data: headerNavigationData, error: headerNavigationError },
+] = await Promise.all([
+  companyInformationPromise,
+  productCardsPromise,
+  headerNavigationPromise,
+])
 
 if (
   companyInformationError.value ||
   !companyInformationData.value ||
   productCardsError.value ||
-  !productCardsData.value
+  !productCardsData.value ||
+  headerNavigationError.value ||
+  !headerNavigationData.value
 ) {
   throw createError({
     fatal: true,
@@ -60,6 +80,11 @@ const productCards = useState<ProductCardsState>(
 const companyInformation = useState<CompanyInformationState>(
   'companyInformation',
   () => companyInformationData.value as CompanyInformationState
+)
+
+const headerNavigation = useState<NavigationItem[]>(
+  'headerNavigation',
+  () => headerNavigationData.value as NavigationItem[]
 )
 
 onMounted(() => {

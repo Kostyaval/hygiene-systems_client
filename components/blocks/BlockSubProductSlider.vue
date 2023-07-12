@@ -1,5 +1,8 @@
 <template>
-  <div class="block-slider container relative overflow-hidden pb-28 pt-14">
+  <div
+    ref="blockSubSlider"
+    class="block-slider container relative overflow-hidden bg-neutral-200 pb-28 pt-20"
+  >
     <div class="flex flex-wrap items-center gap-4 pb-16">
       <div class="text-headline-2 text-turquoise-500 xl:text-headline-3">
         {{ title }}
@@ -41,7 +44,12 @@
       }"
     >
       <SwiperSlide v-for="(item, index) in slides" :key="index">
-        <BlockSubProductCard class="h-full" v-bind="item"> </BlockSubProductCard>
+        <BlockSubProductCard
+          :parent-section="blockSubSlider"
+          class="h-full"
+          v-bind="item"
+        >
+        </BlockSubProductCard>
       </SwiperSlide>
     </Swiper>
     <button
@@ -62,7 +70,7 @@ import BlockSubProductCard from '~/components/blocks/BlockSubProductCard.vue'
 import TheButton from '~/components/ui/buttons/TheButton.vue'
 
 const props = withDefaults(defineProps<BlockSubProductSlider>(), {})
-
+const blockSubSlider = ref(null)
 const slides = props.cards
   .sort((el) => (el.Rank || 0) - (el.Rank || 0))
   .flatMap((el) => el.entries)

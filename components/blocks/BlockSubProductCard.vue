@@ -1,14 +1,18 @@
 <template>
   <div
     @click="openSubProductModal"
-    class="group block max-w-[336px] rounded-lg bg-neutral-200 p-2"
+    class="group block max-w-[336px] rounded-lg bg-neutral-100 p-2"
   >
-    <div v-if="image" class="rounded-md bg-neutral-100 py-4 text-center">
+    <div
+      v-if="image"
+      class="relative overflow-hidden rounded-md bg-neutral-200 pb-[72.5%] text-center"
+    >
       <StrapiImage
-        image-class="mx-auto group-hover:scale-105 transition-transform"
+        image-class="mx-auto group-hover:scale-105 transition-transform absolute absolute-cover object-cover"
         :src="image.url"
         :modifiers="{ width: 212 }"
-        :lazy="true"
+        :lazy-fallback="true"
+        :parent-section="parentSection"
       >
       </StrapiImage>
     </div>
@@ -19,13 +23,23 @@
       <div class="min-h-[85px] pt-3 text-body-2 text-neutral-600">
         {{ description }}
       </div>
-      <div v-if="tags" class="flex flex-wrap gap-2">
+      <div v-if="tags" class="flex flex-wrap items-center gap-2">
         <div
-          class="inline-flex rounded-full bg-neutral-100 px-2 py-2 text-body-2 leading-none text-neutral-600"
+          class="inline-flex rounded-full bg-neutral-200 px-2 py-2 text-body-2 leading-none text-neutral-600"
           v-for="(tag, index) in tags.split(',')"
           :key="`${index}-tag`"
         >
           {{ tag }}
+        </div>
+        <div class="inline-flex space-x-1">
+          <template v-for="(item, index) in colors">
+            <div
+              v-if="item"
+              :key="index"
+              class="h-6 w-6 rounded-full border border-neutral-400"
+              :style="`background-color: ${item.color};`"
+            ></div>
+          </template>
         </div>
       </div>
     </div>
@@ -37,7 +51,10 @@ import StrapiImage from '~/components/ui/StrapiImage.vue'
 import { $modal } from '~/components/ui/modals'
 import ModalSubProductPage from '~/components/ui/modals/content/ModalSubProductPage.vue'
 
-const props = withDefaults(defineProps<BlockSubProductCard>(), {})
+const props = withDefaults(
+  defineProps<BlockSubProductCard & { parentSection: HTMLElement | null }>(),
+  {}
+)
 const openSubProductModal = () => {
   $modal
     .open(ModalSubProductPage, {

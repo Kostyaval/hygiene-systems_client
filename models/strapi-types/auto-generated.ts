@@ -1,3 +1,4 @@
+
 export type ImageFile = {
   url: string
   width: number
@@ -351,10 +352,17 @@ export type ComponentBlockHeroBannerButtonsArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
 }
 
+export enum Enum_Componentblockinfosections_Backgroundcolor {
+  NeutralLight = 'neutral_light',
+  Neutral = 'neutral',
+}
+
 export type ComponentBlockInfoSections = {
   __typename?: 'ComponentBlockInfoSections'
   id: Scalars['ID']
   sections?: Maybe<Array<Maybe<ComponentSubBlockInfoSection>>>
+  title?: Maybe<Scalars['String']>
+  backgroundColor?: Maybe<Enum_Componentblockinfosections_Backgroundcolor>
 }
 
 export type ComponentBlockInfoSectionsSectionsArgs = {
@@ -437,6 +445,13 @@ export type ComponentBlockProductCardsSlider = {
   button: ComponentSharedButton
 }
 
+export type ComponentBlockProductsGrid = {
+  __typename?: 'ComponentBlockProductsGrid'
+  id: Scalars['ID']
+  title?: Maybe<Scalars['String']>
+  description?: Maybe<Scalars['String']>
+}
+
 export enum Enum_Componentblockslider_Componentview {
   Common = 'common',
   Testimonials = 'testimonials',
@@ -457,11 +472,27 @@ export type ComponentBlockSliderSlidesArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
 }
 
+export type ComponentBlockSubProductGrid = {
+  __typename?: 'ComponentBlockSubProductGrid'
+  id: Scalars['ID']
+  title?: Maybe<Scalars['String']>
+  description?: Maybe<Scalars['String']>
+  cards?: Maybe<SubProductCategoryRelationResponseCollection>
+}
+
+export type ComponentBlockSubProductGridCardsArgs = {
+  filters?: InputMaybe<SubProductCategoryFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
+}
+
 export type ComponentBlockSubProductSlider = {
   __typename?: 'ComponentBlockSubProductSlider'
   id: Scalars['ID']
   cards?: Maybe<SubProductCategoryRelationResponseCollection>
   title?: Maybe<Scalars['String']>
+  description?: Maybe<Scalars['String']>
+  button?: Maybe<ComponentSharedButton>
 }
 
 export type ComponentBlockSubProductSliderCardsArgs = {
@@ -1205,6 +1236,8 @@ export type ContentReadyBlockBlockDynamicZone =
   | ComponentBlockPartnersLogos
   | ComponentBlockComparisonTable
   | ComponentBlockInfoSections
+  | ComponentBlockProductCardsSlider
+  | ComponentBlockSubProductSlider
   | Error
 
 export type ContentReadyBlockFiltersInput = {
@@ -1264,6 +1297,9 @@ export type ProductsPageBlocksDynamicZone =
   | ComponentBlockFaq
   | ComponentBlockComparisonTable
   | ComponentBlockSubProductSlider
+  | ComponentBlockInfoSections
+  | ComponentBlockSubProductGrid
+  | ComponentBlockProductsGrid
   | Error
 
 export type ProductsPageFiltersInput = {
@@ -1325,6 +1361,13 @@ export type SinglePageBlocksDynamicZone =
   | ComponentBlockInfoTextImage
   | ComponentBlockProductCardsSlider
   | ComponentBlockPartnersLogos
+  | ComponentBlockFaq
+  | ComponentBlockInfoSections
+  | ComponentBlockSubProductSlider
+  | ComponentBlockComparisonTable
+  | ComponentBlockBenefits
+  | ComponentBlockProductsGrid
+  | ComponentBlockSubProductGrid
   | Error
 
 export type SinglePageFiltersInput = {
@@ -1446,7 +1489,9 @@ export type GenericMorph =
   | ComponentBlockPartnersLogos
   | ComponentBlockProductCard
   | ComponentBlockProductCardsSlider
+  | ComponentBlockProductsGrid
   | ComponentBlockSlider
+  | ComponentBlockSubProductGrid
   | ComponentBlockSubProductSlider
   | ComponentSharedButton
   | ComponentSharedColor

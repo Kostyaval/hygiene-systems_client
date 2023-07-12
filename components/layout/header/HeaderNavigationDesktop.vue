@@ -18,10 +18,10 @@
         <nuxt-link
           v-for="(item, index) in navigation"
           :key="index"
-          :href="item.href"
-          class="whitespace-nowrap border-b border-transparent px-3 py-2 hover:border-turquoise-500 hover:text-turquoise-500"
+          :href="`/${item.pageUrl}`"
+          class="whitespace-nowrap border-b border-transparent px-3 py-2 hover:border-turquoise-500 hover:text-turquoise-500 text-body-2"
         >
-          {{ item.name }}
+          {{ item.navigationTitle }}
         </nuxt-link>
       </div>
       <div
@@ -39,7 +39,7 @@
 import TheButton from '~/components/ui/buttons/TheButton.vue'
 import SearchInput from '~/components/ui/SearchInput.vue'
 import { ImageFile } from '~/models/strapi-types/auto-generated'
-import { ProductCardsState } from '~/models/single-types'
+import { NavigationItem, ProductCardsState } from '~/models/single-types'
 
 defineProps({
   logo: {
@@ -47,7 +47,7 @@ defineProps({
     required: true,
   },
   navigation: {
-    type: Array as () => { name: string; href: string }[],
+    type: Array as () => NavigationItem[],
     required: true,
   },
 })

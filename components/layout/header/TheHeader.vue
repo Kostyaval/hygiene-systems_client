@@ -2,7 +2,7 @@
   <div class="sticky top-0 z-10 xl:hidden">
     <HeaderPromoTags v-if="promoTags" :promo-text="promoTags" />
     <HeaderNavigationDesktop
-      :navigation="navigation"
+      :navigation="headerNavigationReady"
       :logo="logo"
       @open-contact-modal="openContactModal"
     />
@@ -26,7 +26,7 @@
 </template>
 <script setup lang="ts">
 import HeaderNavigationDesktop from '~/components/layout/header/HeaderNavigationDesktop.vue'
-import { CompanyInformationState } from '~/models/single-types'
+import { CompanyInformationState, NavigationItem } from '~/models/single-types'
 import HeaderPromoTags from '~/components/layout/header/HeaderPromoTags.vue'
 import HeaderNavigationMobile from '~/components/layout/header/HeaderNavigationMobile.vue'
 import HeaderAsideMobile from '~/components/layout/header/HeaderAsideMobile.vue'
@@ -60,26 +60,9 @@ const {
 } = useState<CompanyInformationState>('companyInformation').value
 
 const promoTags = headerPromoTags?.split(',').map((item) => item.trim())
-const navigation: Array<{ name: string; href: string }> = [
-  {
-    name: 'About Us',
-    href: '/',
-  },
-  {
-    name: 'Services',
-    href: '#',
-  },
-  {
-    name: 'Products',
-    href: '#',
-  },
-  {
-    name: 'Hoop 247',
-    href: '#',
-  },
-  {
-    name: 'Contact Us',
-    href: '#',
-  },
-]
+
+const headerNavigation = useState<NavigationItem[]>('headerNavigation')
+const headerNavigationReady = headerNavigation.value
+  .filter((el) => el.pageUrl !== 'home')
+  .sort((el) => (el.Rank || 0) - (el.Rank || 0))
 </script>

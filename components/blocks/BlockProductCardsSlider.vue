@@ -1,5 +1,8 @@
 <template>
-  <div class="block-slider container relative overflow-hidden pb-28 pt-14">
+  <div
+    ref="blockSlider"
+    class="block-slider container relative cursor-pointer overflow-hidden pb-28 pt-14"
+  >
     <div class="flex items-center space-x-8 pb-16">
       <div class="text-headline-2 text-turquoise-500">{{ title }}</div>
       <TheButton size="small" to="/products" variant="secondary"> View All </TheButton>
@@ -45,6 +48,7 @@
           :id="item.id"
           :product-card="item.productCard"
           :page-url="item.pageUrl"
+          :parentSection="blockSlider"
         >
         </BlockProductCard>
       </SwiperSlide>
@@ -68,7 +72,7 @@ import BlockProductCard from '~/components/blocks/BlockProductCard.vue'
 import TheButton from '~/components/ui/buttons/TheButton.vue'
 
 const props = withDefaults(defineProps<BlockProductCardsSlider>(), {})
-
+const blockSlider = ref(null)
 const products = useState<ProductCardsState>('productCards')
 </script>
 <style scoped lang="scss">

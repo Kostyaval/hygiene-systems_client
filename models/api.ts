@@ -7,6 +7,7 @@ import type {
   ProductsPage,
 } from '~/models/strapi-types/auto-generated'
 import { BlockHeroBanner, BlockProductCard } from '~/models/page-block-components'
+import { NavigationItem } from '~/models/single-types'
 
 type DynamicZone = BlockHeroBanner | Error
 
@@ -36,5 +37,10 @@ export interface ProductCardsResponse {
     pageUrl: string
     productCard: BlockProductCard
   }[]
+  meta: ResponseCollectionMeta
+}
+
+export interface SinglePagesResponse {
+  data: NavigationItem[]
   meta: ResponseCollectionMeta
 }

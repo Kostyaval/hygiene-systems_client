@@ -15,3 +15,12 @@ export type ProductCardsState = {
 }[]
 
 export type InfoSection = ComponentSubBlockInfoSection
+
+export type NavigationItem = {
+  id: number
+  pageUrl: string
+  createdAt: string
+  updatedAt: string
+  Rank?: number
+  navigationTitle: string
+}

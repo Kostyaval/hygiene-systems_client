@@ -1,9 +1,15 @@
 <template>
   <div
-    :style="{ backgroundImage }"
+    :style="{ backgroundImage: background }"
     :class="[backgroundClassColor]"
-    class="bg-cover bg-right-top"
+    class="relative"
   >
+    <StrapiImage
+      class="object-cover"
+      image-class="absolute absolute-cover object-cover z-[-1] object-right-top"
+      v-if="backgroundImage"
+      :src="backgroundImage.url"
+    />
     <div
       class="container grid min-h-[calc(100vh_-_var(--header-height))] grid-cols-12 overflow-hidden pb-20 pt-8 lg:grid-cols-6 lg:pt-0"
       :class="{ 'xl:bg-neutral-900/50': !!backgroundImage }"
@@ -38,6 +44,7 @@
             <ButtonWrapper
               :white-color-theme="textColorTheme"
               :buttons="buttons"
+              width-full-media="md"
             ></ButtonWrapper>
           </div>
           <div class="mt-32 lg:hidden" v-if="sustainableActive">
@@ -65,12 +72,12 @@ import SustainableTags from '~/components/common/SustainableTags.vue'
 import ButtonWrapper from '~/components/ui/buttons/ButtonWrapper.vue'
 const props = withDefaults(defineProps<BlockHeroBanner>(), {})
 
-const backgroundImage = props.backgroundImage
-  ? `linear-gradient(90deg, rgba(0, 0, 0, 0.1) 23.12%, rgba(0, 0, 0, 0.2) 100%), url('${props.backgroundImage.url}')`
+const background = props.backgroundImage
+  ? `linear-gradient(90deg, rgba(0, 0, 0, 0.1) 23%, rgba(0, 0, 0, 0.2) 100%);`
   : ''
 
-const backgroundClassColor = props.backgroundColor
-  ? getColorVar(props.backgroundColor.color)
+const backgroundClassColor = !props.backgroundImage
+  ? getColorVar(props.backgroundColor?.color)
   : ''
 
 const themeColors = props.textColorTheme

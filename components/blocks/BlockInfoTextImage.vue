@@ -59,8 +59,11 @@
         >
           <StrapiImage
             class="overflow-hidden rounded-2xl"
+            :class="pictureClass"
+            :image-class="imageClass"
             :src="image.url"
             :modifiers="{ width: 700 }"
+            :lazy-fallback="true"
           />
         </div>
       </div>
@@ -83,9 +86,17 @@ console.log(props)
 //   : ''
 
 const blockClass = `${!props.backgroundImage ? getColorVar(props.color?.color) : ''}`
-const containerClass = `${props.imagePosition === 'right-overflow' ? 'pr-0' : ''} ${
-  !props.image ? 'py-20' : ''
+const containerClass = `${
+  props.imagePosition === 'right-overflow' ? 'pr-0 py-20' : ''
+} ${!props.image ? 'py-20' : ''}`
+
+const pictureClass = `${
+  props.imagePosition === 'right-overflow'
+    ? 'absolute right-0 w-[calc(50%_-_13px)] lg:static lg:w-auto'
+    : ''
 }`
+
+const imageClass = `${props.imagePosition === 'right-overflow' ? 'ml-auto' : ''}`
 const themeColors = props.whiteTextTheme
   ? {
       heading: 'text-neutral-200',

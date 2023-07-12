@@ -47,6 +47,7 @@ const props = defineProps({
   },
   width: String,
   height: String,
+  parentSection: Object,
 })
 
 const constructImageUrl = (src: string, modifiers: Record<string, any>): string => {
@@ -95,27 +96,37 @@ const vLazySrc = {
     if (!props.lazyFallback) {
       return
     }
-    const observer = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
-        el.src = binding.arg
-        observer.unobserve(el)
-      }
+    nextTick(() => {
+      const elementToObserve: HTMLElement = props.parentSection || el
+      const observer = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          el.src = binding.arg
+          observer.unobserve(elementToObserve)
+        }
+      })
+      observer.observe(elementToObserve)
     })
-    observer.observe(el)
   },
 }
+
 const vLazySrcset = {
   mounted(el: HTMLImageElement, binding: any) {
     if (!props.lazyFallback) {
       return
     }
-    const observer = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
-        el.srcset = binding.arg
-        observer.unobserve(el)
-      }
+    nextTick(() => {
+      const elementToObserve: HTMLElement = props.parentSection || el
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (entries[0].isIntersecting) {
+            el.srcset = binding.arg
+            observer.unobserve(elementToObserve)
+          }
+        },
+        { rootMargin: '500px' }
+      )
+      observer.observe(elementToObserve)
     })
-    observer.observe(el)
   },
 }
 </script>

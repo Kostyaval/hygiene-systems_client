@@ -1,14 +1,14 @@
 <template>
   <div :class="colorClass" class="overflow-hidden rounded-xl">
-    <div class="relative w-full object-bottom" :style="imageRatio()">
+    <div class="relative w-full" :style="imageRatio()">
       <StrapiImage
-        image-class="absolute absolute-cover"
+        image-class="absolute absolute-cover object-cover"
         v-if="image"
         :src="image.url"
-        :lazy="true"
+        :lazy-fallback="true"
       />
     </div>
-    <div class="px-6 py-6">
+    <div v-if="title || description" class="px-6 py-12">
       <div class="text-headline-4 text-turquoise-500 xl:text-headline-3">
         {{ title }}
       </div>

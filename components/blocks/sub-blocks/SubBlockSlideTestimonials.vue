@@ -13,8 +13,9 @@
           alt="testimonial-quote"
         />
         <StrapiImage
-          class="block overflow-hidden rounded-full"
+          class="block h-full w-full overflow-hidden rounded-full"
           :src="image.url"
+          :parent-section="parentSection"
           :lazy-fallback="true"
         ></StrapiImage>
       </div>
@@ -45,7 +46,10 @@ import StrapiImage from '~/components/ui/StrapiImage.vue'
 import TheButton from '~/components/ui/buttons/TheButton.vue'
 import { SubBlockSliderSlide } from '~/models/page-block-components'
 
-const props = withDefaults(defineProps<SubBlockSliderSlide>(), {})
+const props = withDefaults(
+  defineProps<SubBlockSliderSlide & { parentSection: HTMLElement }>(),
+  {}
+)
 </script>
 
 <style scoped></style>

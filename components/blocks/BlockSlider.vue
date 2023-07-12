@@ -1,5 +1,5 @@
 <template>
-  <div class="block-slider relative pb-28 pt-14">
+  <div ref="parentElement" class="block-slider relative pb-28 pt-14">
     <Swiper
       :modules="[SwiperAutoplay, SwiperPagination, SwiperNavigation]"
       :slides-per-view="1.25"
@@ -16,20 +16,19 @@
         clickable: true,
       }"
       :navigation="{
-        nextEl: '.block-slider-next',
-        prevEl: '.block-slider-prev',
+        nextEl: `.block-slider-next-${id}`,
+        prevEl: `.block-slider-prev-${id}`,
       }"
     >
       <SwiperSlide v-for="slide in slides">
         <component
           :is="slideComponent"
-          :class="slideClasses"
           :key="slide"
-          v-bind="{ ...slide }"
+          v-bind="{ ...slide, parentSection: parentElement }"
         >
           <template #button>
             <TheButton
-              class="mt-16 lg:mb-6 lg:mt-auto"
+              class="mt-16 lg:mb-6"
               v-if="commonCta"
               :to="commonCta.href"
               tag="nuxt-link"
@@ -43,11 +42,13 @@
       <div class="swiper-pagination" />
     </Swiper>
     <button
+      :class="`block-slider-next-${id}`"
       class="block-slider-next absolute right-5 z-[1] flex h-12 w-12 items-center justify-center rounded-full bg-turquoise-200 text-[24px] text-turquoise-800 absolute-y-center lg:hidden"
     >
       <svg-icon class="icon" name="action/slider-arrow-right" />
     </button>
     <button
+      :class="`block-slider-prev-${id}`"
       class="block-slider-prev absolute left-5 z-[1] flex h-12 w-12 items-center justify-center rounded-full bg-turquoise-200 text-[24px] text-turquoise-800 absolute-y-center lg:hidden"
     >
       <svg-icon class="icon" name="action/slider-arrow-left" />
@@ -57,10 +58,11 @@
 <script setup lang="ts">
 import { BlockSlider } from '~/models/page-block-components'
 import TheButton from '~/components/ui/buttons/TheButton.vue'
-import StrapiImage from '~/components/ui/StrapiImage.vue'
 import SubBlockSlide from '~/components/blocks/sub-blocks/SubBlockSlide.vue'
 import SubBlockSlideTestimonials from '~/components/blocks/sub-blocks/SubBlockSlideTestimonials.vue'
+import { uniqueId } from '~/utils/helpers'
 
+const parentElement = ref(null)
 const props = withDefaults(defineProps<BlockSlider>(), {})
 
 let slideComponentName = ''
@@ -78,8 +80,6 @@ const slideComponent = defineAsyncComponent(
 )
 
 const moreThanTowSlide = (props.slides?.length || 0) > 2
-const slidePerView = moreThanTowSlide ? 1.5 : 1
-const slideClasses = [!moreThanTowSlide ? 'container' : '']
 </script>
 
 <style lang="scss" scoped>
