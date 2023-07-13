@@ -7,8 +7,7 @@
     />
     <div :class="blockClass" class="relative z-[1] bg-cover bg-right-top">
       <div
-        class="container grid grid-cols-12 gap-6 py-10 lg:grid-cols-6"
-        :class="containerClass"
+        class="container py-20 grid grid-cols-12 gap-6 lg:grid-cols-6"
       >
         <div class="col-span-6 flex flex-col items-center justify-center">
           <div class="max-w-md">

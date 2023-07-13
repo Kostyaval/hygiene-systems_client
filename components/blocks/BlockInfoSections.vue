@@ -2,7 +2,7 @@
   <div class="py-20" :class="`${backgroundClass}`">
     <h2
       v-if="title"
-      class="pb-10 text-center text-headline-2 text-turquoise-500 xl:text-headline-3"
+      class="pb-22 text-center text-headline-2 text-turquoise-500 xl:text-headline-3 lg:pb-14"
     >
       {{ title }}
     </h2>

@@ -15,6 +15,9 @@ import {
   ComponentBlockComparisonTable,
   ComponentBlockFaq,
   ComponentBlockInfoSections,
+  ComponentBlockProductsGrid,
+  ComponentSubBlockInfoSection,
+  ComponentBlockSubProductGrid,
 } from '~/models/strapi-types/auto-generated'
 
 export type SubBlockSliderSlide = ComponentSubBlockSliderSlide
@@ -36,3 +39,9 @@ export type BlockSubProductSlider = { title: string; cards: SubProductCategory[]
 export type BlockComparisonTable = ComponentBlockComparisonTable
 export type BlockFaq = ComponentBlockFaq
 export type BlockInfoSections = ComponentBlockInfoSections
+export type BlockProductsGrid = ComponentBlockProductsGrid
+export type BlockSubProductsGrid = {
+  title?: string
+  description?: string
+  cards: SubProductCategory[]
+}
