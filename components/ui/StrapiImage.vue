@@ -28,6 +28,7 @@
 
 <script setup lang="ts">
 import { defineProps, DirectiveBinding } from 'vue'
+const HOST = 'https://hygienesystems.broxbe.top'
 
 const props = defineProps({
   src: {
@@ -59,7 +60,7 @@ const constructImageUrl = (src: string, modifiers: Record<string, any>): string 
     }
   })
 
-  return `${src}${queryParams.toString() ? '?' + queryParams.toString() : ''}`
+  return `${HOST}${src}${queryParams.toString() ? '?' + queryParams.toString() : ''}`
 }
 
 const createSrcset = (src: string, modifiers: Record<string, any>, format?: string) => {
