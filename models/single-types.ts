@@ -19,10 +19,10 @@ export type ProductCardsState = {
 export type InfoSection = ComponentSubBlockInfoSection
 
 export type NavigationItem = {
-  id: number
+  id?: number
   pageUrl: string
-  createdAt: string
-  updatedAt: string
+  createdAt?: string
+  updatedAt?: string
   Rank?: number
   navigationTitle: string
 }

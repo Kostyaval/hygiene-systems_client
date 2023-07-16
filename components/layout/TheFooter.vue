@@ -57,37 +57,37 @@
           </div>
         </div>
         <div
-          class="col-span-2 col-start-5 space-y-2 pt-12 xl:col-span-6 xl:col-start-7 md:col-span-12 md:col-start-1"
+          class="relative z-[1] col-span-2 col-start-5 space-y-2 pt-12 xl:col-span-6 xl:col-start-7 md:col-span-12 md:col-start-1"
         >
           <nuxt-link
-            v-for="(item, index) in navigation"
+            v-for="(item, index) in footerNavigationReady"
             :key="index"
-            :href="item.href"
+            :href="`/${item.pageUrl}`"
             class="block whitespace-nowrap py-1 text-body-2 hover:border-turquoise-500 hover:text-turquoise-500"
           >
-            {{ item.name }}
+            {{ item.navigationTitle }}
           </nuxt-link>
         </div>
         <div
-          class="col-span-2 col-start-7 space-y-2 pt-12 xl:col-span-6 xl:col-start-1 md:col-span-6 md:col-start-1"
+          class="relative z-[1] col-span-2 col-start-7 space-y-2 pt-12 xl:col-span-6 xl:col-start-1 md:col-span-6 md:col-start-1"
         >
           <nuxt-link
-            v-for="(item, index) in navigation"
+            v-for="(item, index) in firstProducts"
             :key="index"
             :href="item.href"
-            class="block whitespace-nowrap py-1 text-body-2 text-neutral-400 hover:border-turquoise-500 hover:text-turquoise-500"
+            class="block whitespace-nowrap py-1 text-body-2 capitalize text-neutral-400 hover:border-turquoise-500 hover:text-turquoise-500"
           >
             {{ item.name }}
           </nuxt-link>
         </div>
         <div
-          class="col-span-2 col-start-9 space-y-2 pt-12 xl:col-span-6 xl:col-start-7 md:col-span-6 md:col-start-7"
+          class="relative z-[1] col-span-2 col-start-9 space-y-2 pt-12 xl:col-span-6 xl:col-start-7 md:col-span-6 md:col-start-7"
         >
           <nuxt-link
-            v-for="(item, index) in navigation"
+            v-for="(item, index) in secondProducts"
             :key="index"
             :href="item.href"
-            class="block whitespace-nowrap py-1 text-body-2 text-neutral-400 hover:border-turquoise-500 hover:text-turquoise-500"
+            class="block whitespace-nowrap py-1 text-body-2 capitalize text-neutral-400 hover:border-turquoise-500 hover:text-turquoise-500"
           >
             {{ item.name }}
           </nuxt-link>
@@ -98,7 +98,11 @@
 </template>
 
 <script setup lang="ts">
-import { CompanyInformationState } from '~/models/single-types'
+import {
+  CompanyInformationState,
+  NavigationItem,
+  ProductCardsState,
+} from '~/models/single-types'
 import MarkdownRenderer from '~/components/ui/MarkdownRenderer.vue'
 import TheButton from '~/components/ui/buttons/TheButton.vue'
 import StrapiImage from '~/components/ui/StrapiImage.vue'
@@ -127,6 +131,23 @@ const navigation: Array<{ name: string; href: string }> = [
     href: '#',
   },
 ]
+
+const headerNavigation = useState<NavigationItem[]>('headerNavigation')
+const footerNavigationReady = headerNavigation.value
+  .filter((el) => el.pageUrl !== 'home')
+  .sort((el) => (el.Rank || 0) - (el.Rank || 0))
+footerNavigationReady.push({ navigationTitle: 'Hoop247', pageUrl: 'hoop247' })
+
+const products = useState<ProductCardsState>('productCards')
+const productsArray = products.value.map((el) => ({
+  name: el.navigationTitle,
+  href: `/products/${el.pageUrl}`,
+}))
+
+let middle = Math.ceil(productsArray.length / 2)
+
+let firstProducts = productsArray.slice(0, middle)
+let secondProducts = productsArray.slice(middle)
 </script>
 
 <style scoped></style>

@@ -65,4 +65,5 @@ const headerNavigation = useState<NavigationItem[]>('headerNavigation')
 const headerNavigationReady = headerNavigation.value
   .filter((el) => el.pageUrl !== 'home')
   .sort((el) => (el.Rank || 0) - (el.Rank || 0))
+headerNavigationReady.push({ navigationTitle: 'Hoop247', pageUrl: 'hoop247' })
 </script>
