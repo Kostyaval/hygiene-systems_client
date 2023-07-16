@@ -30,13 +30,13 @@
         <nuxt-link
           v-for="(item, index) in navigation"
           :key="index"
-          :href="item.href"
+          :href="`/${item.pageUrl}`"
           class="flex items-center justify-between px-3 py-4 text-body-2 hover:text-turquoise-500"
           :class="{
             'border-t border-neutral-300': index !== 0,
           }"
         >
-          <span>{{ item.name }}</span>
+          <span>{{ item.navigationTitle }}</span>
           <svg-icon name="action/chevron-right" class="icon text-[24px]" />
         </nuxt-link>
       </div>
@@ -54,6 +54,7 @@
 import SearchInput from '~/components/ui/SearchInput.vue'
 import TheButton from '~/components/ui/buttons/TheButton.vue'
 import { ImageFile } from '~/models/strapi-types/auto-generated'
+import { NavigationItem } from '~/models/single-types'
 
 const emit = defineEmits(['mobileAsideTriggered', 'openContactModal'])
 
@@ -78,7 +79,7 @@ defineProps({
     required: true,
   },
   navigation: {
-    type: Array as () => { name: string; href: string }[],
+    type: Array as () => NavigationItem[],
     required: true,
   },
   promoText: { type: Array as () => string[], default: () => [] },

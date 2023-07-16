@@ -18,7 +18,7 @@
     v-if="mobileAsideActive"
     ref="mobileAside"
     :logo="logo"
-    :navigation="navigation"
+    :navigation="headerNavigationReady"
     :promo-text="promoTags"
     @mobile-aside-triggered="toggleMobileAside"
     @open-contact-modal="openContactModal"

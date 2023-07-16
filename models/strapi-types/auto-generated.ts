@@ -1,4 +1,3 @@
-
 export type ImageFile = {
   url: string
   width: number
@@ -352,6 +351,19 @@ export type ComponentBlockHeroBannerButtonsArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
 }
 
+export type ComponentBlockInfoSectionsRow = {
+  __typename?: 'ComponentBlockInfoSectionsRow'
+  id: Scalars['ID']
+  title?: Maybe<Scalars['String']>
+  sections: Array<Maybe<ComponentSubBlockInfoSection>>
+}
+
+export type ComponentBlockInfoSectionsRowSectionsArgs = {
+  filters?: InputMaybe<ComponentSubBlockInfoSectionFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
+}
+
 export enum Enum_Componentblockinfosections_Backgroundcolor {
   NeutralLight = 'neutral_light',
   Neutral = 'neutral',
@@ -395,6 +407,18 @@ export type ComponentBlockInfoTextImage = {
 
 export type ComponentBlockInfoTextImageButtonsArgs = {
   filters?: InputMaybe<ComponentSharedButtonFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
+}
+
+export type ComponentBlockNavigationSections = {
+  __typename?: 'ComponentBlockNavigationSections'
+  id: Scalars['ID']
+  banner?: Maybe<Array<Maybe<ComponentSubBlockBanner>>>
+}
+
+export type ComponentBlockNavigationSectionsBannerArgs = {
+  filters?: InputMaybe<ComponentSubBlockBannerFiltersInput>
   pagination?: InputMaybe<PaginationArg>
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
 }
@@ -452,6 +476,19 @@ export type ComponentBlockProductsGrid = {
   description?: Maybe<Scalars['String']>
 }
 
+export type ComponentBlockServiceFrequencies = {
+  __typename?: 'ComponentBlockServiceFrequencies'
+  id: Scalars['ID']
+  title?: Maybe<Scalars['String']>
+  services: Array<Maybe<ComponentSubBlockServiceBlock>>
+}
+
+export type ComponentBlockServiceFrequenciesServicesArgs = {
+  filters?: InputMaybe<ComponentSubBlockServiceBlockFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
+}
+
 export enum Enum_Componentblockslider_Componentview {
   Common = 'common',
   Testimonials = 'testimonials',
@@ -497,6 +534,19 @@ export type ComponentBlockSubProductSlider = {
 
 export type ComponentBlockSubProductSliderCardsArgs = {
   filters?: InputMaybe<SubProductCategoryFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
+}
+
+export type ComponentBlockThreeInfoBlocks = {
+  __typename?: 'ComponentBlockThreeInfoBlocks'
+  id: Scalars['ID']
+  infoBlocks?: Maybe<Array<Maybe<ComponentSubBlockInfoBlock>>>
+  banner?: Maybe<ComponentSubBlockBanner>
+}
+
+export type ComponentBlockThreeInfoBlocksInfoBlocksArgs = {
+  filters?: InputMaybe<ComponentSubBlockInfoBlockFiltersInput>
   pagination?: InputMaybe<PaginationArg>
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
 }
@@ -663,6 +713,30 @@ export type ComponentSharedTooltipHint = {
   description: Scalars['String']
 }
 
+export type ComponentSubBlockBannerFiltersInput = {
+  title?: InputMaybe<StringFilterInput>
+  description?: InputMaybe<StringFilterInput>
+  buttons?: InputMaybe<ComponentSharedButtonFiltersInput>
+  and?: InputMaybe<Array<InputMaybe<ComponentSubBlockBannerFiltersInput>>>
+  or?: InputMaybe<Array<InputMaybe<ComponentSubBlockBannerFiltersInput>>>
+  not?: InputMaybe<ComponentSubBlockBannerFiltersInput>
+}
+
+export type ComponentSubBlockBanner = {
+  __typename?: 'ComponentSubBlockBanner'
+  id: Scalars['ID']
+  title?: Maybe<Scalars['String']>
+  description?: Maybe<Scalars['String']>
+  image: Maybe<ImageFile>
+  buttons?: Maybe<Array<Maybe<ComponentSharedButton>>>
+}
+
+export type ComponentSubBlockBannerButtonsArgs = {
+  filters?: InputMaybe<ComponentSharedButtonFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
+}
+
 export type ComponentSubBlockBenefitsPerksFiltersInput = {
   title?: InputMaybe<StringFilterInput>
   and?: InputMaybe<Array<InputMaybe<ComponentSubBlockBenefitsPerksFiltersInput>>>
@@ -710,6 +784,22 @@ export type ComponentSubBlockFaqEntry = {
   answer?: Maybe<Scalars['String']>
 }
 
+export type ComponentSubBlockInfoBlockFiltersInput = {
+  title?: InputMaybe<StringFilterInput>
+  description?: InputMaybe<StringFilterInput>
+  and?: InputMaybe<Array<InputMaybe<ComponentSubBlockInfoBlockFiltersInput>>>
+  or?: InputMaybe<Array<InputMaybe<ComponentSubBlockInfoBlockFiltersInput>>>
+  not?: InputMaybe<ComponentSubBlockInfoBlockFiltersInput>
+}
+
+export type ComponentSubBlockInfoBlock = {
+  __typename?: 'ComponentSubBlockInfoBlock'
+  id: Scalars['ID']
+  title?: Maybe<Scalars['String']>
+  description?: Maybe<Scalars['String']>
+  image: Maybe<ImageFile>
+}
+
 export enum Enum_Componentsubblockinfosection_Imagesize {
   Small = 'small',
   Large = 'large',
@@ -755,6 +845,25 @@ export type ComponentSubBlockPartnerLogoLink = {
   id: Scalars['ID']
   url?: Maybe<Scalars['String']>
   image: Maybe<ImageFile>
+}
+
+export type ComponentSubBlockServiceBlockFiltersInput = {
+  title?: InputMaybe<StringFilterInput>
+  description?: InputMaybe<StringFilterInput>
+  tags?: InputMaybe<StringFilterInput>
+  recommended?: InputMaybe<BooleanFilterInput>
+  and?: InputMaybe<Array<InputMaybe<ComponentSubBlockServiceBlockFiltersInput>>>
+  or?: InputMaybe<Array<InputMaybe<ComponentSubBlockServiceBlockFiltersInput>>>
+  not?: InputMaybe<ComponentSubBlockServiceBlockFiltersInput>
+}
+
+export type ComponentSubBlockServiceBlock = {
+  __typename?: 'ComponentSubBlockServiceBlock'
+  id: Scalars['ID']
+  title: Scalars['String']
+  description?: Maybe<Scalars['String']>
+  tags?: Maybe<Scalars['String']>
+  recommended: Scalars['Boolean']
 }
 
 export enum Enum_Componentsubblocksliderslide_Imageposition {
@@ -1238,6 +1347,11 @@ export type ContentReadyBlockBlockDynamicZone =
   | ComponentBlockInfoSections
   | ComponentBlockProductCardsSlider
   | ComponentBlockSubProductSlider
+  | ComponentBlockThreeInfoBlocks
+  | ComponentBlockSubProductGrid
+  | ComponentBlockServiceFrequencies
+  | ComponentBlockNavigationSections
+  | ComponentBlockInfoSectionsRow
   | Error
 
 export type ContentReadyBlockFiltersInput = {
@@ -1300,6 +1414,10 @@ export type ProductsPageBlocksDynamicZone =
   | ComponentBlockInfoSections
   | ComponentBlockSubProductGrid
   | ComponentBlockProductsGrid
+  | ComponentBlockThreeInfoBlocks
+  | ComponentBlockInfoSectionsRow
+  | ComponentBlockServiceFrequencies
+  | ComponentBlockNavigationSections
   | Error
 
 export type ProductsPageFiltersInput = {
@@ -1368,6 +1486,10 @@ export type SinglePageBlocksDynamicZone =
   | ComponentBlockBenefits
   | ComponentBlockProductsGrid
   | ComponentBlockSubProductGrid
+  | ComponentBlockThreeInfoBlocks
+  | ComponentBlockServiceFrequencies
+  | ComponentBlockInfoSectionsRow
+  | ComponentBlockNavigationSections
   | Error
 
 export type SinglePageFiltersInput = {
@@ -1484,26 +1606,33 @@ export type GenericMorph =
   | ComponentBlockContentReadyBlock
   | ComponentBlockFaq
   | ComponentBlockHeroBanner
+  | ComponentBlockInfoSectionsRow
   | ComponentBlockInfoSections
   | ComponentBlockInfoTextImage
+  | ComponentBlockNavigationSections
   | ComponentBlockPartnersLogos
   | ComponentBlockProductCard
   | ComponentBlockProductCardsSlider
   | ComponentBlockProductsGrid
+  | ComponentBlockServiceFrequencies
   | ComponentBlockSlider
   | ComponentBlockSubProductGrid
   | ComponentBlockSubProductSlider
+  | ComponentBlockThreeInfoBlocks
   | ComponentSharedButton
   | ComponentSharedColor
   | ComponentSharedMetaSocial
   | ComponentSharedNavigation
   | ComponentSharedSeo
   | ComponentSharedTooltipHint
+  | ComponentSubBlockBanner
   | ComponentSubBlockBenefitsPerks
   | ComponentSubBlockColors
   | ComponentSubBlockFaqEntry
+  | ComponentSubBlockInfoBlock
   | ComponentSubBlockInfoSection
   | ComponentSubBlockPartnerLogoLink
+  | ComponentSubBlockServiceBlock
   | ComponentSubBlockSliderSlide
   | ComponentSubBlockSomparisonRow
   | ComponentSubBlockTitleGroupe

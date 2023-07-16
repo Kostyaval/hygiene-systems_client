@@ -1,9 +1,9 @@
 <template>
   <div
-    class="grid h-full grid-cols-12 rounded-lg bg-neutral-300 pl-14 lg:grid-rows-[auto_1fr] lg:px-6"
+    class="grid h-full grid-cols-12 rounded-lg bg-neutral-300 pl-14 lg:grid-rows-[auto_1fr] lg:pl-0"
   >
     <div
-      class="col-span-6 max-w-sm pb-12 pt-14 lg:col-span-12 lg:flex lg:flex-col lg:pt-2"
+      class="col-span-6 max-w-sm pb-12 pt-14 lg:col-span-12 lg:flex lg:flex-col lg:px-6 lg:pt-2"
     >
       <h3 v-if="title" class="text-headline-3 text-turquoise-500">
         {{ title }}

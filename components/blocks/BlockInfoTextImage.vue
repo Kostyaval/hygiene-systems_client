@@ -6,9 +6,7 @@
       :src="backgroundImage.url"
     />
     <div :class="blockClass" class="relative z-[1] bg-cover bg-right-top">
-      <div
-        class="container py-20 grid grid-cols-12 gap-6 lg:grid-cols-6"
-      >
+      <div class="container grid grid-cols-12 gap-6 py-20 lg:grid-cols-6">
         <div class="col-span-6 flex flex-col items-center justify-center">
           <div class="max-w-md">
             <h2
@@ -38,6 +36,12 @@
                 :buttons="buttons"
               ></ButtonWrapper>
             </div>
+          </div>
+          <div v-if="bottomText" class="max-w-md">
+            <MarkdownRenderer
+              class="text-body-2 text-orange-500"
+              :markdown="bottomText || ''"
+            />
           </div>
         </div>
         <div

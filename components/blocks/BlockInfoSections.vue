@@ -2,11 +2,11 @@
   <div class="py-20" :class="`${backgroundClass}`">
     <h2
       v-if="title"
-      class="pb-22 text-center text-headline-2 text-turquoise-500 xl:text-headline-3 lg:pb-14"
+      class="pb-20 text-center text-headline-2 text-turquoise-500 xl:text-headline-3 lg:pb-14"
     >
       {{ title }}
     </h2>
-    <div class="container grid max-w-5xl grid-cols-2 gap-6">
+    <div class="container grid max-w-5xl grid-cols-2 gap-6 lg:grid-cols-1">
       <div class="space-y-6">
         <SubBlockInfoSection
           v-for="(item, index) in sectionFirstColumnTow"

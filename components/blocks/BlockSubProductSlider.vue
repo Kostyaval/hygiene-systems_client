@@ -4,13 +4,28 @@
       ref="blockSubSlider"
       class="block-slider container relative overflow-hidden pb-28 pt-20"
     >
-      <div class="flex flex-wrap items-center gap-4 pb-16">
-        <div class="text-headline-2 text-turquoise-500 xl:text-headline-3">
-          {{ title }}
+      <div class="pb-16">
+        <div class="flex flex-wrap items-center gap-6">
+          <div class="text-headline-2 text-turquoise-500 lg:text-headline-3">
+            {{ title }}
+          </div>
+          <TheButton
+            v-if="button"
+            size="small"
+            tag="nuxt-link"
+            :to="button.href"
+            :external-link="button.externalLink || false"
+            variant="secondary"
+          >
+            {{ button.label }}
+          </TheButton>
         </div>
-        <TheButton size="small" to="/products" variant="secondary">
-          View All
-        </TheButton>
+        <div
+          v-if="description"
+          class="pt-3 text-body-1 text-neutral-700 lg:text-body-2"
+        >
+          {{ description }}
+        </div>
       </div>
       <Swiper
         class="!overflow-visible"

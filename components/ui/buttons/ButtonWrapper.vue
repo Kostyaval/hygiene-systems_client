@@ -12,7 +12,7 @@
         :color-background="button.background"
         size="large"
         :color-text="button.color"
-        :variant="index === 0 ? 'primary' : 'secondary'"
+        :variant="setVariant(index)"
         >{{ button.label }}</TheButton
       >
     </template>
@@ -27,23 +27,61 @@ const props = withDefaults(
   defineProps<{
     buttons: (ComponentSharedButton | null)[]
     whiteColorTheme?: boolean | null | undefined
+    orangeColorTheme?: boolean | null | undefined
     widthFullMedia?: string
+    secondaryFirst?: boolean
   }>(),
   {
     whiteColorTheme: false,
+    orangeColorTheme: false,
     widthFullMedia: 'sm',
+    secondaryFirst: false,
   }
 )
+
+const setVariant = (index: number): string => {
+  if (index === 0) {
+    if (props.secondaryFirst) {
+      return 'secondary'
+    } else {
+      return 'primary'
+    }
+  } else {
+    if (props.secondaryFirst) {
+      return 'primary'
+    } else {
+      return 'secondary'
+    }
+  }
+}
 const themeButtons =
   props.buttons?.map((button, index) => {
-    const buttonColorFirst = props.whiteColorTheme ? 'black' : ''
-    const buttonColorSecond = props.whiteColorTheme ? 'white' : 'turquoise'
-    const buttonBackgroundColor = props.whiteColorTheme ? 'white' : 'turquoise'
+    let buttonColorPrimary
+    let buttonColorSecondary
+    let buttonBackgroundColor
+
+    if (props.whiteColorTheme) {
+      buttonColorPrimary = 'black'
+      buttonColorSecondary = 'white'
+      buttonBackgroundColor = 'white'
+    } else if (props.orangeColorTheme) {
+      buttonColorPrimary = ''
+      buttonColorSecondary = 'orange'
+      buttonBackgroundColor = 'orange'
+    } else {
+      buttonColorPrimary = ''
+      buttonColorSecondary = 'turquoise'
+      buttonBackgroundColor = 'turquoise'
+    }
+
+    const color =
+      setVariant(index) === 'primary' ? buttonColorPrimary : buttonColorSecondary
+
     return {
       label: button?.label,
       icon: button?.icon ? `common/${button?.icon}` : '',
       to: button?.href,
-      color: index === 0 ? buttonColorFirst : buttonColorSecond,
+      color: color,
       background: buttonBackgroundColor,
     }
   }) || []

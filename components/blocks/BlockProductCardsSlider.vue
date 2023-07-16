@@ -3,9 +3,17 @@
     ref="blockSlider"
     class="block-slider container relative cursor-pointer overflow-hidden pb-28 pt-14"
   >
-    <div class="flex items-center space-x-8 pb-16">
-      <div class="text-headline-2 text-turquoise-500">{{ title }}</div>
-      <TheButton size="small" to="/products" variant="secondary"> View All </TheButton>
+    <div class="flex items-center flex-wrap gap-6 pb-16">
+      <div class="text-headline-2 lg:text-headline-3 text-turquoise-500">{{ title }}</div>
+      <TheButton
+        size="small"
+        tag="nuxt-link"
+        :to="button.href"
+        :external-link="button.externalLink || false"
+        variant="secondary"
+      >
+        {{ button.label }}
+      </TheButton>
     </div>
     <Swiper
       class="!overflow-visible"
@@ -70,6 +78,7 @@ import { BlockProductCardsSlider } from '~/models/page-block-components'
 import { ProductCardsState } from '~/models/single-types'
 import BlockProductCard from '~/components/blocks/BlockProductCard.vue'
 import TheButton from '~/components/ui/buttons/TheButton.vue'
+import ButtonWrapper from '~/components/ui/buttons/ButtonWrapper.vue'
 
 const props = withDefaults(defineProps<BlockProductCardsSlider>(), {})
 const blockSlider = ref(null)

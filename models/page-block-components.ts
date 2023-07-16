@@ -18,6 +18,11 @@ import {
   ComponentBlockProductsGrid,
   ComponentSubBlockInfoSection,
   ComponentBlockSubProductGrid,
+  ComponentSharedButton,
+  ComponentBlockInfoSectionsRow,
+  ComponentBlockServiceFrequencies,
+  ComponentBlockThreeInfoBlocks,
+  ComponentBlockNavigationSections
 } from '~/models/strapi-types/auto-generated'
 
 export type SubBlockSliderSlide = ComponentSubBlockSliderSlide
@@ -35,7 +40,12 @@ export type BlockProductCard = {
 export type BlockProductCardsSlider = ComponentBlockProductCardsSlider
 export type BlockPartnersLogos = ComponentBlockPartnersLogos
 export type BlockSubProductCard = ComponentBlockConsumableCard
-export type BlockSubProductSlider = { title: string; cards: SubProductCategory[] }
+export type BlockSubProductSlider = {
+  title?: string
+  description?: string
+  button?: ComponentSharedButton
+  cards: SubProductCategory[]
+}
 export type BlockComparisonTable = ComponentBlockComparisonTable
 export type BlockFaq = ComponentBlockFaq
 export type BlockInfoSections = ComponentBlockInfoSections
@@ -45,3 +55,8 @@ export type BlockSubProductsGrid = {
   description?: string
   cards: SubProductCategory[]
 }
+
+export type BlockInfoSectionsRow = ComponentBlockInfoSectionsRow
+export type BlockServiceFrequencies = ComponentBlockServiceFrequencies
+export type BlockThreeInfoBlocks = ComponentBlockThreeInfoBlocks
+export type BlockNavigationSections = ComponentBlockNavigationSections

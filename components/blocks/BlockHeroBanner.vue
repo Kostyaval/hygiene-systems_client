@@ -54,7 +54,7 @@
       </div>
       <div
         v-if="image"
-        class="col-span-6 flex items-center justify-center lg:order-first lg:h-52 lg:items-end"
+        class="col-span-6 flex items-center justify-center lg:order-first lg:h-[22rem] lg:items-end"
       >
         <StrapiImage :src="image.url" :modifiers="{ width: 700 }" />
       </div>
