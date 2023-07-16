@@ -51,6 +51,11 @@ export type ResponseCollectionMeta = {
   pagination: Pagination
 }
 
+export enum PublicationState {
+  Live = 'LIVE',
+  Preview = 'PREVIEW',
+}
+
 export type IdFilterInput = {
   and?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>
   or?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>
@@ -744,6 +749,12 @@ export type ComponentSubBlockBenefitsPerksFiltersInput = {
   not?: InputMaybe<ComponentSubBlockBenefitsPerksFiltersInput>
 }
 
+export type ComponentSubBlockBenefitsPerksInput = {
+  id?: InputMaybe<Scalars['ID']>
+  image: Maybe<ImageFile>
+  title?: InputMaybe<Scalars['String']>
+}
+
 export type ComponentSubBlockBenefitsPerks = {
   __typename?: 'ComponentSubBlockBenefitsPerks'
   id: Scalars['ID']
@@ -1400,6 +1411,52 @@ export type ContentReadyBlockEntityResponseCollection = {
   meta: ResponseCollectionMeta
 }
 
+export type Hoop24Input = {
+  title?: InputMaybe<Scalars['String']>
+  videoLink?: InputMaybe<Scalars['String']>
+  promoTitle?: InputMaybe<Scalars['String']>
+  promoDescription?: InputMaybe<Scalars['String']>
+  benefits?: InputMaybe<Array<InputMaybe<ComponentSubBlockBenefitsPerksInput>>>
+  hoopRedirectLink?: InputMaybe<Scalars['String']>
+  hoopRegistrationEndpoint?: InputMaybe<Scalars['String']>
+  hoopForgotPassLink?: InputMaybe<Scalars['String']>
+  imageVideoPlaceholder: Maybe<ImageFile>
+  publishedAt?: InputMaybe<Scalars['DateTime']>
+}
+
+export type Hoop24 = {
+  __typename?: 'Hoop24'
+  title?: Maybe<Scalars['String']>
+  videoLink?: Maybe<Scalars['String']>
+  promoTitle?: Maybe<Scalars['String']>
+  promoDescription?: Maybe<Scalars['String']>
+  benefits?: Maybe<Array<Maybe<ComponentSubBlockBenefitsPerks>>>
+  hoopRedirectLink?: Maybe<Scalars['String']>
+  hoopRegistrationEndpoint?: Maybe<Scalars['String']>
+  hoopForgotPassLink?: Maybe<Scalars['String']>
+  imageVideoPlaceholder: Maybe<ImageFile>
+  createdAt?: Maybe<Scalars['DateTime']>
+  updatedAt?: Maybe<Scalars['DateTime']>
+  publishedAt?: Maybe<Scalars['DateTime']>
+}
+
+export type Hoop24BenefitsArgs = {
+  filters?: InputMaybe<ComponentSubBlockBenefitsPerksFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
+}
+
+export type Hoop24Entity = {
+  __typename?: 'Hoop24Entity'
+  id?: Maybe<Scalars['ID']>
+  attributes?: Maybe<Hoop24>
+}
+
+export type Hoop24EntityResponse = {
+  __typename?: 'Hoop24EntityResponse'
+  data?: Maybe<Hoop24Entity>
+}
+
 export type ProductsPageBlocksDynamicZone =
   | ComponentBlockBenefits
   | ComponentBlockContentReadyBlock
@@ -1645,6 +1702,7 @@ export type GenericMorph =
   | UsersPermissionsUser
   | CompanyInformation
   | ContentReadyBlock
+  | Hoop24
   | ProductsPage
   | SinglePage
   | SubProductCategory
@@ -1733,6 +1791,7 @@ export type Query = {
   companyInformation?: Maybe<CompanyInformationEntityResponse>
   contentReadyBlock?: Maybe<ContentReadyBlockEntityResponse>
   contentReadyBlocks?: Maybe<ContentReadyBlockEntityResponseCollection>
+  hoop24?: Maybe<Hoop24EntityResponse>
   productsPage?: Maybe<ProductsPageEntityResponse>
   productsPages?: Maybe<ProductsPageEntityResponseCollection>
   singlePage?: Maybe<SinglePageEntityResponse>
@@ -1802,6 +1861,10 @@ export type QueryContentReadyBlocksArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
 }
 
+export type QueryHoop24Args = {
+  publicationState?: InputMaybe<PublicationState>
+}
+
 export type QueryProductsPageArgs = {
   id?: InputMaybe<Scalars['ID']>
 }
@@ -1845,6 +1908,8 @@ export type Mutation = {
   createContentReadyBlock?: Maybe<ContentReadyBlockEntityResponse>
   updateContentReadyBlock?: Maybe<ContentReadyBlockEntityResponse>
   deleteContentReadyBlock?: Maybe<ContentReadyBlockEntityResponse>
+  updateHoop24?: Maybe<Hoop24EntityResponse>
+  deleteHoop24?: Maybe<Hoop24EntityResponse>
   createProductsPage?: Maybe<ProductsPageEntityResponse>
   updateProductsPage?: Maybe<ProductsPageEntityResponse>
   deleteProductsPage?: Maybe<ProductsPageEntityResponse>
@@ -1924,6 +1989,10 @@ export type MutationUpdateContentReadyBlockArgs = {
 
 export type MutationDeleteContentReadyBlockArgs = {
   id: Scalars['ID']
+}
+
+export type MutationUpdateHoop24Args = {
+  data: Hoop24Input
 }
 
 export type MutationCreateProductsPageArgs = {

@@ -1,3 +1,14 @@
+export function formatComponentName(name: string)  {
+  // Replace 'block.' with '' and split at '-'
+  const parts = name.replace('block.', '').split('-')
+
+  // Convert each part to start with an uppercase letter
+  const formattedParts = parts.map(
+    (part) => part.charAt(0).toUpperCase() + part.slice(1)
+  )
+
+  return `Block${formattedParts.join('')}`
+}
 export function throttle(func: (...args: any[]) => void, limit: number) {
   let lastFunc: number
   let lastRan: number

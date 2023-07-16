@@ -3,9 +3,11 @@ import {
   ComponentBlockFaq,
   ComponentBlockProductCard,
   ComponentSubBlockInfoSection,
+  Hoop24,
 } from '~/models/strapi-types/auto-generated'
 
 export type CompanyInformationState = CompanyInformation
+export type Hoop24Page = Hoop24
 
 export type ProductCardsState = {
   navigationTitle: string

@@ -5,6 +5,7 @@ import type {
   Maybe,
   Error,
   ProductsPage,
+  Hoop24,
 } from '~/models/strapi-types/auto-generated'
 import { BlockHeroBanner, BlockProductCard } from '~/models/page-block-components'
 import { NavigationItem } from '~/models/single-types'
@@ -22,6 +23,11 @@ export interface SinglePageResponse {
 
 export interface CompanyInformationResponse {
   data: CompanyInformation
+  meta: ResponseCollectionMeta
+}
+
+export interface hoop24Response {
+  data: Hoop24
   meta: ResponseCollectionMeta
 }
 

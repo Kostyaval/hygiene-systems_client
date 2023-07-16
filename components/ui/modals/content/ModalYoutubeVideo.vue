@@ -1,10 +1,10 @@
 <template>
   <div
-    class="absolute my-auto h-[60%] w-[calc(90%_-_32px)] w-full max-w-5xl absolute-center"
+    class="absolute my-auto h-[60%] w-[calc(90%_-_32px)] max-w-5xl absolute-center lg:w-full"
   >
     <button
       @click="close()"
-      class="absolute -right-5 -top-5 z-10 text-[24px] text-neutral-100"
+      class="absolute -right-5 lg:right-2 -top-5 lg:-top-7 z-10 text-[24px] text-neutral-100"
     >
       <svg-icon class="icon" name="action/close-round" />
     </button>

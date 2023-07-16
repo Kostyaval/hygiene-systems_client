@@ -9,7 +9,7 @@
 
 <script setup lang="ts">
 import type { SinglePageResponse } from '~/models/api'
-import { CompanyInformationState, ProductCardsState } from '~/models/single-types'
+import { formatComponentName } from '~/utils/helpers'
 const route = useRoute()
 const config = useRuntimeConfig()
 
@@ -32,37 +32,14 @@ const { data, error } = await useAsyncData(
     },
   }
 )
-const companyInformation = useState<CompanyInformationState>('companyInformation')
 if (error.value || !data) {
   throw createError({
     fatal: true,
     statusCode: 404,
   })
 }
-const products = useState<ProductCardsState>('productCards')
-if (error.value || !data) {
-  throw createError({
-    fatal: true,
-    statusCode: 404,
-  })
-}
-console.log(products.value)
-console.log(companyInformation)
-onMounted(() => {
-  console.log(data.value?.pageBlocks)
-})
 const blocks = []
-const formatComponentName = (name: string) => {
-  // Replace 'block.' with '' and split at '-'
-  const parts = name.replace('block.', '').split('-')
 
-  // Convert each part to start with an uppercase letter
-  const formattedParts = parts.map(
-    (part) => part.charAt(0).toUpperCase() + part.slice(1)
-  )
-
-  return `Block${formattedParts.join('')}`
-}
 const getComponent = (componentName: string) =>
   defineAsyncComponent(
     () => import(`~/components/blocks/${formatComponentName(componentName)}.vue`)
@@ -70,7 +47,6 @@ const getComponent = (componentName: string) =>
 
 const pageBlocks = data.value?.pageBlocks || []
 
-console.log(pageBlocks)
 for (const index in pageBlocks) {
   // @ts-ignore
   const component = pageBlocks[index]?.__component

@@ -14,7 +14,7 @@ fs.readFile(filePath, 'utf8', function (err, data) {
   // followed by any non-newline characters
   // The regex also considers any amount of whitespace between the key and the colon
   const regex =
-    /(image|backgroundImage|metaImage|logoWhite|logo|logoMobile)\??\s*:\s*[^\n]+/g
+    /(image|backgroundImage|metaImage|logoWhite|logo|logoMobile|imageVideoPlaceholder)\??\s*:\s*[^\n]+/g
 
   // Replace the matches with the new type
   const result = data.replace(regex, '$1: Maybe<ImageFile>')
