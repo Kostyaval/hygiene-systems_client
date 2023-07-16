@@ -36,6 +36,13 @@ export default defineNuxtConfig({
         class: ['text-neutral-700'],
       },
       title: 'Hygiene Systems',
+      link: [
+        { rel: 'icon', type: 'image/x-icon', sizes: '16x16', href: '/favicon.ico' },
+        { rel: 'icon', type: 'image/x-icon', sizes: '32x32', href: '/Favicon-32.ico' },
+        { rel: 'icon', type: 'image/x-icon', sizes: '64x64', href: '/Favicon-64.ico' },
+        { rel: 'icon', type: 'image/x-icon', sizes: '128x128', href: '/Favicon-128.ico' },
+        { rel: 'apple-touch-icon', sizes: '180x180', href: '/Favicon-180.ico' },
+      ]
     },
   },
   css: ['@/assets/styles/global.sass'],
