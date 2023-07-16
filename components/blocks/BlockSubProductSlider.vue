@@ -69,6 +69,7 @@
           >
           </BlockSubProductCard>
         </SwiperSlide>
+        <div class="swiper-pagination" />
       </Swiper>
       <button
         class="block-product-cards-slider-next absolute right-5 z-[1] flex h-12 w-12 items-center justify-center rounded-full bg-turquoise-200 text-[24px] text-turquoise-800 absolute-y-center lg:hidden"
