@@ -10,7 +10,7 @@
       <StrapiImage
         image-class="mx-auto group-hover:scale-105 transition-transform absolute absolute-cover object-cover"
         :src="image.url"
-        :modifiers="{ width: 212 }"
+        :modifiers="{ width: 314 }"
         :lazy-fallback="true"
         :parent-section="parentSection"
       >

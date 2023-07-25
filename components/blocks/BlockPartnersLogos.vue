@@ -12,12 +12,13 @@
           v-if="item && item.image"
           :href="item.url"
           rel="nofollow"
+          target="_blank"
         >
           <StrapiImage
             class="block h-full w-full"
             image-class="absolute absolute-cover object-cover"
             :src="item.image.url"
-            :modifiers="{ width: 100 }"
+            :modifiers="{ width: 250 }"
             width="100px"
             :lazy="true"
           />

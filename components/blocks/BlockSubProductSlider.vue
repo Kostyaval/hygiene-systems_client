@@ -97,6 +97,10 @@ const slides = props.cards
 </script>
 <style scoped lang="scss">
 .block-slider {
+  .swiper-pagination {
+    --swiper-pagination-color: #fd8407;
+    @apply static mt-5;
+  }
   .swiper-slide {
     @apply h-auto;
   }

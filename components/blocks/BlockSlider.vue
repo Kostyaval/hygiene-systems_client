@@ -11,7 +11,7 @@
         disableOnInteraction: true,
       }"
       :pagination="{
-        el: '.swiper-pagination',
+        el: `.swiper-pagination-${id}`,
         type: 'bullets',
         clickable: true,
       }"
@@ -39,7 +39,7 @@
         </component>
       </SwiperSlide>
 
-      <div class="swiper-pagination" />
+      <div :class="`swiper-pagination-${id}`" class="swiper-pagination" />
     </Swiper>
     <button
       :class="`block-slider-next-${id}`"
@@ -94,6 +94,10 @@ const moreThanTowSlide = (props.slides?.length || 0) > 2
   &::v-deep(.swiper-button-disabled) {
     opacity: 0.4;
     cursor: inherit;
+  }
+  &::v-deep(.swiper-pagination) {
+    --swiper-pagination-color: #fd8407;
+    @apply static mt-5;
   }
 }
 </style>

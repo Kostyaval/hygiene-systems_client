@@ -139,10 +139,20 @@ const footerNavigationReady = headerNavigation.value
 footerNavigationReady.push({ navigationTitle: 'Hoop247', pageUrl: 'hoop247' })
 
 const products = useState<ProductCardsState>('productCards')
-const productsArray = products.value.map((el) => ({
-  name: el.navigationTitle,
-  href: `/products/${el.pageUrl}`,
-}))
+const productsArray = products.value
+  .map((el) => ({
+    name: el.navigationTitle,
+    href: `/products/${el.pageUrl}`,
+  }))
+  .sort((a, b) => {
+    if (a.name < b.name) {
+      return -1
+    }
+    if (a.name > b.name) {
+      return 1
+    }
+    return 0
+  })
 
 let middle = Math.ceil(productsArray.length / 2)
 
