@@ -3,8 +3,10 @@
     ref="blockSlider"
     class="block-slider container relative cursor-pointer overflow-hidden pb-28 pt-14"
   >
-    <div class="flex items-center flex-wrap gap-6 pb-16">
-      <div class="text-headline-2 lg:text-headline-3 text-turquoise-500">{{ title }}</div>
+    <div class="flex flex-wrap items-center gap-6 pb-16">
+      <div class="text-headline-2 text-turquoise-500 lg:text-headline-3">
+        {{ title }}
+      </div>
       <TheButton
         size="small"
         tag="nuxt-link"
@@ -17,7 +19,7 @@
     </div>
     <Swiper
       class="!overflow-visible"
-      :modules="[SwiperAutoplay, SwiperPagination, SwiperNavigation]"
+      :modules="[Autoplay, Pagination, Navigation]"
       :slides-per-view="1.25"
       :space-between="24"
       :resize-observer="true"
@@ -79,6 +81,8 @@ import { ProductCardsState } from '~/models/single-types'
 import BlockProductCard from '~/components/blocks/BlockProductCard.vue'
 import TheButton from '~/components/ui/buttons/TheButton.vue'
 import ButtonWrapper from '~/components/ui/buttons/ButtonWrapper.vue'
+import { Swiper, SwiperSlide } from 'swiper/vue'
+import { Navigation, Autoplay, Pagination } from 'swiper/modules'
 
 const props = withDefaults(defineProps<BlockProductCardsSlider>(), {})
 const blockSlider = ref(null)

@@ -28,7 +28,7 @@
     "lint-staged": "^13.2.1",
     "nuxt": "^3.5.3",
     "nuxt-delay-hydration": "^1.1.4",
-    "nuxt-fonty": "^1.0.0",
+    "nuxt-font-loader": "^2.3.3",
     "prettier": "^2.8.6",
     "prettier-plugin-tailwindcss": "^0.2.5",
     "sass": "^1.58.3",
@@ -39,6 +39,6 @@
     "h3": "github:Kostyaval/h3-fork",
     "nuxt-swiper": "^1.1.0",
     "snarkdown": "^2.0.0",
-    "swiper": "^9.4.1"
+    "swiper": "^10.2.0"
   }
 }

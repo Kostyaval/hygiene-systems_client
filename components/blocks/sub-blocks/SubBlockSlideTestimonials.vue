@@ -32,12 +32,12 @@
       <p v-if="description" class="pt-4 text-body-2 text-neutral-600">
         {{ description }}
       </p>
-      <TheButton v-if="cta" class="mt-16" :to="cta.href" tag="nuxt-link">
-        {{ cta.label }}
-      </TheButton>
-      <template v-else>
-        <slot name="button" />
-      </template>
+      <!--      <TheButton v-if="cta" class="mt-16" :to="cta.href" tag="nuxt-link">-->
+      <!--        {{ cta.label }}-->
+      <!--      </TheButton>-->
+      <!--      <template v-else>-->
+      <!--        <slot name="button" />-->
+      <!--      </template>-->
     </div>
   </div>
 </template>

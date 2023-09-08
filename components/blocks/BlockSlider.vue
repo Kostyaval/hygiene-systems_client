@@ -1,7 +1,7 @@
 <template>
   <div ref="parentElement" class="block-slider relative pb-28 pt-14">
     <Swiper
-      :modules="[SwiperAutoplay, SwiperPagination, SwiperNavigation]"
+      :modules="[Navigation, Autoplay, Pagination]"
       :slides-per-view="1.25"
       :space-between="24"
       :centered-slides="true"
@@ -20,10 +20,10 @@
         prevEl: `.block-slider-prev-${id}`,
       }"
     >
-      <SwiperSlide v-for="slide in slides">
+      <SwiperSlide v-for="(slide, index) in slides">
         <component
           :is="slideComponent"
-          :key="slide"
+          :key="index"
           v-bind="{ ...slide, parentSection: parentElement }"
         >
           <template #button>
@@ -60,7 +60,8 @@ import { BlockSlider } from '~/models/page-block-components'
 import TheButton from '~/components/ui/buttons/TheButton.vue'
 import SubBlockSlide from '~/components/blocks/sub-blocks/SubBlockSlide.vue'
 import SubBlockSlideTestimonials from '~/components/blocks/sub-blocks/SubBlockSlideTestimonials.vue'
-import { uniqueId } from '~/utils/helpers'
+import { Swiper, SwiperSlide } from 'swiper/vue'
+import { Navigation, Autoplay, Pagination } from 'swiper/modules'
 
 const parentElement = ref(null)
 const props = withDefaults(defineProps<BlockSlider>(), {})

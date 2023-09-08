@@ -26,7 +26,6 @@
   </div>
 </template>
 <script setup lang="ts">
-import { useFont } from '#fonty'
 import ModalRoot from '~/components/ui/modals/ModalRoot.vue'
 import type { CompanyInformationResponse, ProductCardsResponse } from '~/models/api'
 import {
@@ -112,25 +111,4 @@ onMounted(() => {
     root.style.setProperty('--header-height', '72px')
   }
 })
-
-useFont([
-  {
-    src: '/fonts/gotham-black.woff2',
-    family: 'Gotham',
-    fallback: ['sans-serif'],
-    weight: '800',
-  },
-  {
-    src: '/fonts/gotham-bold.woff2',
-    family: 'Gotham',
-    fallback: ['sans-serif'],
-    weight: '700',
-  },
-  {
-    src: '/fonts/gotham-book.woff2',
-    family: 'Gotham',
-    fallback: ['sans-serif'],
-    weight: '400',
-  },
-])
 </script>

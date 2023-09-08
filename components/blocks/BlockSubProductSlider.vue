@@ -29,7 +29,7 @@
       </div>
       <Swiper
         class="!overflow-visible"
-        :modules="[SwiperAutoplay, SwiperPagination, SwiperNavigation]"
+        :modules="[Navigation, Autoplay, Pagination]"
         :slides-per-view="1.25"
         :space-between="24"
         :resize-observer="true"
@@ -88,6 +88,9 @@
 import { BlockSubProductSlider } from '~/models/page-block-components'
 import BlockSubProductCard from '~/components/blocks/BlockSubProductCard.vue'
 import TheButton from '~/components/ui/buttons/TheButton.vue'
+import { Swiper, SwiperSlide } from 'swiper/vue'
+import { Navigation, Autoplay, Pagination } from 'swiper/modules'
+import { ref } from 'vue'
 
 const props = withDefaults(defineProps<BlockSubProductSlider>(), {})
 const blockSubSlider = ref(null)
