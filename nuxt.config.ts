@@ -66,19 +66,19 @@ export default defineNuxtConfig({
       {
         src: '/fonts/gotham-black.woff2',
         family: 'Gotham',
-        fallback: ['sans-serif'],
+        fallback: 'sans-serif',
         weight: '800',
       },
       {
         src: '/fonts/gotham-bold.woff2',
         family: 'Gotham',
-        fallback: ['sans-serif'],
+        fallback: 'sans-serif',
         weight: '700',
       },
       {
         src: '/fonts/gotham-book.woff2',
         family: 'Gotham',
-        fallback: ['sans-serif'],
+        fallback: 'sans-serif',
         weight: '400',
       },
     ],

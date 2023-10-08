@@ -4,12 +4,12 @@
     :class="[backgroundClassColor]"
     class="relative"
   >
-    <StrapiImage
-      class="object-cover"
-      image-class="absolute absolute-cover object-cover z-[-1] object-right-top"
-      v-if="backgroundImage"
-      :src="backgroundImage.url"
-    />
+<!--    <StrapiImage-->
+<!--      class="object-cover"-->
+<!--      image-class="absolute absolute-cover object-cover z-[-1] object-right-top"-->
+<!--      v-if="backgroundImage"-->
+<!--      :src="backgroundImage.url"-->
+<!--    />-->
     <div
       class="container grid min-h-[calc(100vh_-_var(--header-height))] grid-cols-12 overflow-hidden pb-20 pt-8 lg:grid-cols-6 lg:pt-0"
       :class="{ 'xl:bg-neutral-900/50': !!backgroundImage }"
