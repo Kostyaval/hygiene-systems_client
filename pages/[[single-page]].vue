@@ -32,12 +32,12 @@ const { data, error } = await useAsyncData(
     },
   }
 )
-// if (error.value || !data) {
-//   throw createError({
-//     fatal: true,
-//     statusCode: 404,
-//   })
-// }
+if (error.value || !data) {
+  throw createError({
+    fatal: true,
+    statusCode: 404,
+  })
+}
 const blocks = []
 
 const getComponent = (componentName: string) =>
