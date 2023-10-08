@@ -1,7 +1,7 @@
 [[redirects]]
   from = "/uploads/*"
   to = "http://170.64.184.49:1337/uploads/:splat"
-  status = 404
+  status = 200
   force = true
 [[redirects]]
   from = "/*"
