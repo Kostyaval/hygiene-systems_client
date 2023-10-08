@@ -19,13 +19,13 @@ export default defineNuxtConfig({
     //     prependPath: true,
     //   },
     // },
-    // devProxy: {
-    //   '/uploads': {
-    //     target: 'http://170.64.184.49:1337/uploads',
-    //     changeOrigin: true,
-    //     prependPath: true,
-    //   },
-    // },
+    devProxy: {
+      '/uploads': {
+        target: 'http://170.64.184.49:1337/uploads',
+        changeOrigin: true,
+        prependPath: true,
+      },
+    },
   },
   router: {
     middleware: 'router',

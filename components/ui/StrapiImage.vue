@@ -28,7 +28,6 @@
 
 <script setup lang="ts">
 import { defineProps, DirectiveBinding } from 'vue'
-const HOST = 'https://hygienesystems.broxbe.top'
 
 const props = defineProps({
   src: {
@@ -53,9 +52,6 @@ const props = defineProps({
 
 const constructImageUrl = (src: string, modifiers: Record<string, any>): string => {
   const queryParams = new URLSearchParams()
-  if (src.endsWith('.svg')) {
-    return `${HOST}${src}`
-  }
 
   Object.entries(modifiers).forEach(([key, value]) => {
     if (value !== undefined) {
@@ -63,7 +59,7 @@ const constructImageUrl = (src: string, modifiers: Record<string, any>): string 
     }
   })
 
-  return `${HOST}${src}${queryParams.toString() ? '?' + queryParams.toString() : ''}`
+  return `${src}${queryParams.toString() ? '?' + queryParams.toString() : ''}`
 }
 
 const createSrcset = (src: string, modifiers: Record<string, any>, format?: string) => {
@@ -102,15 +98,12 @@ const vLazySrc = {
     }
     nextTick(() => {
       const elementToObserve: HTMLElement = props.parentSection || el
-      const observer = new IntersectionObserver(
-        (entries) => {
-          if (entries[0].isIntersecting) {
-            el.src = binding.arg
-            observer.unobserve(elementToObserve)
-          }
-        },
-        { rootMargin: '500px' }
-      )
+      const observer = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          el.src = binding.arg
+          observer.unobserve(elementToObserve)
+        }
+      })
       observer.observe(elementToObserve)
     })
   },
