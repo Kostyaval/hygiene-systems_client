@@ -8,7 +8,7 @@ export default defineNuxtConfig({
     },
   },
   // routeRules: {
-  //   '/uploads/**': { proxy: 'http://170.64.184.49:1337/uploads/**' },
+  //   '/uploads/**': { proxy: 'http://localhost:1337/uploads/**' },
   // },
 
   nitro: {
@@ -21,7 +21,7 @@ export default defineNuxtConfig({
     // },
     devProxy: {
       '/uploads': {
-        target: 'http://170.64.184.49:1337/uploads',
+        target: 'http://127.0.0.1/uploads',
         changeOrigin: true,
         prependPath: true,
       },

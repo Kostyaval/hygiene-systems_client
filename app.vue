@@ -48,7 +48,7 @@ const companyInformationPromise = useFetch<CompanyInformationResponse>(
 )
 
 const productCardsPromise = useFetch<ProductCardsResponse>(
-  '/api/products-pages?populate[productCard][populate]=*&fields[0]=productCard&fields[1]=pageUrl&fields[2]=navigationTitle',
+  '/api/products-pages?populate[productCard][populate]=*&fields[1]=pageUrl&fields[2]=navigationTitle',
   {
     method: 'GET',
     baseURL: config.public.baseURL,
