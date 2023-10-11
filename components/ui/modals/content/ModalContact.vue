@@ -157,7 +157,7 @@ const formState = ref({
 })
 
 const handleForm = async () => {
-  await fetch('http://localhost:1337/api/ezforms/submit', {
+  await fetch('/api/ezforms/submit', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

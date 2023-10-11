@@ -11,7 +11,7 @@
       class="object-cover"
       image-class="absolute absolute-cover object-cover z-[-1] object-right-top"
       v-if="image"
-      :src="`http://localhost:1337${image.url}`"
+      :src="item.image.url"
     />
   </div>
   <div
@@ -30,7 +30,7 @@
       >
         <StrapiImage
           image-class="mx-auto group-hover:scale-105 transition-transform absolute absolute-cover object-cover"
-          :src="`http://localhost:1337${item.image.url}`"
+          :src="item.image.url"
           :modifiers="{ resize: '336x208', fit: 'cover' }"
           :lazy-fallback="true"
         >
