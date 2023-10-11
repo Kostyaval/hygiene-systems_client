@@ -5,7 +5,7 @@ import type {
   Maybe,
   Error,
   ProductsPage,
-  Hoop24,
+  Hoop24, ArticleEntity
 } from '~/models/strapi-types/auto-generated'
 import { BlockHeroBanner, BlockProductCard } from '~/models/page-block-components'
 import { NavigationItem } from '~/models/single-types'
@@ -33,6 +33,15 @@ export interface hoop24Response {
 
 export interface ProductsPageResponse {
   data: ModifyBlock<ProductsPage>[]
+  meta: ResponseCollectionMeta
+}
+
+export interface BlogResponse {
+  data: ModifyBlock<ArticleEntity>[]
+  meta: ResponseCollectionMeta
+}
+export interface ArticleResponse {
+  data: ModifyBlock<ArticleEntity>[]
   meta: ResponseCollectionMeta
 }
 

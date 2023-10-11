@@ -70,12 +70,20 @@ const createSrcset = (src: string, modifiers: Record<string, any>, format?: stri
 
   const scaledSources = [1, 2, 3]
     .map((scale) => {
-      if (modifiers.width || modifiers.height) {
-        const scaledModifiers = {
+      if (modifiers.width || modifiers.height || modifiers.resize) {
+        const scaledModifiers: Record<string, any> = {
           ...baseModifiers,
           width: modifiers.width ? modifiers.width * scale : undefined,
           height: modifiers.height ? modifiers.height * scale : undefined,
         }
+        // Add support for scaling 'resize' modifier
+        if (modifiers.resize) {
+          const [resizeWidth, resizeHeight] = modifiers.resize.split('x').map(Number)
+          if (!isNaN(resizeWidth) && !isNaN(resizeHeight)) {
+            scaledModifiers.resize = `${resizeWidth * scale}x${resizeHeight * scale}`
+          }
+        }
+
         return `${constructImageUrl(src, scaledModifiers)} ${scale}x`
       }
       return ''

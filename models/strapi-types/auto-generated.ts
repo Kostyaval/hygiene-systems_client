@@ -1,3 +1,4 @@
+
 export type ImageFile = {
   url: string
   width: number
@@ -25,8 +26,11 @@ export type Scalars = {
   JSON: any
   /** A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
   DateTime: any
+  /** A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
+  Date: any
   /** The `Upload` scalar type represents a file upload. */
   Upload: any
+  ArticleBodyDynamicZoneInput: any
   ContentReadyBlockBlockDynamicZoneInput: any
   ProductsPageBlocksDynamicZoneInput: any
   SinglePageBlocksDynamicZoneInput: any
@@ -63,6 +67,7 @@ export type IdFilterInput = {
   eq?: InputMaybe<Scalars['ID']>
   eqi?: InputMaybe<Scalars['ID']>
   ne?: InputMaybe<Scalars['ID']>
+  nei?: InputMaybe<Scalars['ID']>
   startsWith?: InputMaybe<Scalars['ID']>
   endsWith?: InputMaybe<Scalars['ID']>
   contains?: InputMaybe<Scalars['ID']>
@@ -87,6 +92,7 @@ export type BooleanFilterInput = {
   eq?: InputMaybe<Scalars['Boolean']>
   eqi?: InputMaybe<Scalars['Boolean']>
   ne?: InputMaybe<Scalars['Boolean']>
+  nei?: InputMaybe<Scalars['Boolean']>
   startsWith?: InputMaybe<Scalars['Boolean']>
   endsWith?: InputMaybe<Scalars['Boolean']>
   contains?: InputMaybe<Scalars['Boolean']>
@@ -111,6 +117,7 @@ export type StringFilterInput = {
   eq?: InputMaybe<Scalars['String']>
   eqi?: InputMaybe<Scalars['String']>
   ne?: InputMaybe<Scalars['String']>
+  nei?: InputMaybe<Scalars['String']>
   startsWith?: InputMaybe<Scalars['String']>
   endsWith?: InputMaybe<Scalars['String']>
   contains?: InputMaybe<Scalars['String']>
@@ -135,6 +142,7 @@ export type IntFilterInput = {
   eq?: InputMaybe<Scalars['Int']>
   eqi?: InputMaybe<Scalars['Int']>
   ne?: InputMaybe<Scalars['Int']>
+  nei?: InputMaybe<Scalars['Int']>
   startsWith?: InputMaybe<Scalars['Int']>
   endsWith?: InputMaybe<Scalars['Int']>
   contains?: InputMaybe<Scalars['Int']>
@@ -159,6 +167,7 @@ export type FloatFilterInput = {
   eq?: InputMaybe<Scalars['Float']>
   eqi?: InputMaybe<Scalars['Float']>
   ne?: InputMaybe<Scalars['Float']>
+  nei?: InputMaybe<Scalars['Float']>
   startsWith?: InputMaybe<Scalars['Float']>
   endsWith?: InputMaybe<Scalars['Float']>
   contains?: InputMaybe<Scalars['Float']>
@@ -176,6 +185,31 @@ export type FloatFilterInput = {
   between?: InputMaybe<Array<InputMaybe<Scalars['Float']>>>
 }
 
+export type DateFilterInput = {
+  and?: InputMaybe<Array<InputMaybe<Scalars['Date']>>>
+  or?: InputMaybe<Array<InputMaybe<Scalars['Date']>>>
+  not?: InputMaybe<DateFilterInput>
+  eq?: InputMaybe<Scalars['Date']>
+  eqi?: InputMaybe<Scalars['Date']>
+  ne?: InputMaybe<Scalars['Date']>
+  nei?: InputMaybe<Scalars['Date']>
+  startsWith?: InputMaybe<Scalars['Date']>
+  endsWith?: InputMaybe<Scalars['Date']>
+  contains?: InputMaybe<Scalars['Date']>
+  notContains?: InputMaybe<Scalars['Date']>
+  containsi?: InputMaybe<Scalars['Date']>
+  notContainsi?: InputMaybe<Scalars['Date']>
+  gt?: InputMaybe<Scalars['Date']>
+  gte?: InputMaybe<Scalars['Date']>
+  lt?: InputMaybe<Scalars['Date']>
+  lte?: InputMaybe<Scalars['Date']>
+  null?: InputMaybe<Scalars['Boolean']>
+  notNull?: InputMaybe<Scalars['Boolean']>
+  in?: InputMaybe<Array<InputMaybe<Scalars['Date']>>>
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['Date']>>>
+  between?: InputMaybe<Array<InputMaybe<Scalars['Date']>>>
+}
+
 export type DateTimeFilterInput = {
   and?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>
   or?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>
@@ -183,6 +217,7 @@ export type DateTimeFilterInput = {
   eq?: InputMaybe<Scalars['DateTime']>
   eqi?: InputMaybe<Scalars['DateTime']>
   ne?: InputMaybe<Scalars['DateTime']>
+  nei?: InputMaybe<Scalars['DateTime']>
   startsWith?: InputMaybe<Scalars['DateTime']>
   endsWith?: InputMaybe<Scalars['DateTime']>
   contains?: InputMaybe<Scalars['DateTime']>
@@ -207,6 +242,7 @@ export type JsonFilterInput = {
   eq?: InputMaybe<Scalars['JSON']>
   eqi?: InputMaybe<Scalars['JSON']>
   ne?: InputMaybe<Scalars['JSON']>
+  nei?: InputMaybe<Scalars['JSON']>
   startsWith?: InputMaybe<Scalars['JSON']>
   endsWith?: InputMaybe<Scalars['JSON']>
   contains?: InputMaybe<Scalars['JSON']>
@@ -222,6 +258,13 @@ export type JsonFilterInput = {
   in?: InputMaybe<Array<InputMaybe<Scalars['JSON']>>>
   notIn?: InputMaybe<Array<InputMaybe<Scalars['JSON']>>>
   between?: InputMaybe<Array<InputMaybe<Scalars['JSON']>>>
+}
+
+export type ComponentBlockArticlesGrid = {
+  __typename?: 'ComponentBlockArticlesGrid'
+  id: Scalars['ID']
+  title?: Maybe<Scalars['String']>
+  image: Maybe<ImageFile>
 }
 
 export type ComponentBlockBenefits = {
@@ -348,6 +391,8 @@ export type ComponentBlockHeroBanner = {
   backgroundColor?: Maybe<ComponentSharedColor>
   backgroundImage: Maybe<ImageFile>
   tooltip?: Maybe<ComponentSharedTooltipHint>
+  backgroundImageMobile?: Maybe<UploadFileEntityResponse>
+  imageMobile?: Maybe<UploadFileEntityResponse>
 }
 
 export type ComponentBlockHeroBannerButtonsArgs = {
@@ -795,6 +840,12 @@ export type ComponentSubBlockFaqEntry = {
   answer?: Maybe<Scalars['String']>
 }
 
+export type ComponentSubBlockImageRepeater = {
+  __typename?: 'ComponentSubBlockImageRepeater'
+  id: Scalars['ID']
+  image: Maybe<ImageFile>
+}
+
 export type ComponentSubBlockInfoBlockFiltersInput = {
   title?: InputMaybe<StringFilterInput>
   description?: InputMaybe<StringFilterInput>
@@ -856,6 +907,12 @@ export type ComponentSubBlockPartnerLogoLink = {
   id: Scalars['ID']
   url?: Maybe<Scalars['String']>
   image: Maybe<ImageFile>
+}
+
+export type ComponentSubBlockRichTextRepeater = {
+  __typename?: 'ComponentSubBlockRichTextRepeater'
+  id: Scalars['ID']
+  richtext: Scalars['String']
 }
 
 export type ComponentSubBlockServiceBlockFiltersInput = {
@@ -1301,6 +1358,85 @@ export type UsersPermissionsUserRelationResponseCollection = {
   data: Array<UsersPermissionsUserEntity>
 }
 
+export type ArticleBodyDynamicZone =
+  | ComponentSubBlockRichTextRepeater
+  | ComponentSubBlockImageRepeater
+  | Error
+
+export type ArticleFiltersInput = {
+  id?: InputMaybe<IdFilterInput>
+  Runk?: InputMaybe<IntFilterInput>
+  title?: InputMaybe<StringFilterInput>
+  slug?: InputMaybe<StringFilterInput>
+  seo?: InputMaybe<ComponentSharedSeoFiltersInput>
+  date?: InputMaybe<DateFilterInput>
+  description?: InputMaybe<StringFilterInput>
+  articles?: InputMaybe<ArticleFiltersInput>
+  createdAt?: InputMaybe<DateTimeFilterInput>
+  updatedAt?: InputMaybe<DateTimeFilterInput>
+  publishedAt?: InputMaybe<DateTimeFilterInput>
+  and?: InputMaybe<Array<InputMaybe<ArticleFiltersInput>>>
+  or?: InputMaybe<Array<InputMaybe<ArticleFiltersInput>>>
+  not?: InputMaybe<ArticleFiltersInput>
+}
+
+export type ArticleInput = {
+  Runk?: InputMaybe<Scalars['Int']>
+  title?: InputMaybe<Scalars['String']>
+  slug?: InputMaybe<Scalars['String']>
+  image: Maybe<ImageFile>
+  body?: InputMaybe<Array<Scalars['ArticleBodyDynamicZoneInput']>>
+  seo?: InputMaybe<ComponentSharedSeoInput>
+  date?: InputMaybe<Scalars['Date']>
+  description?: InputMaybe<Scalars['String']>
+  articles?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>
+  publishedAt?: InputMaybe<Scalars['DateTime']>
+}
+
+export type Article = {
+  __typename?: 'Article'
+  title: Scalars['String']
+  slug: Scalars['String']
+  image: Maybe<ImageFile>
+  body?: Maybe<Array<Maybe<ArticleBodyDynamicZone>>>
+  seo?: Maybe<ComponentSharedSeo>
+  date?: Maybe<Scalars['Date']>
+  description?: Maybe<Scalars['String']>
+  articles?: Maybe<ArticleRelationResponseCollection>
+  createdAt?: Maybe<Scalars['DateTime']>
+  updatedAt?: Maybe<Scalars['DateTime']>
+  publishedAt?: Maybe<Scalars['DateTime']>
+}
+
+export type ArticleArticlesArgs = {
+  filters?: InputMaybe<ArticleFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
+  publicationState?: InputMaybe<PublicationState>
+}
+
+export type ArticleEntity = {
+  __typename?: 'ArticleEntity'
+  id?: Maybe<Scalars['ID']>
+  attributes?: Maybe<Article>
+}
+
+export type ArticleEntityResponse = {
+  __typename?: 'ArticleEntityResponse'
+  data?: Maybe<ArticleEntity>
+}
+
+export type ArticleEntityResponseCollection = {
+  __typename?: 'ArticleEntityResponseCollection'
+  data: Array<ArticleEntity>
+  meta: ResponseCollectionMeta
+}
+
+export type ArticleRelationResponseCollection = {
+  __typename?: 'ArticleRelationResponseCollection'
+  data: Array<ArticleEntity>
+}
+
 export type CompanyInformationInput = {
   companyName?: InputMaybe<Scalars['String']>
   logo: Maybe<ImageFile>
@@ -1547,6 +1683,7 @@ export type SinglePageBlocksDynamicZone =
   | ComponentBlockServiceFrequencies
   | ComponentBlockInfoSectionsRow
   | ComponentBlockNavigationSections
+  | ComponentBlockArticlesGrid
   | Error
 
 export type SinglePageFiltersInput = {
@@ -1657,6 +1794,7 @@ export type SubProductCategoryRelationResponseCollection = {
 }
 
 export type GenericMorph =
+  | ComponentBlockArticlesGrid
   | ComponentBlockBenefits
   | ComponentBlockComparisonTable
   | ComponentBlockConsumableCard
@@ -1686,9 +1824,11 @@ export type GenericMorph =
   | ComponentSubBlockBenefitsPerks
   | ComponentSubBlockColors
   | ComponentSubBlockFaqEntry
+  | ComponentSubBlockImageRepeater
   | ComponentSubBlockInfoBlock
   | ComponentSubBlockInfoSection
   | ComponentSubBlockPartnerLogoLink
+  | ComponentSubBlockRichTextRepeater
   | ComponentSubBlockServiceBlock
   | ComponentSubBlockSliderSlide
   | ComponentSubBlockSomparisonRow
@@ -1700,6 +1840,7 @@ export type GenericMorph =
   | UsersPermissionsPermission
   | UsersPermissionsRole
   | UsersPermissionsUser
+  | Article
   | CompanyInformation
   | ContentReadyBlock
   | Hoop24
@@ -1788,6 +1929,8 @@ export type Query = {
   usersPermissionsRoles?: Maybe<UsersPermissionsRoleEntityResponseCollection>
   usersPermissionsUser?: Maybe<UsersPermissionsUserEntityResponse>
   usersPermissionsUsers?: Maybe<UsersPermissionsUserEntityResponseCollection>
+  article?: Maybe<ArticleEntityResponse>
+  articles?: Maybe<ArticleEntityResponseCollection>
   companyInformation?: Maybe<CompanyInformationEntityResponse>
   contentReadyBlock?: Maybe<ContentReadyBlockEntityResponse>
   contentReadyBlocks?: Maybe<ContentReadyBlockEntityResponseCollection>
@@ -1851,6 +1994,17 @@ export type QueryUsersPermissionsUsersArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
 }
 
+export type QueryArticleArgs = {
+  id?: InputMaybe<Scalars['ID']>
+}
+
+export type QueryArticlesArgs = {
+  filters?: InputMaybe<ArticleFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
+  publicationState?: InputMaybe<PublicationState>
+}
+
 export type QueryContentReadyBlockArgs = {
   id?: InputMaybe<Scalars['ID']>
 }
@@ -1903,6 +2057,9 @@ export type Mutation = {
   createUploadFolder?: Maybe<UploadFolderEntityResponse>
   updateUploadFolder?: Maybe<UploadFolderEntityResponse>
   deleteUploadFolder?: Maybe<UploadFolderEntityResponse>
+  createArticle?: Maybe<ArticleEntityResponse>
+  updateArticle?: Maybe<ArticleEntityResponse>
+  deleteArticle?: Maybe<ArticleEntityResponse>
   updateCompanyInformation?: Maybe<CompanyInformationEntityResponse>
   deleteCompanyInformation?: Maybe<CompanyInformationEntityResponse>
   createContentReadyBlock?: Maybe<ContentReadyBlockEntityResponse>
@@ -1971,6 +2128,19 @@ export type MutationUpdateUploadFolderArgs = {
 }
 
 export type MutationDeleteUploadFolderArgs = {
+  id: Scalars['ID']
+}
+
+export type MutationCreateArticleArgs = {
+  data: ArticleInput
+}
+
+export type MutationUpdateArticleArgs = {
+  id: Scalars['ID']
+  data: ArticleInput
+}
+
+export type MutationDeleteArticleArgs = {
   id: Scalars['ID']
 }
 

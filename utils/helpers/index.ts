@@ -1,4 +1,4 @@
-export function formatComponentName(name: string)  {
+export function formatComponentName(name: string) {
   // Replace 'block.' with '' and split at '-'
   const parts = name.replace('block.', '').split('-')
 
@@ -28,4 +28,33 @@ export function throttle(func: (...args: any[]) => void, limit: number) {
       }, limit - (Date.now() - lastRan))
     }
   }
+}
+
+export function formatDate(input: string): string {
+  // Create a Date object using the input string
+  const date = new Date(input)
+
+  // Check if the date is valid
+  if (isNaN(date.getTime())) {
+    throw new Error('Invalid date')
+  }
+
+  // Define month names
+  const monthNames = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ]
+
+  // Return the formatted date string
+  return `${monthNames[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`
 }

@@ -156,7 +156,26 @@ const formState = ref({
   isAlreadyCustomer: false,
 })
 
-const handleForm = () => {
+const handleForm = async () => {
+  await fetch('http://localhost:1337/api/ezforms/submit', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ formData: formState.value, formName: 'Contact Form' }),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok')
+      }
+      console.log(response.json())
+    })
+    .then((data) => {
+      console.log('Success:', data)
+    })
+    .catch((error) => {
+      console.error('Error:', error)
+    })
   props.close({ ...formState.value })
 }
 </script>

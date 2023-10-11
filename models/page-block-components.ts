@@ -22,7 +22,10 @@ import {
   ComponentBlockInfoSectionsRow,
   ComponentBlockServiceFrequencies,
   ComponentBlockThreeInfoBlocks,
-  ComponentBlockNavigationSections
+  ComponentBlockNavigationSections,
+  ComponentBlockArticlesGrid,
+  ImageFile,
+  Article, ArticleInput
 } from '~/models/strapi-types/auto-generated'
 
 export type SubBlockSliderSlide = ComponentSubBlockSliderSlide
@@ -55,6 +58,7 @@ export type BlockSubProductsGrid = {
   description?: string
   cards: SubProductCategory[]
 }
+export type BlockArticlesGrid = ComponentBlockArticlesGrid
 
 export type BlockInfoSectionsRow = ComponentBlockInfoSectionsRow
 export type BlockServiceFrequencies = ComponentBlockServiceFrequencies

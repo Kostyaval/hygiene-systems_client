@@ -40,10 +40,16 @@ if (error.value || !data) {
 }
 const blocks = []
 
-const getComponent = (componentName: string) =>
-  defineAsyncComponent(
-    () => import(`~/components/blocks/${formatComponentName(componentName)}.vue`)
-  )
+const getComponent = (componentName: string) => {
+  try {
+    return defineAsyncComponent(
+      () => import(`~/components/blocks/${formatComponentName(componentName)}.vue`)
+    )
+  } catch (e) {
+    console.log(e)
+    return undefined
+  }
+}
 
 const pageBlocks = data.value?.pageBlocks || []
 
@@ -52,7 +58,11 @@ for (const index in pageBlocks) {
   const component = pageBlocks[index]?.__component
   // @ts-ignore
   const { __component, ...props } = pageBlocks[index]
-  blocks.push({ component: getComponent(component), props })
+  const asyncComponent = getComponent(component)
+  console.log(asyncComponent)
+  if (asyncComponent) {
+    blocks.push({ component: getComponent(component), props })
+  }
 }
 </script>
 
