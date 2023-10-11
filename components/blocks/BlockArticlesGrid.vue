@@ -11,7 +11,7 @@
       class="object-cover"
       image-class="absolute absolute-cover object-cover z-[-1] object-right-top"
       v-if="image"
-      :src="item.image.url"
+      :src="image.url"
     />
   </div>
   <div
