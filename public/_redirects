@@ -1,1 +1,2 @@
-/uploads/*  https://hygienesystems.broxbe-stage.top/uploads/:splat
+/uploads/*  https://hygienesystems.broxbe-stage.top/uploads/:splat 200!
+/api/*  https://hygienesystems.broxbe-stage.top/api/:splat 200!
