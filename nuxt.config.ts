@@ -27,9 +27,6 @@ export default defineNuxtConfig({
       },
     },
   },
-  router: {
-    middleware: 'router',
-  },
   app: {
     head: {
       htmlAttrs: {
