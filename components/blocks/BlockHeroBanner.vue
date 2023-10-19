@@ -8,6 +8,7 @@
       class="object-cover"
       image-class="absolute absolute-cover object-cover z-[-1] object-right-top"
       v-if="backgroundImage"
+      preload
       :src="backgroundImage.url"
       :breakpoints="[
         {

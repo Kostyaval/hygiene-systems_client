@@ -57,11 +57,13 @@ const props = withDefaults(
     width: string
     height: string
     parentSection: Element
+    preload?: boolean
   }>(),
   {
     lazy: false,
     lazyFallback: false,
     breakpoints: () => [],
+    preload: false,
   }
 )
 
@@ -136,6 +138,35 @@ props.breakpoints?.forEach((el, index) => {
   })
 })
 console.log(responsiveSources)
+
+const preloadLink = () => {
+  const responsiveSourcesForPreload = responsiveSources.flatMap(
+    ({ avifSrcset, webpSrcset }) => [
+      {
+        rel: 'preload',
+        as: 'image',
+        imagesrcset: avifSrcset.srcset,
+        media: avifSrcset.media,
+        type: 'image/webp',
+      },
+    ]
+  )
+  const sourceForPreload = [{ imagesrcset: avifSrcset, type: 'image/webp' }].map(
+    (el) => ({
+      rel: 'preload',
+      as: 'image',
+      ...el,
+    })
+  )
+
+  return [...responsiveSourcesForPreload, ...sourceForPreload]
+}
+console.log(preloadLink())
+if (props.preload) {
+  useHead({
+    link: preloadLink(),
+  })
+}
 
 const vLazySrc = {
   mounted(el: HTMLImageElement, binding: any) {
