@@ -9,6 +9,12 @@
       image-class="absolute absolute-cover object-cover z-[-1] object-right-top"
       v-if="backgroundImage"
       :src="backgroundImage.url"
+      :breakpoints="[
+        {
+          px: 500,
+          modifiers: { resize: '400x800', fit: 'cover', position: 'right top' },
+        },
+      ]"
     />
     <div
       class="container grid min-h-[calc(100vh_-_var(--header-height))] grid-cols-12 overflow-hidden pb-20 pt-8 lg:grid-cols-6 lg:pt-0"

@@ -1,5 +1,21 @@
 <template>
   <picture>
+    <template v-for="(item, index) in responsiveSources" :key="index">
+      <source
+        :srcset="lazyFallback ? '' : item.avifSrcset.srcset"
+        v-lazy-srcset:[item.avifSrcset.srcset]
+        :width="width"
+        :media="item.avifSrcset.media"
+        type="image/avif"
+      />
+      <source
+        :srcset="lazyFallback ? '' : item.webpSrcset.srcset"
+        v-lazy-srcset:[item.webpSrcset.srcset]
+        :height="height"
+        :media="item.avifSrcset.media"
+        type="image/webp"
+      />
+    </template>
     <source
       :srcset="lazyFallback ? '' : avifSrcset"
       v-lazy-srcset:[avifSrcset]
@@ -29,26 +45,25 @@
 <script setup lang="ts">
 import { defineProps, DirectiveBinding } from 'vue'
 
-const props = defineProps({
-  src: {
-    type: String,
-    required: true,
-  },
-  alt: String,
-  modifiers: Object,
-  imageClass: String,
-  lazy: {
-    type: Boolean,
-    default: false,
-  },
-  lazyFallback: {
-    type: Boolean,
-    default: false,
-  },
-  width: String,
-  height: String,
-  parentSection: Object,
-})
+const props = withDefaults(
+  defineProps<{
+    src: string
+    alt: string
+    modifiers: Record<string, any>
+    imageClass: string
+    lazy: boolean
+    lazyFallback: boolean
+    breakpoints: { px: number; modifiers: Record<string, any> }[]
+    width: string
+    height: string
+    parentSection: Element
+  }>(),
+  {
+    lazy: false,
+    lazyFallback: false,
+    breakpoints: () => [],
+  }
+)
 
 const constructImageUrl = (src: string, modifiers: Record<string, any>): string => {
   const queryParams = new URLSearchParams()
@@ -94,10 +109,33 @@ const createSrcset = (src: string, modifiers: Record<string, any>, format?: stri
   return scaledSources ? `${originalSrc}, ${scaledSources}` : originalSrc
 }
 
+const createSources = (
+  src: string,
+  breakpoints: { px: number; modifiers: Record<string, any> },
+  format?: string
+) => {
+  const srcset = createSrcset(src, { ...breakpoints.modifiers }, format)
+
+  return {
+    srcset,
+    media: `(max-width: ${breakpoints.px}px)`,
+  }
+}
+
 const avifSrcset = createSrcset(props.src, props.modifiers || {}, 'avif')
 const webpSrcset = createSrcset(props.src, props.modifiers || {}, 'webp')
 const fallbackSrc = constructImageUrl(props.src, props.modifiers || {})
 const fallbackSrcset = createSrcset(props.src, props.modifiers || {})
+
+const responsiveSources: Record<string, any>[] = []
+
+props.breakpoints?.forEach((el, index) => {
+  responsiveSources.push({
+    avifSrcset: createSources(props.src, el, 'avif'),
+    webpSrcset: createSources(props.src, el, 'webp'),
+  })
+})
+console.log(responsiveSources)
 
 const vLazySrc = {
   mounted(el: HTMLImageElement, binding: any) {
