@@ -7,13 +7,14 @@
     "lint": "eslint .",
     "prettier": "prettier .  --write",
     "precommit": "lint-staged",
-    "build": "nuxt build",
+    "build": "npm run generate-redirects nuxt build",
     "dev": "nuxt dev",
-    "generate": "nuxt generate",
+    "generate": "npm run generate-redirects && nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "debug": "node --inspect node_modules/nuxt/bin/nuxt.mjs dev",
-    "start": "node .output/server/index.mjs"
+    "start": "node .output/server/index.mjs",
+    "generate-redirects": "node generate-redirects.js"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.6.1",
