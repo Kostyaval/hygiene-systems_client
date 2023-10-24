@@ -142,7 +142,7 @@ import TheCheckbox from '~/components/ui/forms/TheCheckbox.vue'
 import { useState } from '#app'
 
 const props = defineProps({ ...useModalProps })
-
+const config = useRuntimeConfig()
 const { logo, mobileNumber, email, address, socialLinks } =
   useState<CompanyInformationState>('companyInformation').value
 
@@ -157,7 +157,7 @@ const formState = ref({
 })
 
 const handleForm = async () => {
-  await fetch('/api/ezforms/submit', {
+  await fetch(`${config.public.baseURL}api/ezforms/submit`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
