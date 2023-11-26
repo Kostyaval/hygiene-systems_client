@@ -23,15 +23,20 @@
       <NuxtPage />
     </NuxtLayout>
     <ModalRoot />
-    <div class="fixed bottom-8 right-6 z-10 -m-2 inline-flex flex-wrap">
+    <div
+      v-if="quoteURL || zendesk"
+      class="fixed bottom-8 right-6 z-10 -m-2 inline-flex flex-wrap"
+    >
       <the-button
-        to="https://nz.hoop247.com/quote"
+        v-if="quoteURL"
+        :to="quoteURL"
         class="border border-turquoise-400"
         external-link
         icon-left="button/cart"
         >Online Quote</the-button
       >
       <ZendeskChat
+        v-if="zendesk"
         :script="zendesk"
         class="ml-2 border border-turquoise-400 md:min-w-0 md:pl-4 md:pr-2"
       />
@@ -54,7 +59,7 @@ import Hotjar from '@hotjar/browser'
 
 const config = useRuntimeConfig()
 
-const { zendesk, hotjarId } = config.public
+const { zendesk, hotjarId, quoteURL } = config.public
 
 const companyInformationPromise = useFetch<CompanyInformationResponse>(
   '/api/company-information?populate=deep',
@@ -130,7 +135,8 @@ onMounted(() => {
     const root = document.documentElement
     root.style.setProperty('--header-height', '72px')
   }
-  console.log(parseInt(hotjarId))
-  Hotjar.init(parseInt(hotjarId), 6)
+  if (hotjarId) {
+    Hotjar.init(parseInt(hotjarId), 6)
+  }
 })
 </script>
