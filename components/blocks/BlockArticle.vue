@@ -98,7 +98,7 @@
 </template>
 
 <script setup lang="ts">
-import { Article } from '~/models/strapi-types/auto-generated'
+import type { Article } from '~/models/strapi-types/auto-generated'
 import StrapiImage from '~/components/ui/StrapiImage.vue'
 import TheButton from '~/components/ui/buttons/TheButton.vue'
 import { formatDate } from '~/utils/helpers'

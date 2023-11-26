@@ -94,7 +94,7 @@ const products = useState<ProductCardsState>('productCards')
     @apply h-auto;
   }
   &::v-deep(.swiper-button-disabled) {
-    opacity: 0.4;
+    opacity: 0;
     cursor: inherit;
   }
 }

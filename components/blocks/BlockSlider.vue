@@ -93,7 +93,7 @@ const moreThanTowSlide = (props.slides?.length || 0) > 2
     @apply h-auto;
   }
   &::v-deep(.swiper-button-disabled) {
-    opacity: 0.4;
+    opacity: 0;
     cursor: inherit;
   }
   &::v-deep(.swiper-pagination) {

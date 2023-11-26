@@ -1,8 +1,6 @@
 <template>
-  <footer class="container pb-10 pt-8">
-    <div
-      class="container relative overflow-hidden rounded-2xl bg-neutral-800 pb-10 pt-14 text-neutral-100"
-    >
+  <footer class="relative overflow-hidden bg-neutral-800">
+    <div class="container pb-24 pt-14 text-neutral-100">
       <StrapiImage
         v-if="backgroundImage"
         image-class="md:absolute-x-center absolute -top-24 -right-40 select-none opacity-10 md:top-0 md:w-[150%] md:max-w-none"

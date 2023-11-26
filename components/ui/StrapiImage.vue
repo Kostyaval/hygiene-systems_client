@@ -50,7 +50,7 @@ const props = withDefaults(
     src: string
     alt: string
     modifiers: Record<string, any>
-    imageClass: string
+    imageClass: any
     lazy: boolean
     lazyFallback: boolean
     breakpoints: { px: number; modifiers: Record<string, any> }[]

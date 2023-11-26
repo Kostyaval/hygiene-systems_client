@@ -376,6 +376,13 @@ export enum Enum_Componentblockherobanner_Bottomcomponent {
   Perks = 'Perks',
 }
 
+export enum Enum_Componentblockherobanner_Imageposition {
+  Center = 'center',
+  Bottom = 'bottom',
+  RightOverflow = 'right_overflow',
+  RightOverflowBottom = 'right_overflow_bottom',
+}
+
 export type ComponentBlockHeroBanner = {
   __typename?: 'ComponentBlockHeroBanner'
   id: Scalars['ID']
@@ -393,6 +400,7 @@ export type ComponentBlockHeroBanner = {
   tooltip?: Maybe<ComponentSharedTooltipHint>
   backgroundImageMobile?: Maybe<UploadFileEntityResponse>
   imageMobile?: Maybe<UploadFileEntityResponse>
+  imagePosition?: Maybe<Enum_Componentblockherobanner_Imageposition>
 }
 
 export type ComponentBlockHeroBannerButtonsArgs = {
@@ -1166,6 +1174,94 @@ export type UploadFolderRelationResponseCollection = {
   data: Array<UploadFolderEntity>
 }
 
+export type EzformsSubmissionFiltersInput = {
+  id?: InputMaybe<IdFilterInput>
+  score?: InputMaybe<StringFilterInput>
+  formName?: InputMaybe<StringFilterInput>
+  data?: InputMaybe<JsonFilterInput>
+  createdAt?: InputMaybe<DateTimeFilterInput>
+  updatedAt?: InputMaybe<DateTimeFilterInput>
+  and?: InputMaybe<Array<InputMaybe<EzformsSubmissionFiltersInput>>>
+  or?: InputMaybe<Array<InputMaybe<EzformsSubmissionFiltersInput>>>
+  not?: InputMaybe<EzformsSubmissionFiltersInput>
+}
+
+export type EzformsSubmissionInput = {
+  score?: InputMaybe<Scalars['String']>
+  formName?: InputMaybe<Scalars['String']>
+  data?: InputMaybe<Scalars['JSON']>
+}
+
+export type EzformsSubmission = {
+  __typename?: 'EzformsSubmission'
+  score?: Maybe<Scalars['String']>
+  formName?: Maybe<Scalars['String']>
+  data?: Maybe<Scalars['JSON']>
+  createdAt?: Maybe<Scalars['DateTime']>
+  updatedAt?: Maybe<Scalars['DateTime']>
+}
+
+export type EzformsSubmissionEntity = {
+  __typename?: 'EzformsSubmissionEntity'
+  id?: Maybe<Scalars['ID']>
+  attributes?: Maybe<EzformsSubmission>
+}
+
+export type EzformsSubmissionEntityResponse = {
+  __typename?: 'EzformsSubmissionEntityResponse'
+  data?: Maybe<EzformsSubmissionEntity>
+}
+
+export type EzformsSubmissionEntityResponseCollection = {
+  __typename?: 'EzformsSubmissionEntityResponseCollection'
+  data: Array<EzformsSubmissionEntity>
+  meta: ResponseCollectionMeta
+}
+
+export type EzformsRecipientFiltersInput = {
+  id?: InputMaybe<IdFilterInput>
+  name?: InputMaybe<StringFilterInput>
+  email?: InputMaybe<StringFilterInput>
+  number?: InputMaybe<StringFilterInput>
+  createdAt?: InputMaybe<DateTimeFilterInput>
+  updatedAt?: InputMaybe<DateTimeFilterInput>
+  and?: InputMaybe<Array<InputMaybe<EzformsRecipientFiltersInput>>>
+  or?: InputMaybe<Array<InputMaybe<EzformsRecipientFiltersInput>>>
+  not?: InputMaybe<EzformsRecipientFiltersInput>
+}
+
+export type EzformsRecipientInput = {
+  name?: InputMaybe<Scalars['String']>
+  email?: InputMaybe<Scalars['String']>
+  number?: InputMaybe<Scalars['String']>
+}
+
+export type EzformsRecipient = {
+  __typename?: 'EzformsRecipient'
+  name?: Maybe<Scalars['String']>
+  email?: Maybe<Scalars['String']>
+  number?: Maybe<Scalars['String']>
+  createdAt?: Maybe<Scalars['DateTime']>
+  updatedAt?: Maybe<Scalars['DateTime']>
+}
+
+export type EzformsRecipientEntity = {
+  __typename?: 'EzformsRecipientEntity'
+  id?: Maybe<Scalars['ID']>
+  attributes?: Maybe<EzformsRecipient>
+}
+
+export type EzformsRecipientEntityResponse = {
+  __typename?: 'EzformsRecipientEntityResponse'
+  data?: Maybe<EzformsRecipientEntity>
+}
+
+export type EzformsRecipientEntityResponseCollection = {
+  __typename?: 'EzformsRecipientEntityResponseCollection'
+  data: Array<EzformsRecipientEntity>
+  meta: ResponseCollectionMeta
+}
+
 export type I18NLocaleFiltersInput = {
   id?: InputMaybe<IdFilterInput>
   name?: InputMaybe<StringFilterInput>
@@ -1836,6 +1932,8 @@ export type GenericMorph =
   | ComponentSubBlockToggleGroup
   | UploadFile
   | UploadFolder
+  | EzformsSubmission
+  | EzformsRecipient
   | I18NLocale
   | UsersPermissionsPermission
   | UsersPermissionsRole
@@ -1923,6 +2021,10 @@ export type Query = {
   uploadFiles?: Maybe<UploadFileEntityResponseCollection>
   uploadFolder?: Maybe<UploadFolderEntityResponse>
   uploadFolders?: Maybe<UploadFolderEntityResponseCollection>
+  ezformsSubmission?: Maybe<EzformsSubmissionEntityResponse>
+  ezformsSubmissions?: Maybe<EzformsSubmissionEntityResponseCollection>
+  ezformsRecipient?: Maybe<EzformsRecipientEntityResponse>
+  ezformsRecipients?: Maybe<EzformsRecipientEntityResponseCollection>
   i18NLocale?: Maybe<I18NLocaleEntityResponse>
   i18NLocales?: Maybe<I18NLocaleEntityResponseCollection>
   usersPermissionsRole?: Maybe<UsersPermissionsRoleEntityResponse>
@@ -1960,6 +2062,26 @@ export type QueryUploadFolderArgs = {
 
 export type QueryUploadFoldersArgs = {
   filters?: InputMaybe<UploadFolderFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
+}
+
+export type QueryEzformsSubmissionArgs = {
+  id?: InputMaybe<Scalars['ID']>
+}
+
+export type QueryEzformsSubmissionsArgs = {
+  filters?: InputMaybe<EzformsSubmissionFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
+}
+
+export type QueryEzformsRecipientArgs = {
+  id?: InputMaybe<Scalars['ID']>
+}
+
+export type QueryEzformsRecipientsArgs = {
+  filters?: InputMaybe<EzformsRecipientFiltersInput>
   pagination?: InputMaybe<PaginationArg>
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
 }
@@ -2057,6 +2179,12 @@ export type Mutation = {
   createUploadFolder?: Maybe<UploadFolderEntityResponse>
   updateUploadFolder?: Maybe<UploadFolderEntityResponse>
   deleteUploadFolder?: Maybe<UploadFolderEntityResponse>
+  createEzformsSubmission?: Maybe<EzformsSubmissionEntityResponse>
+  updateEzformsSubmission?: Maybe<EzformsSubmissionEntityResponse>
+  deleteEzformsSubmission?: Maybe<EzformsSubmissionEntityResponse>
+  createEzformsRecipient?: Maybe<EzformsRecipientEntityResponse>
+  updateEzformsRecipient?: Maybe<EzformsRecipientEntityResponse>
+  deleteEzformsRecipient?: Maybe<EzformsRecipientEntityResponse>
   createArticle?: Maybe<ArticleEntityResponse>
   updateArticle?: Maybe<ArticleEntityResponse>
   deleteArticle?: Maybe<ArticleEntityResponse>
@@ -2128,6 +2256,32 @@ export type MutationUpdateUploadFolderArgs = {
 }
 
 export type MutationDeleteUploadFolderArgs = {
+  id: Scalars['ID']
+}
+
+export type MutationCreateEzformsSubmissionArgs = {
+  data: EzformsSubmissionInput
+}
+
+export type MutationUpdateEzformsSubmissionArgs = {
+  id: Scalars['ID']
+  data: EzformsSubmissionInput
+}
+
+export type MutationDeleteEzformsSubmissionArgs = {
+  id: Scalars['ID']
+}
+
+export type MutationCreateEzformsRecipientArgs = {
+  data: EzformsRecipientInput
+}
+
+export type MutationUpdateEzformsRecipientArgs = {
+  id: Scalars['ID']
+  data: EzformsRecipientInput
+}
+
+export type MutationDeleteEzformsRecipientArgs = {
   id: Scalars['ID']
 }
 

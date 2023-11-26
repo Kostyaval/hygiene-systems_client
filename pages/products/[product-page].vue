@@ -5,10 +5,12 @@
     :key="index"
     v-bind="block.props"
   />
+  <SEO v-if="data?.seoDetails" :seo-data='data?.seoDetails' />
 </template>
 
 <script setup lang="ts">
 import { ProductsPageResponse } from '~/models/api'
+import SEO from '~/components/common/SEO.vue'
 const route = useRoute()
 const config = useRuntimeConfig()
 
@@ -42,7 +44,6 @@ const formatComponentName = (name: string) => {
     (part) => part.charAt(0).toUpperCase() + part.slice(1)
   )
 
-  console.log(`Block${formattedParts.join('')}`)
 
   return `Block${formattedParts.join('')}`
 }

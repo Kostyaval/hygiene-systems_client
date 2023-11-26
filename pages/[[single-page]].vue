@@ -5,11 +5,13 @@
     :key="index"
     v-bind="block.props"
   />
+  <SEO :seo-data="data?.seoDetails" />
 </template>
 
 <script setup lang="ts">
 import type { SinglePageResponse } from '~/models/api'
 import { formatComponentName } from '~/utils/helpers'
+import SEO from '~/components/common/SEO.vue'
 const route = useRoute()
 const config = useRuntimeConfig()
 
@@ -32,6 +34,7 @@ const { data, error } = await useAsyncData(
     },
   }
 )
+
 if (error.value || !data) {
   throw createError({
     fatal: true,
@@ -40,15 +43,16 @@ if (error.value || !data) {
 }
 const blocks = []
 
-const getComponent = (componentName: string) => {
+const getComponent = async (componentName: string) => {
   try {
-    return defineAsyncComponent(
-      () => import(`~/components/blocks/${formatComponentName(componentName)}.vue`)
-    )
+    await import(`~/components/blocks/${formatComponentName(componentName)}.vue`)
   } catch (e) {
     console.log(e)
     return undefined
   }
+  return defineAsyncComponent(
+    () => import(`~/components/blocks/${formatComponentName(componentName)}.vue`)
+  )
 }
 
 const pageBlocks = data.value?.pageBlocks || []
@@ -58,10 +62,9 @@ for (const index in pageBlocks) {
   const component = pageBlocks[index]?.__component
   // @ts-ignore
   const { __component, ...props } = pageBlocks[index]
-  const asyncComponent = getComponent(component)
-  console.log(asyncComponent)
+  const asyncComponent = await getComponent(component)
   if (asyncComponent) {
-    blocks.push({ component: getComponent(component), props })
+    blocks.push({ component: await getComponent(component), props })
   }
 }
 </script>

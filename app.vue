@@ -23,6 +23,19 @@
       <NuxtPage />
     </NuxtLayout>
     <ModalRoot />
+    <div class="fixed bottom-8 right-6 z-10 -m-2 inline-flex flex-wrap">
+      <the-button
+        to="https://nz.hoop247.com/quote"
+        class="border border-turquoise-400"
+        external-link
+        icon-left="button/cart"
+        >Online Quote</the-button
+      >
+      <ZendeskChat
+        :script="zendesk"
+        class="ml-2 border border-turquoise-400 md:min-w-0 md:pl-4 md:pr-2"
+      />
+    </div>
   </div>
 </template>
 <script setup lang="ts">
@@ -34,7 +47,14 @@ import {
   ProductCardsState,
 } from '~/models/single-types'
 import { SinglePagesResponse } from '~/models/api'
+import ZendeskChat from '~/components/common/ZendeskChat.vue'
+import TheButton from '~/components/ui/buttons/TheButton.vue'
+import ButtonWrapper from '~/components/ui/buttons/ButtonWrapper.vue'
+import Hotjar from '@hotjar/browser'
+
 const config = useRuntimeConfig()
+
+const { zendesk, hotjarId } = config.public
 
 const companyInformationPromise = useFetch<CompanyInformationResponse>(
   '/api/company-information?populate=deep',
@@ -110,5 +130,7 @@ onMounted(() => {
     const root = document.documentElement
     root.style.setProperty('--header-height', '72px')
   }
+  console.log(parseInt(hotjarId))
+  Hotjar.init(parseInt(hotjarId), 6)
 })
 </script>

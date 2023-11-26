@@ -5,10 +5,13 @@
     :key="index"
     v-bind="block.props"
   />
+  <SEO v-if="data?.seoDetails" :seo-data='data?.seoDetails' />
+
 </template>
 
 <script setup lang="ts">
 import type { SinglePageResponse } from '~/models/api'
+import SEO from '~/components/common/SEO.vue'
 const route = useRoute()
 const config = useRuntimeConfig()
 

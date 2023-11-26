@@ -47,9 +47,6 @@
           860: {
             slidesPerView: 3,
           },
-          960: {
-            slidesPerView: 4,
-          },
         }"
         :pagination="{
           el: '.swiper-pagination',
@@ -108,7 +105,7 @@ const slides = props.cards
     @apply h-auto;
   }
   &::v-deep(.swiper-button-disabled) {
-    opacity: 0.4;
+    opacity: 0;
     cursor: inherit;
   }
 }

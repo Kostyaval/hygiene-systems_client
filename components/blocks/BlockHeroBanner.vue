@@ -18,10 +18,10 @@
       ]"
     />
     <div
-      class="container grid min-h-[calc(100vh_-_var(--header-height))] grid-cols-12 overflow-hidden pb-20 pt-8 lg:grid-cols-6 lg:pt-0"
+      class="container grid min-h-[calc(100vh_-_var(--header-height))] grid-cols-12 overflow-hidden lg:grid-cols-6 lg:pt-0"
       :class="{ 'xl:bg-neutral-900/50': !!backgroundImage }"
     >
-      <div class="col-span-6 flex flex-col items-center justify-center">
+      <div class="col-span-6 flex flex-col items-center justify-center pb-20 pt-8">
         <div class="max-w-md">
           <h1
             v-if="title"
@@ -61,9 +61,23 @@
       </div>
       <div
         v-if="image"
-        class="col-span-6 flex items-center justify-center lg:order-first lg:h-[22rem] lg:items-end"
+        class="col-span-6 flex items-center justify-center overflow-hidden lg:order-first lg:h-[22rem] lg:items-end"
       >
-        <StrapiImage :src="image.url" :modifiers="{ width: 700 }" />
+        <StrapiImage
+          class="- - absolute right-0 h-full w-[calc(50%_-_13px)] overflow-hidden lg:static lg:w-auto"
+          :image-class="[
+            'max-w-none w-full lg:h-full lg:object-bottom h-full - lg:h-auto  - lg:max-w-full',
+            imagePosition,
+          ]"
+          :src="image.url"
+          :modifiers="{ width: 900 }"
+          :breakpoints="[
+            {
+              px: 1024,
+              modifiers: { width: '700' },
+            },
+          ]"
+        />
       </div>
     </div>
   </div>
@@ -77,6 +91,8 @@ import StrapiImage from '~/components/ui/StrapiImage.vue'
 import Tooltip from '~/components/ui/Tooltip.vue'
 import SustainableTags from '~/components/common/SustainableTags.vue'
 import ButtonWrapper from '~/components/ui/buttons/ButtonWrapper.vue'
+import { HeroBannerImagePosition } from '~/models/shared-components'
+
 const props = withDefaults(defineProps<BlockHeroBanner>(), {})
 
 const background = props.backgroundImage
@@ -102,4 +118,16 @@ const themeColors = props.textColorTheme
 const sustainableTagsArray: string[] = props.sustainableTags
   ? props.sustainableTags.split(',').filter(Boolean) || []
   : []
+
+const imagePosition = computed(() => {
+  console.log(props)
+  switch (props.imagePosition) {
+    case HeroBannerImagePosition.Center:
+      return 'object-contain object-center lg:object-cover'
+    case HeroBannerImagePosition.Bottom:
+      return 'object-contain object-right-bottom lg:object-cover'
+    default:
+      return 'object-contain object-center lg:object-cover'
+  }
+})
 </script>

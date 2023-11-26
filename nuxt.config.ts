@@ -5,6 +5,9 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       baseURL: process.env.BASE_URL,
+      zendesk: process.env.ZENDESK_URL,
+      quoteURL: process.env.ONLINE_QUOTE_URL,
+      hotjarId: process.env.HOTJAR_ID,
     },
   },
   // routeRules: {
@@ -21,7 +24,8 @@ export default defineNuxtConfig({
     // },
     devProxy: {
       '/uploads': {
-        target: 'https://strapi.hygienesystems.co.nz/uploads',
+        target: 'http://127.0.0.1:1337/uploads/',
+        // target: 'https://strapi.hygienesystems.co.nz/uploads',
         changeOrigin: true,
         prependPath: true,
       },
@@ -65,6 +69,12 @@ export default defineNuxtConfig({
         family: 'Gotham',
         fallback: 'sans-serif',
         weight: '800',
+      },
+      {
+        src: '/fonts/gotham-black.woff2',
+        family: 'Gotham',
+        fallback: 'sans-serif',
+        weight: '700',
       },
       {
         src: '/fonts/gotham-bold.woff2',

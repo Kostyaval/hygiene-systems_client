@@ -14,50 +14,52 @@
       :src="image.url"
     />
   </div>
-  <div
-    v-if="articleData.length"
-    class="container grid grid-cols-[repeat(auto-fill,minmax(290px,1fr))] justify-items-center gap-6 pt-20 lg:pt-12"
-  >
-    <nuxt-link
-      v-for="(item, index) in articleData"
-      :to="`/blog/${item.slug}`"
-      class="group block max-w-[456px] rounded-xl bg-neutral-200"
-      :key="index"
+  <div class="bg-neutral-200">
+    <div
+      v-if="articleData.length"
+      class="container grid grid-cols-[repeat(auto-fill,minmax(290px,1fr))] justify-items-center gap-6 py-20 lg:pt-12"
     >
-      <div
-        v-if="item.image"
-        class="relative overflow-hidden rounded-t-xl bg-neutral-100 pb-[72.5%] text-center"
+      <nuxt-link
+        v-for="(item, index) in articleData"
+        :to="`/blog/${item.slug}`"
+        class="group block max-w-[456px] rounded-xl bg-neutral-100"
+        :key="index"
       >
-        <StrapiImage
-          image-class="mx-auto group-hover:scale-105 transition-transform absolute absolute-cover object-cover"
-          :src="item.image.url"
-          :modifiers="{ resize: '336x208', fit: 'cover' }"
-          :lazy-fallback="true"
+        <div
+          v-if="item.image"
+          class="relative overflow-hidden rounded-t-xl bg-neutral-100 pb-[72.5%] text-center"
         >
-        </StrapiImage>
-      </div>
-      <div class="px-4 pb-6">
-        <div class="pt-5 text-button-s capitalize text-turquoise-500">
-          {{ formatDate(item.date) }}
+          <StrapiImage
+            image-class="mx-auto group-hover:scale-105 transition-transform absolute absolute-cover object-cover"
+            :src="item.image.url"
+            :modifiers="{ resize: '336x208', fit: 'cover' }"
+            :lazy-fallback="true"
+          >
+          </StrapiImage>
         </div>
-        <div class="pt-3 text-subtitle-3 capitalize text-neutral-700">
-          {{ item.title }}
+        <div class="px-4 pb-6">
+          <div class="pt-5 text-button-s capitalize text-turquoise-500">
+            {{ formatDate(item.date) }}
+          </div>
+          <div class="pt-3 text-subtitle-3 capitalize text-neutral-700">
+            {{ item.title }}
+          </div>
+          <div class="line-clamp-3 min-h-[85px] pt-3 text-body-2 text-neutral-600">
+            {{ item.description }}
+          </div>
+          <TheButton
+            class="mt-8"
+            variant="secondary"
+            color-text="turquoise"
+            :to="`/blog/${item.slug}`"
+            size="small"
+            tag="nuxt-link"
+          >
+            Read
+          </TheButton>
         </div>
-        <div class="line-clamp-3 min-h-[85px] pt-3 text-body-2 text-neutral-600">
-          {{ item.description }}
-        </div>
-        <TheButton
-          class="mt-8"
-          variant="secondary"
-          color-text="turquoise"
-          :to="`/products/${item.slug}`"
-          size="small"
-          tag="nuxt-link"
-        >
-          Read
-        </TheButton>
-      </div>
-    </nuxt-link>
+      </nuxt-link>
+    </div>
   </div>
 </template>
 

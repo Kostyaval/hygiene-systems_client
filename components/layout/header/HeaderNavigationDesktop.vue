@@ -5,7 +5,7 @@
     >
       <div class="w-32">
         <nuxt-link to="/">
-          <img :src="logo.url" :alt="logo.alternativeText" />
+          <img :src="logo?.url" :alt="logo?.alternativeText" />
         </nuxt-link>
       </div>
       <div
@@ -20,6 +20,7 @@
           :key="index"
           :href="`/${item.pageUrl}`"
           class="whitespace-nowrap border-b border-transparent px-3 py-2 text-body-2 hover:border-turquoise-500 hover:text-turquoise-500"
+          active-class="border-turquoise-500 text-turquoise-500"
         >
           {{ item.navigationTitle }}
         </nuxt-link>

@@ -5,11 +5,13 @@
     :key="index"
     v-bind="block.props"
   />
+  <SEO v-if="articleData?.seo" :seo-data="articleData.seo" />
 </template>
 
 <script setup lang="ts">
 import { SinglePageResponse } from '~/models/api'
 import { ArticleInput } from '~/models/strapi-types/auto-generated'
+import SEO from '~/components/common/SEO.vue'
 
 const route = useRoute()
 const config = useRuntimeConfig()
@@ -27,6 +29,8 @@ const articlePromise = useFetch('/api/articles', {
     'populate[image][populate]': '*',
     'populate[body][populate]': 'deep,8',
     'populate[body][populate][0]': 'image',
+    'populate[seo][populate]': '*',
+    'populate[seo][metaSocial][populate]': '*',
     'populate[articles][populate][0]': 'title',
     'populate[articles][populate][1]': 'slug',
     'populate[articles][populate][2]': 'date',
@@ -57,7 +61,6 @@ if (articleSlug.value) {
 }
 
 const responses = await Promise.all(fetchArray)
-console.log(responses)
 const blogPageResponse = responses[0]
 const articleResponse = responses[1]
 
