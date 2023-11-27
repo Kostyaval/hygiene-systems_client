@@ -1,5 +1,5 @@
 <template>
-  <aside class="fixed z-10 bg-neutral-200 absolute-cover">
+  <aside class="fixed z-20 bg-neutral-200 absolute-cover">
     <div
       class="container flex h-full flex-col overflow-y-auto pb-10 pt-12"
       @click="closeAside($event)"
