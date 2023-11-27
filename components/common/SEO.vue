@@ -100,7 +100,7 @@ if (!!props.seoData) {
           {
             hid: 'ld-json',
             type: 'application/ld+json',
-            json: props.seoData.structuredData,
+            children: props.seoData.structuredData,
           },
         ]
       : []
