@@ -30,6 +30,7 @@
       <the-button
         v-if="quoteURL"
         :to="quoteURL"
+        target='_blank'
         class="border border-turquoise-400"
         external-link
         icon-left="button/cart"

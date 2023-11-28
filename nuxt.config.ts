@@ -24,8 +24,8 @@ export default defineNuxtConfig({
     // },
     devProxy: {
       '/uploads': {
-        target: 'http://127.0.0.1:1337/uploads/',
-        // target: 'https://strapi.hygienesystems.co.nz/uploads',
+        // target: 'http://127.0.0.1:1337/uploads/',
+        target: 'https://strapi.hygienesystems.co.nz/uploads',
         changeOrigin: true,
         prependPath: true,
       },

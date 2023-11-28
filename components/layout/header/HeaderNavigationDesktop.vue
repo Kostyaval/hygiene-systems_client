@@ -30,7 +30,9 @@
         :class="{ 'w-[600px]': isInputFocused }"
       >
         <SearchInput :list="autocompleteList" @focus="onInputFocus" />
-        <TheButton @click="openContactModal" variant="secondary">Contact us</TheButton>
+        <TheButton to="/contact-us" tag="nuxt-link" variant="secondary"
+          >Contact us</TheButton
+        >
       </div>
     </div>
   </div>
