@@ -54,6 +54,7 @@ export default defineNuxtConfig({
   },
   css: ['@/assets/styles/global.sass'],
   modules: [
+    'nuxt-simple-sitemap',
     'nuxt-font-loader',
     '@nuxtjs/tailwindcss',
     '@nuxtjs/svg-sprite',

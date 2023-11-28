@@ -30,6 +30,7 @@
     "nuxt": "^3.7.4",
     "nuxt-delay-hydration": "^1.1.4",
     "nuxt-font-loader": "^2.3.3",
+    "nuxt-simple-sitemap": "^4.1.6",
     "prettier": "^2.8.6",
     "prettier-plugin-tailwindcss": "^0.2.5",
     "sass": "^1.58.3",
@@ -37,6 +38,7 @@
   },
   "dependencies": {
     "@hotjar/browser": "^1.0.9",
+    "@nuxtjs/sitemap": "^2.4.0",
     "body-scroll-lock-upgrade": "^1.0.3",
     "h3": "^1.8.2",
     "nuxt-swiper": "^1.1.0",
