@@ -26,7 +26,7 @@
 </template>
 <script setup lang="ts">
 import HeaderNavigationDesktop from '~/components/layout/header/HeaderNavigationDesktop.vue'
-import { CompanyInformationState, NavigationItem } from '~/models/single-types'
+import type { CompanyInformationState, NavigationItem } from '~/models/single-types'
 import HeaderPromoTags from '~/components/layout/header/HeaderPromoTags.vue'
 import HeaderNavigationMobile from '~/components/layout/header/HeaderNavigationMobile.vue'
 import HeaderAsideMobile from '~/components/layout/header/HeaderAsideMobile.vue'

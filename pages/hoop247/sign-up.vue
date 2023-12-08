@@ -50,7 +50,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { Hoop24Page } from '~/models/single-types'
+import type { Hoop24Page } from '~/models/single-types'
 import {
   required,
   validateEmail,

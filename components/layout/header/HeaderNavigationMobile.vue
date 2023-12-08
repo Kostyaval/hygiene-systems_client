@@ -30,7 +30,7 @@
 
 <script setup lang="ts">
 import TheButton from '~/components/ui/buttons/TheButton.vue'
-import { ImageFile } from '~/models/strapi-types/auto-generated'
+import type { ImageFile } from '~/models/strapi-types/auto-generated'
 
 const emit = defineEmits(['mobileAsideTriggered', 'openContactModal'])
 

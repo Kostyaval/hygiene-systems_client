@@ -126,7 +126,7 @@
 <script setup lang="ts">
 import useModalProps from '~/components/ui/modals/utils/use-modal-props'
 import CommonModal from '~/components/ui/modals/templates/CommonModal.vue'
-import { CompanyInformationState } from '~/models/single-types'
+import type { CompanyInformationState } from '~/models/single-types'
 import MarkdownRenderer from '~/components/ui/MarkdownRenderer.vue'
 import TheButton from '~/components/ui/buttons/TheButton.vue'
 import StrapiImage from '~/components/ui/StrapiImage.vue'

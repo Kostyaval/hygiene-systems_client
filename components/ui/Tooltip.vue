@@ -74,12 +74,7 @@ const updateTooltipPosition = () => {
   const isOverlappingTop = bounding.top < bounding.height + 15
   const isOverlappingBottom =
     window.innerHeight - bounding.bottom < bounding.height + 15
-  console.log({
-    isOverlappingLeft,
-    isOverlappingRight,
-    isOverlappingTop,
-    isOverlappingBottom,
-  })
+
   const isCentered = initialPosition === 'top' || initialPosition === 'bottom'
   const isCenteredPossible =
     containerBounding.left > bounding.width / 2 &&

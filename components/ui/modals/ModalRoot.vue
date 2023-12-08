@@ -13,7 +13,8 @@
 </template>
 
 <script setup lang="ts">
-import { ModalOptions, $modal } from '~/components/ui/modals/utils/modal-manager'
+import type { ModalOptions } from '~/components/ui/modals/utils/modal-manager'
+import { $modal } from '~/components/ui/modals/utils/modal-manager'
 
 const modals = $modal.modals
 

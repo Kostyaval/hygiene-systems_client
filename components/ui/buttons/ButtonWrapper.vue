@@ -20,7 +20,7 @@
 </template>
 <script setup lang="ts">
 import TheButton from '~/components/ui/buttons/TheButton.vue'
-import { ComponentSharedButton } from '~/models/shared-components'
+import type{ ComponentSharedButton } from '~/models/shared-components'
 import { $modal } from '~/components/ui/modals'
 
 const props = withDefaults(

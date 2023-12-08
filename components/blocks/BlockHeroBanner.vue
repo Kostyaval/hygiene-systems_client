@@ -120,7 +120,6 @@ const sustainableTagsArray: string[] = props.sustainableTags
   : []
 
 const imagePosition = computed(() => {
-  console.log(props)
   switch (props.imagePosition) {
     case HeroBannerImagePosition.Center:
       return 'object-contain object-center lg:object-cover'

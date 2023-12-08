@@ -41,8 +41,8 @@
 <script setup lang="ts">
 import TheButton from '~/components/ui/buttons/TheButton.vue'
 import SearchInput from '~/components/ui/SearchInput.vue'
-import { ImageFile } from '~/models/strapi-types/auto-generated'
-import { NavigationItem, ProductCardsState } from '~/models/single-types'
+import type { ImageFile } from '~/models/strapi-types/auto-generated'
+import type { NavigationItem, ProductCardsState } from '~/models/single-types'
 
 defineProps({
   logo: {

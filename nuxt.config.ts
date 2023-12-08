@@ -59,6 +59,7 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@nuxtjs/svg-sprite',
     'nuxt-swiper',
+    'nuxt-gtag',
     // 'nuxt-delay-hydration',
     // ...(isDev ? ['@nuxtjs/html-validator'] : []),
   ],

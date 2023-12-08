@@ -43,7 +43,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, DirectiveBinding } from 'vue'
+import { defineProps } from 'vue'
 
 const props = withDefaults(
   defineProps<{
@@ -137,7 +137,6 @@ props.breakpoints?.forEach((el, index) => {
     webpSrcset: createSources(props.src, el, 'webp'),
   })
 })
-console.log(responsiveSources)
 
 const preloadLink = () => {
   const responsiveSourcesForPreload = responsiveSources.flatMap(
@@ -161,7 +160,6 @@ const preloadLink = () => {
 
   return [...responsiveSourcesForPreload, ...sourceForPreload]
 }
-console.log(preloadLink())
 if (props.preload) {
   useHead({
     link: preloadLink(),

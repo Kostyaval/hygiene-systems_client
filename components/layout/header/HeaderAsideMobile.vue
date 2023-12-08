@@ -53,8 +53,8 @@
 <script setup lang="ts">
 import SearchInput from '~/components/ui/SearchInput.vue'
 import TheButton from '~/components/ui/buttons/TheButton.vue'
-import { ImageFile } from '~/models/strapi-types/auto-generated'
-import { NavigationItem } from '~/models/single-types'
+import type { ImageFile } from '~/models/strapi-types/auto-generated'
+import type { NavigationItem } from '~/models/single-types'
 
 const emit = defineEmits(['mobileAsideTriggered', 'openContactModal'])
 

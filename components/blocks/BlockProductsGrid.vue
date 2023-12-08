@@ -15,7 +15,7 @@
     <div
       class="container grid grid-cols-[repeat(auto-fill,minmax(275px,1fr))] justify-items-center gap-6 pt-20 lg:pt-6"
     >
-      <template v-for="(item, index) in products" :key="index">
+      <template v-for="(item, index) in sortedProducts" :key="index">
         <BlockProductCard
           class="h-full w-full"
           navigation-title=""
@@ -35,6 +35,8 @@ import { BlockProductsGrid } from '~/models/page-block-components'
 
 const products = useState<ProductCardsState>('productCards')
 const props = withDefaults(defineProps<BlockProductsGrid>(), {})
+
+const sortedProducts = computed(() => products.value.sort((a, b) => +a.Rank - +b.Rank))
 </script>
 
 <style scoped></style>

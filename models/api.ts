@@ -8,7 +8,7 @@ import type {
   Hoop24, ArticleEntity
 } from '~/models/strapi-types/auto-generated'
 import { BlockHeroBanner, BlockProductCard } from '~/models/page-block-components'
-import { NavigationItem } from '~/models/single-types'
+import type { NavigationItem } from '~/models/single-types'
 
 type DynamicZone = BlockHeroBanner | Error
 
@@ -48,6 +48,7 @@ export interface ArticleResponse {
 export interface ProductCardsResponse {
   data: {
     title: string
+    Rank: string
     id: number
     pageUrl: string
     productCard: BlockProductCard

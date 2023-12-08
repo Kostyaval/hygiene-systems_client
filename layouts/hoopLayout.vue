@@ -67,8 +67,8 @@
   </div>
 </template>
 <script setup lang="ts">
-import { Hoop24Page } from '~/models/single-types'
-import { hoop24Response } from '~/models/api'
+import type { Hoop24Page } from '~/models/single-types'
+import type { hoop24Response } from '~/models/api'
 import TheHeader from '~/components/layout/header/TheHeader.vue'
 import StrapiImage from '~/components/ui/StrapiImage.vue'
 import { $modal } from '~/components/ui/modals'

@@ -34,7 +34,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { Hoop24Page } from '~/models/single-types'
+import type { Hoop24Page } from '~/models/single-types'
 import { required } from '~/components/ui/forms/utils/rules'
 import TheInput from '~/components/ui/forms/TheInput.vue'
 import TheForm from '~/components/ui/forms/TheForm.vue'

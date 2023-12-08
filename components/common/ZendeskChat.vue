@@ -5,7 +5,7 @@
     class="relative"
     @click="toggleChat"
   >
-    <span class="ml-2 text-button-m md:hidden">Message</span>
+    <span class="ml-2 text-button-m md:hidden">Help</span>
     <span
       class="absolute -right-2 -top-2 ml-2 inline-block rounded-full bg-orange-500 px-2 py-1 text-button-m leading-none md:hidden"
       v-if="notificationCounter"
@@ -31,7 +31,6 @@ const toggleChat = () => {
   if (!zE.value) return
   const action = chatIsOpen.value ? 'close' : 'open'
   zE.value('messenger', action)
-  console.log(zE.value)
   notificationCounter.value = 0
 }
 onMounted(async () => {
@@ -50,7 +49,6 @@ onMounted(async () => {
     zE.value('messenger', 'close')
 
     zE.value('messenger:on', 'unreadMessages', (count: number) => {
-      console.log(count)
       populateUnreadIndicator(count)
     })
 

@@ -12,6 +12,7 @@ export type Hoop24Page = Hoop24
 export type ProductCardsState = {
   navigationTitle: string
   pageUrl: string
+  Rank: string
   id: number
   productCard: ComponentBlockProductCard
 }[]

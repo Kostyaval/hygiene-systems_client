@@ -104,14 +104,6 @@ if (!!props.seoData) {
           },
         ]
       : []
-    console.log({
-      title: props.seoData?.metaTitle,
-      meta: [...metaTags, ...ogTags],
-      link: props.seoData?.canonicalURL
-        ? [{ rel: 'canonical', href: props.seoData.canonicalURL }]
-        : [],
-      script: scripts,
-    })
     return {
       title: props.seoData?.metaTitle,
       meta: [...metaTags, ...ogTags],

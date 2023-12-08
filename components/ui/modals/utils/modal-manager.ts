@@ -7,7 +7,7 @@ export interface ModalOptions {
   removing?: boolean
 }
 
-class ModalManager {
+export class ModalManager {
   private _modals = ref<ModalOptions[]>([])
 
   get modals() {

@@ -25,7 +25,7 @@
     <ModalRoot />
     <div
       v-if="quoteURL || zendesk"
-      class="fixed bottom-8 right-6 z-10 -m-2 inline-flex flex-wrap"
+      class="fixed bottom-6 right-6 z-10 -m-2 inline-flex flex-wrap"
     >
       <the-button
         v-if="quoteURL"
@@ -37,9 +37,10 @@
         >Online Quote</the-button
       >
       <ZendeskChat
+        style='pointer-events: none; opacity: 0'
         v-if="zendesk"
         :script="zendesk"
-        class="ml-2 border border-turquoise-400 md:min-w-0 md:pl-4 md:pr-2"
+        class="ml-2 border border-turquoise-400 md:pl-4 md:pr-2 min-w-[110px]"
       />
     </div>
   </div>
@@ -47,12 +48,12 @@
 <script setup lang="ts">
 import ModalRoot from '~/components/ui/modals/ModalRoot.vue'
 import type { CompanyInformationResponse, ProductCardsResponse } from '~/models/api'
-import {
+import type {
   CompanyInformationState,
   NavigationItem,
   ProductCardsState,
 } from '~/models/single-types'
-import { SinglePagesResponse } from '~/models/api'
+import type { SinglePagesResponse } from '~/models/api'
 import ZendeskChat from '~/components/common/ZendeskChat.vue'
 import TheButton from '~/components/ui/buttons/TheButton.vue'
 import ButtonWrapper from '~/components/ui/buttons/ButtonWrapper.vue'
@@ -74,7 +75,7 @@ const companyInformationPromise = useFetch<CompanyInformationResponse>(
 )
 
 const productCardsPromise = useFetch<ProductCardsResponse>(
-  '/api/products-pages?populate[productCard][populate]=*&fields[1]=pageUrl&fields[2]=navigationTitle',
+  '/api/products-pages?populate[productCard][populate]=*&fields[1]=pageUrl&fields[2]=navigationTitle&fields[3]=Rank',
   {
     method: 'GET',
     baseURL: config.public.baseURL,
