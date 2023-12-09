@@ -37,7 +37,7 @@
 </template>
 
 <script setup lang="ts">
-import { BlockProductCard } from '~/models/page-block-components'
+import type { BlockProductCard } from '~/models/page-block-components'
 import StrapiImage from '~/components/ui/StrapiImage.vue'
 
 const props = withDefaults(

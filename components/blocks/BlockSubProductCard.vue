@@ -46,7 +46,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { BlockSubProductCard } from '~/models/page-block-components'
+import type { BlockSubProductCard } from '~/models/page-block-components'
 import StrapiImage from '~/components/ui/StrapiImage.vue'
 import { $modal } from '~/components/ui/modals'
 import ModalSubProductPage from '~/components/ui/modals/content/ModalSubProductPage.vue'

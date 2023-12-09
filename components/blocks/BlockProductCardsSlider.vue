@@ -76,8 +76,8 @@
   </div>
 </template>
 <script setup lang="ts">
-import { BlockProductCardsSlider } from '~/models/page-block-components'
-import { ProductCardsState } from '~/models/single-types'
+import type { BlockProductCardsSlider } from '~/models/page-block-components'
+import type { ProductCardsState } from '~/models/single-types'
 import BlockProductCard from '~/components/blocks/BlockProductCard.vue'
 import TheButton from '~/components/ui/buttons/TheButton.vue'
 import ButtonWrapper from '~/components/ui/buttons/ButtonWrapper.vue'

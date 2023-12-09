@@ -30,8 +30,8 @@
 </template>
 <script setup lang="ts">
 import BlockProductCard from '~/components/blocks/BlockProductCard.vue'
-import { ProductCardsState } from '~/models/single-types'
-import { BlockProductsGrid } from '~/models/page-block-components'
+import type { ProductCardsState } from '~/models/single-types'
+import type { BlockProductsGrid } from '~/models/page-block-components'
 
 const products = useState<ProductCardsState>('productCards')
 const props = withDefaults(defineProps<BlockProductsGrid>(), {})

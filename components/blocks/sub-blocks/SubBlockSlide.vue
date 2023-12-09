@@ -37,7 +37,7 @@
 <script setup lang="ts">
 import StrapiImage from '~/components/ui/StrapiImage.vue'
 import TheButton from '~/components/ui/buttons/TheButton.vue'
-import { SubBlockSliderSlide } from '~/models/page-block-components'
+import type { SubBlockSliderSlide } from '~/models/page-block-components'
 import MarkdownRenderer from '~/components/ui/MarkdownRenderer.vue'
 
 const props = withDefaults(

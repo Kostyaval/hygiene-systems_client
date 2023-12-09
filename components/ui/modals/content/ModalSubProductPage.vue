@@ -48,13 +48,12 @@
 </template>
 <script setup lang="ts">
 import CommonModal from '~/components/ui/modals/templates/CommonModal.vue'
-import { BlockSubProductCard } from '~/models/page-block-components'
 import useModalProps from '~/components/ui/modals/utils/use-modal-props'
 import TheButton from '~/components/ui/buttons/TheButton.vue'
 import MarkdownRenderer from '~/components/ui/MarkdownRenderer.vue'
 import StrapiImage from '~/components/ui/StrapiImage.vue'
 import ButtonWrapper from '~/components/ui/buttons/ButtonWrapper.vue'
-import { ComponentSharedButton } from '~/models/strapi-types/auto-generated'
+import type { ComponentSharedButton } from '~/models/strapi-types/auto-generated'
 
 const buttons: ComponentSharedButton[] = [
   {

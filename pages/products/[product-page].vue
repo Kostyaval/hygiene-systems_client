@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import { ProductsPageResponse } from '~/models/api'
+import type { ProductsPageResponse } from '~/models/api'
 import SEO from '~/components/common/SEO.vue'
 const route = useRoute()
 const config = useRuntimeConfig()

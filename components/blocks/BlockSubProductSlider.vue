@@ -82,7 +82,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { BlockSubProductSlider } from '~/models/page-block-components'
+import type { BlockSubProductSlider } from '~/models/page-block-components'
 import BlockSubProductCard from '~/components/blocks/BlockSubProductCard.vue'
 import TheButton from '~/components/ui/buttons/TheButton.vue'
 import { Swiper, SwiperSlide } from 'swiper/vue'

@@ -74,7 +74,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { BlockInfoTextImage } from '~/models/page-block-components'
+import type { BlockInfoTextImage } from '~/models/page-block-components'
 import ButtonWrapper from '~/components/ui/buttons/ButtonWrapper.vue'
 import StrapiImage from '~/components/ui/StrapiImage.vue'
 import getColorVar from '~/components/ui/helpers/get-color-variable'

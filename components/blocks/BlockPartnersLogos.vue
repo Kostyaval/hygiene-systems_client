@@ -29,7 +29,7 @@
 </template>
 
 <script setup lang="ts">
-import { BlockPartnersLogos } from '~/models/page-block-components'
+import type { BlockPartnersLogos } from '~/models/page-block-components'
 import StrapiImage from '~/components/ui/StrapiImage.vue'
 
 const props = withDefaults(defineProps<BlockPartnersLogos>(), {})

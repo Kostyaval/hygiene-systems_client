@@ -56,7 +56,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { BlockSlider } from '~/models/page-block-components'
+import type { BlockSlider } from '~/models/page-block-components'
 import TheButton from '~/components/ui/buttons/TheButton.vue'
 import SubBlockSlide from '~/components/blocks/sub-blocks/SubBlockSlide.vue'
 import SubBlockSlideTestimonials from '~/components/blocks/sub-blocks/SubBlockSlideTestimonials.vue'

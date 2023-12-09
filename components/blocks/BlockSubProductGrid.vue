@@ -22,7 +22,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { BlockSubProductsGrid } from '~/models/page-block-components'
+import type { BlockSubProductsGrid } from '~/models/page-block-components'
 import BlockSubProductCard from '~/components/blocks/BlockSubProductCard.vue'
 
 const props = withDefaults(defineProps<BlockSubProductsGrid>(), {})

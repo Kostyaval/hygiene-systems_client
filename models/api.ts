@@ -7,7 +7,7 @@ import type {
   ProductsPage,
   Hoop24, ArticleEntity
 } from '~/models/strapi-types/auto-generated'
-import { BlockHeroBanner, BlockProductCard } from '~/models/page-block-components'
+import type { BlockHeroBanner, BlockProductCard } from '~/models/page-block-components'
 import type { NavigationItem } from '~/models/single-types'
 
 type DynamicZone = BlockHeroBanner | Error
