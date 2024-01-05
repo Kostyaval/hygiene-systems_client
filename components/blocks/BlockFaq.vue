@@ -37,7 +37,7 @@
 
 <script lang="ts" setup>
 import MarkdownRenderer from '~/components/ui/MarkdownRenderer.vue'
-import { BlockFaq } from '~/models/page-block-components'
+import type { BlockFaq } from '~/models/page-block-components'
 
 const props = withDefaults(defineProps<BlockFaq>(), {})
 

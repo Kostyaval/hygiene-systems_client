@@ -84,7 +84,7 @@
 </template>
 
 <script lang="ts" setup>
-import { BlockHeroBanner } from '~/models/page-block-components'
+import type { BlockHeroBanner } from '~/models/page-block-components'
 import getColorVar from '~/components/ui/helpers/get-color-variable'
 import TheButton from '~/components/ui/buttons/TheButton.vue'
 import StrapiImage from '~/components/ui/StrapiImage.vue'

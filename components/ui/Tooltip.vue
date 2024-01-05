@@ -25,7 +25,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted, watch, computed } from 'vue'
-import { PropType } from 'vue'
+import type { PropType } from 'vue'
 import md from 'snarkdown'
 
 const props = defineProps({

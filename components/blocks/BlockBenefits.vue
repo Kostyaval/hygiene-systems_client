@@ -26,7 +26,7 @@
 </template>
 
 <script setup lang="ts">
-import { BlockBenefits } from '~/models/page-block-components'
+import type { BlockBenefits } from '~/models/page-block-components'
 import ButtonWrapper from '~/components/ui/buttons/ButtonWrapper.vue'
 
 const props = withDefaults(defineProps<BlockBenefits>(), {})

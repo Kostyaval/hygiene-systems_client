@@ -1,5 +1,5 @@
 <template>
-  <div class='py-20 bg-neutral-200'>
+  <div class="bg-neutral-200 py-20">
     <div
       class="container mx-auto grid max-w-3xl grid-cols-2 gap-4 pb-4 pt-8 md:grid-cols-1 md:grid-rows-none"
     >
@@ -9,11 +9,13 @@
           <a
             class="block max-w-max text-button-m underline"
             :href="`tel:${mobileNumber}`"
-          >{{ mobileNumber }}</a
+            >{{ mobileNumber }}</a
           >
-          <a class="block max-w-max text-button-m underline" :href="`mailto:${email}`">{{
-              email
-            }}</a>
+          <a
+            class="block max-w-max text-button-m underline"
+            :href="`mailto:${email}`"
+            >{{ email }}</a
+          >
         </div>
         <div class="pt-8 text-body-2 text-neutral-500">
           <MarkdownRenderer v-if="address" :markdown="address" />
@@ -72,7 +74,11 @@
             name="company"
             placeholder="Company Name"
           />
-          <TheInput v-model="formState.location" name="location" placeholder="Location" />
+          <TheInput
+            v-model="formState.location"
+            name="location"
+            placeholder="Location"
+          />
           <TheInput
             :textarea="true"
             v-model="formState.message"
@@ -93,8 +99,9 @@
               class="mt-10 md:w-full"
               type="submit"
               variant="primary"
+              :loading="loading"
               size="large"
-            >Send Request</TheButton
+              >Send Request</TheButton
             >
           </div>
         </TheForm>
@@ -103,11 +110,10 @@
           @click="close()"
           variant="secondary"
           size="large"
-        >Cansel</TheButton
+          >Cansel</TheButton
         >
       </div>
     </div>
-
   </div>
 </template>
 
@@ -127,6 +133,8 @@ import TheForm from '~/components/ui/forms/TheForm.vue'
 import TheInput from '~/components/ui/forms/TheInput.vue'
 import TheCheckbox from '~/components/ui/forms/TheCheckbox.vue'
 import { useState } from '#app'
+import { $modal } from '~/components/ui/modals'
+import ModalThanks from '~/components/ui/modals/content/ModalThanks.vue'
 
 const props = defineProps({ ...useModalProps })
 const config = useRuntimeConfig()
@@ -142,8 +150,10 @@ const formState = ref({
   message: '',
   isAlreadyCustomer: false,
 })
+const loading = ref(false)
 
 const handleForm = async () => {
+  loading.value = true
   await fetch(`${config.public.baseURL}api/ezforms/submit`, {
     method: 'POST',
     headers: {
@@ -152,15 +162,19 @@ const handleForm = async () => {
     body: JSON.stringify({ formData: formState.value, formName: 'Contact Form' }),
   })
     .then((response) => {
+      loading.value = false
       if (!response.ok) {
         throw new Error('Network response was not ok')
       }
       console.log(response.json())
     })
     .then((data) => {
+      loading.value = false
       console.log('Success:', data)
+      $modal.open(ModalThanks).then((res) => console.log(res))
     })
     .catch((error) => {
+      loading.value = false
       console.error('Error:', error)
     })
   props.close({ ...formState.value })
