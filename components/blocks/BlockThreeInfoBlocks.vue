@@ -1,6 +1,8 @@
 <template>
   <div class='py-20' :class="backgroundClassColor">
     <div class="container">
+      {{props.color}}
+      {{backgroundClassColor}}
       <div class="grid gap-12 md:grid-cols-1 lg:grid-cols-2" :class="gridColumnClass">
         <template v-for="(item, index) in infoBlocks" :key="index">
           <div v-if="item" class="mx-auto max-w-md">
@@ -43,14 +45,13 @@
 </template>
 
 <script setup lang="ts">
-import { BlockThreeInfoBlocks } from '~/models/page-block-components'
+import type { BlockThreeInfoBlocks } from '~/models/page-block-components'
 import MarkdownRenderer from '~/components/ui/MarkdownRenderer.vue'
 import ButtonWrapper from '~/components/ui/buttons/ButtonWrapper.vue'
 import StrapiImage from '~/components/ui/StrapiImage.vue'
 import getColorVar from '~/components/ui/helpers/get-color-variable'
 
 const props = withDefaults(defineProps<BlockThreeInfoBlocks>(), {})
-
 const gridColumnClass = computed(() => {
   switch (props.infoBlocks?.length) {
     case 1:

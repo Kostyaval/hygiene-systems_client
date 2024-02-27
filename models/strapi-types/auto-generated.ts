@@ -600,6 +600,7 @@ export type ComponentBlockThreeInfoBlocks = {
   __typename?: 'ComponentBlockThreeInfoBlocks'
   id: Scalars['ID']
   infoBlocks?: Maybe<Array<Maybe<ComponentSubBlockInfoBlock>>>
+  color?: Maybe<ComponentSharedColor>
   banner?: Maybe<ComponentSubBlockBanner>
 }
 
