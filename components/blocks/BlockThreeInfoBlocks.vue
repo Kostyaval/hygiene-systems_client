@@ -1,8 +1,6 @@
 <template>
   <div class='py-20' :class="backgroundClassColor">
     <div class="container">
-      {{props.color}}
-      {{backgroundClassColor}}
       <div class="grid gap-12 md:grid-cols-1 lg:grid-cols-2" :class="gridColumnClass">
         <template v-for="(item, index) in infoBlocks" :key="index">
           <div v-if="item" class="mx-auto max-w-md">
@@ -67,7 +65,7 @@ const gridColumnClass = computed(() => {
   }
 })
 
-const backgroundClassColor = !props.color ? getColorVar(props.color?.color) : ''
+const backgroundClassColor = computed(() => props.color ? getColorVar(props.color?.color) : '')
 </script>
 
 <style scoped></style>
