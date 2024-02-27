@@ -1,4 +1,4 @@
-import {
+import type {
   ComponentBlockHeroBanner,
   ComponentBlockSlider,
   ComponentBlockInfoTextImage,

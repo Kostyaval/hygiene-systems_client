@@ -1,6 +1,6 @@
 <template>
   <div
-    class="absolute my-auto h-[60%] max-h-[480px] w-[calc(90%_-_32px)] max-w-[450px] rounded-2xl bg-neutral-100 px-8 py-10 text-center absolute-center lg:w-full"
+    class="absolute my-auto h-[60%] max-h-[440px] w-[calc(90%_-_32px)] max-w-[450px] rounded-2xl bg-neutral-100 px-8 py-10 text-center absolute-center lg:w-full"
   >
     <img src="/media/svg/thanks.svg" class='m-auto' alt="thanks" />
     <div class="py-4 text-subtitle-2 text-neutral-900">Your message has been sent</div>
