@@ -66,6 +66,9 @@ export default defineNuxtConfig({
     // 'nuxt-delay-hydration',
     // ...(isDev ? ['@nuxtjs/html-validator'] : []),
   ],
+  svgSprite: {
+    publicPath: '/_nuxt/'
+  },
   // @ts-ignore
   fontLoader: {
     local: [
